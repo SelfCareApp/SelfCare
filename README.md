@@ -4,7 +4,6 @@
 
 The project is divided by use of directory structure.
 - documention -> this contains the documents created during the production phase
-- node.js -> this conntains the backend used for the application
 - reactNative -> this directory contains the react application which is the front end of the application
 
 <h5>Authors : in no particular order</h5>
