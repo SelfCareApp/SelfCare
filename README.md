@@ -12,4 +12,4 @@ The project is divided by use of directory structure.
 * Ife Ajibola
 * Sherwayne Walrond
 
-expected project end date: 01/31/2019
+expected project end date: 03/31/2019
