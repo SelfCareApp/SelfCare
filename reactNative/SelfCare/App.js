@@ -8,6 +8,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import LoginForm from './src/components/LoginForm';
 
 
 
@@ -15,13 +16,7 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to Self Care the app!</Text>
-        <Text style={styles.welcome}>Authors:</Text>
-        <Text style={styles.instructions}> - Fortune Creig</Text>
-        <Text style={styles.instructions}> - Sherwayne Walrond</Text>
-        <Text style={styles.instructions}> - Ife Ajibola</Text>
-      </View>
+        <LoginForm/>
     );
   }
 }
