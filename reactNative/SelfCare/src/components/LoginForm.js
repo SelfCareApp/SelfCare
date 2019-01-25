@@ -21,10 +21,10 @@ class LoginForm extends Component{
                       />
                  </CardSection>
                 <CardSection>
-                    <Button>Login</Button>
+                    <Button onPress={()=>alert('LoginCLicked')}>Login</Button>
                 </CardSection>
                 <CardSection>
-                    <Button>Dont have an account ?</Button>
+                    <Button onPress={this.props.handle}>Dont have an account ?</Button>
                 </CardSection>
             </Card>
         )
