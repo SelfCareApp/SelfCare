@@ -7,17 +7,17 @@ class LoginForm extends Component{
     render(){
         return(
             <Card>
-                <View style={style.viewMargins}>
+                <View style={{"marginTop":100}}>
                     <Text style={style.textStyle}>Self Care App</Text>
                 </View>
-                    <CardSection>
-                        <Input label='Email'
-                               placeholder='selfcare@gmail.com'></Input>
-                    </CardSection>
-                    <CardSection>
-                        <Input label='password'
-                               placeholder='password123'></Input>
-                    </CardSection>
+                <CardSection>
+                    <Input label='Email'
+                       placeholder='selfcare@gmail.com'></Input>
+                </CardSection>
+                 <CardSection>
+                    <Input label='password'
+                      placeholder='password123'></Input>
+                 </CardSection>
                 <CardSection>
                     <Button>Login</Button>
                 </CardSection>
@@ -38,9 +38,6 @@ const style ={
         paddingBottom:20,
         color:'#00539C'
         
-    },
-    viewMargins :{
-        marginTop:100
     }
 }
 

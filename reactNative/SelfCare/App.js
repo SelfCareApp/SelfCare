@@ -1,25 +1,31 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import LoginForm from './src/components/LoginForm';
+import RegistrationForm from './src/components/RegistrationForm'
 
+class App extends Component{
+  state ={
+    authoState:null,   //keeps state of authention status {null, login,regirster}
+  }
 
-
-type Props = {};
-export default class App extends Component<Props> {
+  authState(){
+    switch(this.state.authoState){
+      case "login": return (<LoginForm />);
+        break;
+      case "register": return (<RegistrationForm />);
+        break;
+      default:
+        return <LoginForm />
+    }
+  }
   render() {
     return (
-        <LoginForm/>
+        this.authState()
     );
   }
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
