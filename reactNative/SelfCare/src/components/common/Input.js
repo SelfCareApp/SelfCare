@@ -2,12 +2,14 @@ import React from 'react';
 import {TextInput, View , Text} from 'react-native';
 
 
-const Input =({label, placeholder}) =>{
+const Input =({label, placeholder, secureTextEntry}) =>{
     return (
         <View style={style.containerStyle}>
             <Text style={style.labelStyle}>{label}</Text>
             <TextInput placeholder={placeholder}
                        style={style.inputStyle}
+                       autoCorrect = {false}
+                       secureTextEntry ={secureTextEntry}   //this is to hide the enter data
             />
         </View>
     )

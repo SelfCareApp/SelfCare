@@ -12,11 +12,13 @@ class LoginForm extends Component{
                 </View>
                 <CardSection>
                     <Input label='Email'
-                       placeholder='selfcare@gmail.com'></Input>
+                       placeholder='selfcare@gmail.com'/>
                 </CardSection>
                  <CardSection>
                     <Input label='password'
-                      placeholder='password123'></Input>
+                      placeholder='password123'
+                      secureTextEntry= {true}
+                      />
                  </CardSection>
                 <CardSection>
                     <Button>Login</Button>

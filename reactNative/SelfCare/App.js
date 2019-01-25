@@ -5,11 +5,11 @@ import RegistrationForm from './src/components/RegistrationForm'
 
 class App extends Component{
   state ={
-    authoState:null,   //keeps state of authention status {null, login,regirster}
+    authState:null,   //keeps state of authention status {null, login,regirster}
   }
 
   authState(){
-    switch(this.state.authoState){
+    switch(this.state.authState){
       case "login": return (<LoginForm />);
         break;
       case "register": return (<RegistrationForm />);

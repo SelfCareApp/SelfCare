@@ -19,10 +19,10 @@ const RegistrationForm =()=>{
                 <Input placeholder='the.selfcareapp@gmail.com' label='Email: '/>
             </CardSection>
             <CardSection>
-                <Input placeholder='selfcare123' label='Password: '/>
+                <Input placeholder='selfcare123' label='Password: ' secureTextEntry= {true}/>
             </CardSection>
             <CardSection>
-                 <Input placeholder='selfcare123' label='Confirm Password: '/>
+                 <Input placeholder='selfcare123' label='Confirm Password: ' secureTextEntry= {true}/>
             </CardSection>          
             <CardSection>
                 <Button>Register</Button>
