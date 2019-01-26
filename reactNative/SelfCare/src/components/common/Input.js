@@ -2,7 +2,7 @@ import React from 'react';
 import {TextInput, View , Text} from 'react-native';
 
 
-const Input =({label, placeholder, secureTextEntry}) =>{
+const Input =({label, placeholder, secureTextEntry, onChangeText}) =>{
     return (
         <View style={style.containerStyle}>
             <Text style={style.labelStyle}>{label}</Text>
@@ -10,6 +10,7 @@ const Input =({label, placeholder, secureTextEntry}) =>{
                        style={style.inputStyle}
                        autoCorrect = {false}
                        secureTextEntry ={secureTextEntry}   //this is to hide the enter data
+                       onChangeText ={onChangeText}
             />
         </View>
     )

@@ -1,9 +1,34 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
+import axios from 'axios';
 
 import {Card, CardSection,Button, Input} from './common'
 
 class LoginForm extends Component{
+    constructor(props){
+        super(props);
+        this.loginHandle = this.login.bind(this)
+    }
+
+    state ={
+        password:'',
+        email: '',
+        error:'',
+        loading:false
+    }
+
+
+    login(){
+        //params:
+        //return:
+        axios.post('http://localhost:3000',{email:this.state.email}).then(
+            function(response){
+                return response;
+            }).catch((err)=>{console.log(err);
+                    alert("failed to connect")
+                })
+    }
+
     render(){
         return(
             <Card>
@@ -12,7 +37,10 @@ class LoginForm extends Component{
                 </View>
                 <CardSection>
                     <Input label='Email'
-                       placeholder='selfcare@gmail.com'/>
+                            placeholder='selfcare@gmail.com'
+                            value={this.state.email}
+                            onChangeText={(email)=>{this.setState({email})}}
+                            />
                 </CardSection>
                  <CardSection>
                     <Input label='password'
@@ -21,7 +49,7 @@ class LoginForm extends Component{
                       />
                  </CardSection>
                 <CardSection>
-                    <Button onPress={()=>alert('LoginCLicked')}>Login</Button>
+                    <Button onPress={this.loginHandle}>Login</Button>
                 </CardSection>
                 <CardSection>
                     <Button onPress={this.props.handle}>Dont have an account ?</Button>
