@@ -25,7 +25,7 @@ const RegistrationForm =()=>{
                  <Input placeholder='selfcare123' label='Confirm Password: ' secureTextEntry= {true}/>
             </CardSection>          
             <CardSection>
-                <Button>Register</Button>
+                <Button onPress={()=>alert('Creating Account')}>Register</Button>
             </CardSection>
         </Card>
     )
