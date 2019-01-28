@@ -8,6 +8,7 @@ class LoginForm extends Component{
     constructor(props){
         super(props);
         this.loginHandle = this.login.bind(this)
+        
     }
 
     state ={
@@ -17,16 +18,16 @@ class LoginForm extends Component{
         loading:false
     }
 
-
     login(){
         //params:
         //return:
-        axios.post('http://localhost:3000',{email:this.state.email}).then(
-            function(response){
-                return response;
-            }).catch((err)=>{console.log(err);
-                    alert("failed to connect")
-                })
+        axios.post('http://localhost:3000',{email:this.state.email})
+                .then((response)=>{
+                        console.log(JSON.stringify(response.data))
+                        console.log(response.status)
+                }).catch((err)=>{console.log(err);
+                            alert(err)
+                        })
     }
 
     render(){
