@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 import axios from 'axios';
 
-import {Card, CardSection,Button, Input} from './common'
+import {Card, CardSection,Button, Input, Spinner } from './common'
 
 class LoginForm extends Component{
     constructor(props){
         super(props);
-        this.loginHandle = this.login.bind(this)
+        this.loginHandle = this.loginClickEvent.bind(this)
         
     }
 
@@ -15,19 +15,35 @@ class LoginForm extends Component{
         password:'',
         email: '',
         error:'',
-        loading:false
+        loading:false       //state will be false , true , null
     }
 
-    login(){
+    loginClickEvent(){
+        //descr: this handles the login button click event
         //params:
         //return:
-        axios.post('http://localhost:3000',{email:this.state.email})
+        this.setState({loading:true});
+        axios.post('http://localhost:3000/api/user/login',{email:this.state.email})
                 .then((response)=>{
                         console.log(JSON.stringify(response.data))
                         console.log(response.status)
-                }).catch((err)=>{console.log(err);
+                    })
+                      .then(this.setState({loading:false}))
+                         .catch((err)=>{console.log(err);
+                            this.setState({loading:false})
                             alert(err)
-                        })
+                            })
+    }
+
+    renderLoginButton(){
+        //descr: decides on whether load login button or spinner
+        //params:
+        //return: button or spinner
+        if(this.state.loading){
+            return (<Spinner size="large"></Spinner> ) 
+        }else if(this.state.loading == false){
+            return (<Button onPress={this.loginHandle}>Login</Button>)
+        }
     }
 
     render(){
@@ -50,7 +66,7 @@ class LoginForm extends Component{
                       />
                  </CardSection>
                 <CardSection>
-                    <Button onPress={this.loginHandle}>Login</Button>
+                    {this.renderLoginButton()}
                 </CardSection>
                 <CardSection>
                     <Button onPress={this.props.handle}>Dont have an account ?</Button>

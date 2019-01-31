@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View} from 'react-native';
 import LoginForm from './src/components/LoginForm';
 import RegistrationForm from './src/components/RegistrationForm'
 
@@ -15,6 +15,7 @@ class App extends Component{
   }
   state ={
     authState:null,   //keeps state of authention status {null, login,regirster}
+    loading:null
   }
 
   authState(){
