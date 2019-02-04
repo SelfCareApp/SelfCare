@@ -12,19 +12,25 @@ class MainScreen extends Component{
 
     component1 = () => <Icon type='MaterialIcons' name="person" />
     component2 = () => <Icon type="MaterialIcons" name="message" />
-    component3 = () => <Icon type="MaterialIcons" name="picture-in-picture"/>
+    component3 = () => <Icon type="MaterialIcons" name="photo-library"/>
+    component4 = () => <Icon type="MaterialIcons" name="map"/>
 
     state ={
-        activeArea :"bio"   //this handles the area below handling the content rendered
+        activeArea :"bio",   //this handles the area below handling the content rendered
+        selectedIndex:0     // this is used to keep track of the selected button
     };
 
     renderArea(){
         //this handles the which section is active on screen
         //this component changes the active area state
-        if(this.state.activeArea == "bio"){
-            return (<CardSection><Text>This is the bio area</Text></CardSection>);
-        }else if(this.state.activeArea == "portfolio"){
-            return (<CardSection><Text>This is the gallery area</Text></CardSection>);
+        switch (this.state.activeArea){
+            case "bio": return (<CardSection><Text>This is the bio area</Text></CardSection>);
+                break;
+            case "portfolio": return (<CardSection><Text>This is the gallery area</Text></CardSection>);
+                break;
+            case "messages": return (<CardSection><Text>This is the messages area</Text></CardSection>);
+                break;
+            case "map": return (<CardSection><Text>This is the directions area</Text></CardSection>);
         }
     }
 
@@ -36,14 +42,18 @@ class MainScreen extends Component{
         */
         switch(btnId){
             case 0:
-                this.setState({activeArea:"bio"});
+                this.setState({activeArea:"bio", selectedIndex:btnId});
                 break;
             case  1:
-                this.setState({activeArea:"messages"});
+                this.setState({activeArea:"messages",selectedIndex:btnId});
                 break;
             case 2:
-            this.setState({activeArea:"portfolio"});
+            this.setState({activeArea:"portfolio",selectedIndex:btnId});
                 break;
+            case 3:
+            this.setState({activeArea:"map",selectedIndex:btnId});
+                break
+
 
         }
         console.log("changed area to: "+ this.state.activeArea)
@@ -51,7 +61,7 @@ class MainScreen extends Component{
 
 
     render(){
-        buttons =[{element:this.component1},{element:this.component2},{element:this.component3}]
+        buttons =[{element:this.component1},{element:this.component2},{element:this.component3},{element:this.component4}]
         return (
             <View style={style.containerStyle}>
                 <Header headerText="Professionals" />
@@ -65,8 +75,11 @@ class MainScreen extends Component{
                 <CardSection>
                     <Button >Book</Button>
                 </CardSection>
-                <ButtonGroup buttons={buttons} onPress={this.changeDisplayHandle}
-                 containerStyle={{height:50}}
+                <ButtonGroup buttons={buttons} 
+                    onPress={this.changeDisplayHandle}
+                    containerStyle={{height:50}}
+                    selectedIndex={this.state.selectedIndex}
+                    selectedButtonStyle={{backgroundColor:"#578CA9"}}
                 />
                 <Card>
                  {this.renderArea()}
