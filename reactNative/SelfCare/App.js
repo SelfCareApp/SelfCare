@@ -10,7 +10,6 @@ class App extends Component{
   }
 
   updateState(){
-    alert('Updating state')
     this.setState({authState:"register"})
   }
   state ={

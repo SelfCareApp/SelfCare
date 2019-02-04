@@ -16,23 +16,23 @@ class LoginForm extends Component{
         email: '',
         error:'',
         loading:false       //state will be false , true , null
-    }
+    };
 
     loginClickEvent(){
-        //descr: this handles the login button click event
+        //descr: function executed when login button clicked
         //params:
         //return:
         this.setState({loading:true});
         axios.post('http://localhost:3000/api/user/login',{email:this.state.email})
-                .then((response)=>{
-                        console.log(JSON.stringify(response.data))
-                        console.log(response.status)
-                    })
-                      .then(this.setState({loading:false}))
-                         .catch((err)=>{console.log(err);
-                            this.setState({loading:false})
-                            alert(err)
-                            })
+            .then((response)=>{
+                    console.log(JSON.stringify(response.data))
+                    console.log(response.status)
+                })
+                    .then(this.setState({loading:false}))
+                        .catch((err)=>{console.log(err);
+                        this.setState({loading:false})
+                        alert(err)
+                        })
     }
 
     renderLoginButton(){
@@ -54,10 +54,10 @@ class LoginForm extends Component{
                 </View>
                 <CardSection>
                     <Input label='Email'
-                            placeholder='selfcare@gmail.com'
-                            value={this.state.email}
-                            onChangeText={(email)=>{this.setState({email})}}
-                            />
+                        placeholder='selfcare@gmail.com'
+                        value={this.state.email}
+                        onChangeText={(email)=>{this.setState({email})}}
+                        />
                 </CardSection>
                  <CardSection>
                     <Input label='password'
