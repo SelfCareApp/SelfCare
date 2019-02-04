@@ -20,7 +20,7 @@ Please be aware that it will initial load of the application will take time.
 
 ## Authors : in no particular order
 
-* [Fortune Creig Phiri](https://github.com/creigPhiri
+* [Fortune](https://github.com/creigPhiri) Creig Phiri
 * Ife Ajibola
 * Sherwayne Walrond
 
