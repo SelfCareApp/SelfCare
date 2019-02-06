@@ -14,21 +14,24 @@ const Header =(props) =>{
 
     const styles ={
         viewStyle:{
-            backgroundColor: '#F8F8F8',
+            backgroundColor: '#4F84C4',
             justifyContent:'center',       //moves it along y-axis
             alignItems:'center',
-            height:60,
+            height:70,
             paddingTop:25,
-            marginTop:15,
+
             ////////adding a shadow ////
-            shadowColor:'#000',
-            shadowOffset:{width:0, height:2}, //dimensions of the shadow
+            shadowColor:'#00539C',
+            shadowOffset:{width:0, height:5}, //dimensions of the shadow
             shadowOpacity:0.2,
-            elevation:2,
+            elevation:3,
             position:'relative'
         },
         textStyle:{
-            fontSize:20
+            marginTop:15,
+            marginBottom:5,
+            fontSize:20,
+            color:'#F0EDE5'
         }
     };
 

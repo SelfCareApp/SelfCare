@@ -79,7 +79,7 @@ class MainScreen extends Component{
                     onPress={this.changeDisplayHandle}
                     containerStyle={{height:50}}
                     selectedIndex={this.state.selectedIndex}
-                    selectedButtonStyle={{backgroundColor:"#578CA9"}}
+                    selectedButtonStyle={{backgroundColor:"#F0EDE5"}}
                 />
                 <Card>
                  {this.renderArea()}
@@ -91,6 +91,7 @@ class MainScreen extends Component{
 const style ={
     containerStyle:{
         // marginTop:15
+        
     },
     bottomButtons: {
         alignItems:'center',

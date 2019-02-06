@@ -33,7 +33,7 @@ const BottomNav =createBottomTabNavigator({
       screen:Screen3,
       navigationOptions:{
         tabBarIcon:({focused,tintColor})=>{
-          return <Icon name="info" size={24} color={tintColor}/>
+          return <Icon name="cut" size={24} color={tintColor}/>
         }
           }
     },
@@ -56,9 +56,9 @@ const BottomNav =createBottomTabNavigator({
     },
     tabBarOptions: {
       activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
+      inactiveTintColor: 'white',
       // showLabel: false,
-      style: { backgroundColor: '#F8F8F8'},
+      style: { backgroundColor: '#4F84C4'},
 
     },
   }
