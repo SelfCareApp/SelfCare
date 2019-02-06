@@ -1,21 +1,26 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet} from 'react-native';
 import LoginForm from './src/components/LoginForm';
 import RegistrationForm from './src/components/RegistrationForm'
+import Navigator from './Navigator';
 
 class App extends Component{
   constructor(props){
      super(props);
+     //this.handle is passed down to the Login form
+     //this is how the login form mutates the state
      this.handle = this.updateState.bind(this);
+  }
+
+    state ={
+    authState:"login",   //keeps state of authention status {null, login,regirster}
+    loading:null
   }
 
   updateState(){
     this.setState({authState:"register"})
   }
-  state ={
-    authState:null,   //keeps state of authention status {null, login,regirster}
-    loading:null
-  }
+
 
   authState(){
     switch(this.state.authState){
@@ -24,7 +29,7 @@ class App extends Component{
       case "register": return (<RegistrationForm />);
         break;
       default :
-        return <LoginForm handle ={this.handle}/>
+        return <Navigator/>
     }
   }
 

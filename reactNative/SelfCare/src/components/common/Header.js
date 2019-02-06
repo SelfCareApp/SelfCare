@@ -18,7 +18,8 @@ const Header =(props) =>{
             justifyContent:'center',       //moves it along y-axis
             alignItems:'center',
             height:60,
-            paddingTop:15,
+            paddingTop:25,
+            marginTop:15,
             ////////adding a shadow ////
             shadowColor:'#000',
             shadowOffset:{width:0, height:2}, //dimensions of the shadow

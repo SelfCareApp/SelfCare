@@ -1,8 +1,9 @@
 import {View, Text} from 'react-native';
 import React from 'react';
+import {Header} from '../components/common'
 
 const Screen4 = ()=>{
-    return(<View><Text style={{marginTop:50}}>This is screen 4</Text></View>)
+    return(<View><Header headerText="Screen4"/></View>)
 }
 
 export {Screen4}

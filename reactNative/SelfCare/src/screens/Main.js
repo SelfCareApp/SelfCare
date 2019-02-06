@@ -90,7 +90,7 @@ class MainScreen extends Component{
 
 const style ={
     containerStyle:{
-        marginTop:15
+        // marginTop:15
     },
     bottomButtons: {
         alignItems:'center',
