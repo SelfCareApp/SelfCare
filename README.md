@@ -18,6 +18,8 @@ To run the application in development stage following commands can be used from 
   2. react-native run-android
 Please be aware that it will initial load of the application will take time.
 
+![](https://img.shields.io/node/v/newman.svg?style=for-the-badge) ![](https://img.shields.io/npm/l/m.svg?style=for-the-badge)
+
 ## Authors : in no particular order
 
 * [Fortune](https://github.com/creigPhiri) Creig Phiri
