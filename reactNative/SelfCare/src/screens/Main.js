@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import { Button,CardSection,Header} from  '../components/common';
-
 import {Card,Icon, ButtonGroup} from 'react-native-elements';
+import MapView from 'react-native-maps'
 
 class MainScreen extends Component{
     constructor(props){
@@ -12,8 +12,8 @@ class MainScreen extends Component{
 
     component1 = () => <Icon type='MaterialIcons' name="person" />
     component2 = () => <Icon type="MaterialIcons" name="message" />
-    component3 = () => <Icon type="MaterialIcons" name="photo-library"/>
-    component4 = () => <Icon type="MaterialIcons" name="map"/>
+    component3 = () => <Icon type="MaterialIcons" name="photo-library" />
+    component4 = () => <Icon type="MaterialIcons" name="map" />
 
     state ={
         activeArea :"bio",   //this handles the area below handling the content rendered
@@ -30,7 +30,9 @@ class MainScreen extends Component{
                 break;
             case "messages": return (<CardSection><Text>This is the messages area</Text></CardSection>);
                 break;
-            case "map": return (<CardSection><Text>This is the directions area</Text></CardSection>);
+            case "map": return (<CardSection>
+                                    <Text>Map area</Text>
+                                </CardSection>);
         }
     }
 
@@ -53,8 +55,6 @@ class MainScreen extends Component{
             case 3:
             this.setState({activeArea:"map",selectedIndex:btnId});
                 break
-
-
         }
         console.log("changed area to: "+ this.state.activeArea)
     }
@@ -67,15 +67,15 @@ class MainScreen extends Component{
                 <Header headerText="Professionals" />
                  <Card title="@realSlim"
                     style={style.cardStyle}
-                     image={{uri:'https://d95vll9kevyvb.cloudfront.net/5pikaXYBvt4hQ-t3Br7PwpuCnr0=/13x0:787x533/580x0/https%3A//smallslivestatic.s3.amazonaws.com/artist_images/jonathan-barber.jpg'}} >
-                      <Text style={{marginBottom: 20}}>
-                         Real Barbers are born not made.! #masterBarber#mikeHair
+                     image={{uri:'https://i.cbc.ca/1.4948998.1545062510!/cpImage/httpImage/image.jpg_gen/derivatives/16x9_780/black-barber-blood-pressure.jpg'}} >
+                      <Text style={{marginBottom: 20, textAlign:"center"}}>
+                         Im like a Doctor, but for your hair.
                       </Text>
                  </Card>
                 <CardSection>
                     <Button >Book</Button>
                 </CardSection>
-                <ButtonGroup buttons={buttons} 
+                <ButtonGroup buttons={buttons}             
                     onPress={this.changeDisplayHandle}
                     containerStyle={{height:50}}
                     selectedIndex={this.state.selectedIndex}
@@ -91,6 +91,17 @@ class MainScreen extends Component{
 const style ={
     containerStyle:{
         marginTop:15
+    },
+    bottomButtons: {
+        alignItems:'center',
+        justifyContent: 'center',
+        flex:1
+    },
+    footerText: {
+        color:'white',
+        fontWeight:'bold',
+        alignItems:'center',
+        fontSize:18,
     },
 
 };
