@@ -105,4 +105,4 @@ const style ={
     },
 
 };
-export default MainScreen;
+export {MainScreen};
