@@ -6,11 +6,21 @@ peer dependency : react-native-gesture-handler
 import {Component} from 'react';
 import {createBottomTabNavigator,createAppContainer} from 'react-navigation'
 
-import {MainScreen,Screen2} from './src/screens';
+import {MainScreen,Screen2,Screen3,Screen4} from './src/screens';
 
 const BottomNav =createBottomTabNavigator({
-    Main:MainScreen,
-    Screen2:Screen2,
+    Main:{
+      screen:MainScreen
+    },
+    Screen2:{
+      screen:Screen2
+    },
+    Screen3:{
+      screen:Screen3
+    },
+    Screen4:{
+      screen:Screen4
+    }
 },
 {
     navigationOptions: ({ navigation }) => ({
@@ -28,6 +38,8 @@ const BottomNav =createBottomTabNavigator({
       activeTintColor: 'tomato',
       inactiveTintColor: 'gray',
       // showLabel: false,
+      style: { backgroundColor: '#F8F8F8'},
+
     },
   }
 );
