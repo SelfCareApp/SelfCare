@@ -12,8 +12,8 @@ import LoginForm from './src/components/LoginForm';
 
 
 const BottomNav =createBottomTabNavigator({
-  Screen2:{
-    screen:LoginForm,
+  TempScreen:{
+    screen:Screen2,
     navigationOptions:{
       tabBarIcon:({focused,tintColor})=>{
         return <Icon name="info" size={24} color={tintColor}/>
@@ -29,7 +29,7 @@ const BottomNav =createBottomTabNavigator({
         }
           }
     },
-    Screen3:{
+    Services:{
       screen:Screen3,
       navigationOptions:{
         tabBarIcon:({focused,tintColor})=>{
@@ -37,7 +37,7 @@ const BottomNav =createBottomTabNavigator({
         }
           }
     },
-    Screen4:{
+    Promotions:{
       screen:Screen4,
       navigationOptions:{
         tabBarIcon:({focused,tintColor})=>{

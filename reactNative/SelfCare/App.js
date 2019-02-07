@@ -9,12 +9,26 @@ class App extends Component{
      super(props);
      //this.handle is passed down to the Login form
      //this is how the login form mutates the state
-     this.handle = this.updateState.bind(this);
+     this.registrationHandle = this.updateState.bind(this);
+     /*
+     handle below is used to change the status of state
+     */
+     this.loginHandle = this.loginStatusChange.bind(this)
   }
 
-    state ={
-    authState:"login",   //keeps state of authention status {null, login,regirster}
+  state ={
+    authState:null,   //keeps state of authention status {null, login,regirster}
     loading:null
+  };
+
+  componentWillMount(){
+  /* This confirms that user is logged in*/
+  }
+
+  loginStatusChange(){
+    this.setState({
+      authState:"success"
+    })
   }
 
   updateState(){
@@ -23,13 +37,15 @@ class App extends Component{
 
 
   authState(){
+    console.log(`*************\n${this.state.authState}`)
     switch(this.state.authState){
-      case "login": return (<LoginForm handle ={this.handle}/>);
+      case "success":  return <Navigator/>
         break;
-      case "register": return (<RegistrationForm />);
+      case "register": return (<RegistrationForm />)
         break;
       default :
-        return <Navigator/>
+        return (<LoginForm loginHandle ={this.loginHandle} registrationHandle ={this.registrationHandle}/>)
+       
     }
   }
 

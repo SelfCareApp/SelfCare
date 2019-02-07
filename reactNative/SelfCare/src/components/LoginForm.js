@@ -42,7 +42,8 @@ class LoginForm extends Component{
         if(this.state.loading){
             return (<Spinner size="large"></Spinner> ) 
         }else if(this.state.loading == false){
-            return (<Button onPress={this.loginHandle}>Login</Button>)
+            // return (<Button onPress={this.loginHandle}>Login</Button>)
+            return (<Button onPress={this.props.loginHandle}>Login</Button>)
         }
     }
 
@@ -69,7 +70,7 @@ class LoginForm extends Component{
                     {this.renderLoginButton()}
                 </CardSection>
                 <CardSection>
-                    <Button onPress={this.props.handle}>Dont have an account ?</Button>
+                    <Button onPress={this.props.registrationHandle}>Dont have an account ?</Button>
                 </CardSection>
             </Card>
         )
