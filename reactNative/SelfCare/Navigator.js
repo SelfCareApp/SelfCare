@@ -8,15 +8,14 @@ import {createBottomTabNavigator,createAppContainer} from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
 import {MainScreen,Screen2,Screen3,Screen4} from './src/screens';
-import LoginForm from './src/components/LoginForm';
-
 
 const BottomNav =createBottomTabNavigator({
-  TempScreen:{
+
+  Services:{
     screen:Screen2,
     navigationOptions:{
       tabBarIcon:({focused,tintColor})=>{
-        return <Icon name="info" size={24} color={tintColor}/>
+        return <Icon name="cut" size={24} color={tintColor}/>
       }
         }
 
@@ -29,7 +28,7 @@ const BottomNav =createBottomTabNavigator({
         }
           }
     },
-    Services:{
+    Temp:{
       screen:Screen3,
       navigationOptions:{
         tabBarIcon:({focused,tintColor})=>{

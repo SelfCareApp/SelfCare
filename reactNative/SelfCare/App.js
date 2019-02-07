@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet} from 'react-native';
-import LoginForm from './src/components/LoginForm';
-import RegistrationForm from './src/components/RegistrationForm'
+import LoginForm from './src/screens/LoginForm';
+import RegistrationForm from './src/screens/RegistrationForm'
 import Navigator from './Navigator';
 
 class App extends Component{

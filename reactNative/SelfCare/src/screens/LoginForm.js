@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 import axios from 'axios';
 
-import {Card, CardSection,Button, Input, Spinner } from './common'
+import {Card, CardSection,Button, Input, Spinner } from '../components/common'
 
 class LoginForm extends Component{
     constructor(props){

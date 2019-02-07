@@ -18,7 +18,7 @@ const Header =(props) =>{
             justifyContent:'center',       //moves it along y-axis
             alignItems:'center',
             height:70,
-            paddingTop:25,
+            paddingTop:25,  
 
             ////////adding a shadow ////
             shadowColor:'#00539C',
@@ -31,7 +31,8 @@ const Header =(props) =>{
             marginTop:15,
             marginBottom:5,
             fontSize:20,
-            color:'#F0EDE5'
+            color:'#F0EDE5',
+            fontWeight:'bold'
         }
     };
 
