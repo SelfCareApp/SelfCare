@@ -34,7 +34,6 @@ const Header =(props) =>{
             marginBottom:5,
             fontSize:20,
             color:theme.primaryColor.textColor,
-            fontWeight:'bold',
         }
     };
 

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, TouchableOpacity} from 'react-native';
 import { SocialIcon, Icon } from 'react-native-elements'
 import axios from 'axios';
 
-import {Card, CardSection,Button, Input, Spinner } from '../components/common'
+import {Card, CardSection,Button, Input, Spinner } from '../../components/common'
 
 class LoginForm extends Component{
     constructor(props){
@@ -53,8 +53,12 @@ class LoginForm extends Component{
         <View style={style.container}>
             <Text style={style.textStyle}>Self Care App</Text>
                 <View style={{marginBottom:20}}>
-                  <SocialIcon type="facebook" button title="Sign In With Facebook"/>
-                  <SocialIcon type="google-plus-official" button title="Sign In With Google"/>
+                <TouchableOpacity>
+                    <SocialIcon type="facebook" button title="Sign In With Facebook"/>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <SocialIcon type="google-plus-official" button title="Sign In With Google"/>
+                </TouchableOpacity>
                 </View>
             <CardSection>
                 <Input
@@ -99,4 +103,4 @@ const style ={
     }
 }
 
-export default LoginForm;
+export {LoginForm};

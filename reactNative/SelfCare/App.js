@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import { StyleSheet} from 'react-native';
-import LoginForm from './src/screens/LoginForm';
-import RegistrationForm from './src/screens/RegistrationForm'
+import {RegistrationForm, LoginForm} from './src/screens/Authentication'
 import Navigator from './Navigator';
+import WelcomeNavigator from './WelcomeNavigator';
 
 class App extends Component{
   constructor(props){
@@ -37,7 +36,6 @@ class App extends Component{
 
 
   authState(){
-    console.log(`*************\n${this.state.authState}`)
     switch(this.state.authState){
       case "success":  return <Navigator/>
         break;
@@ -53,27 +51,11 @@ class App extends Component{
   render() {
     return (
         this.authState()
+        
     );
   }
 }
 
 export default App;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+

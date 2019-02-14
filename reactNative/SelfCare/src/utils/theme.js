@@ -4,9 +4,9 @@ this file holds the colors and themes that shall be used through out the app
 
 const theme ={
     primaryColor :{
-        backgroundColor:"#00539C",
-        iconColor:"#EAE6DA",
-        textColor:"#EAE6DA",
+        backgroundColor:"#fafafa",
+        iconColor:"#00539C",
+        textColor:"#00539C",
         selectedIcon: "#18233E",
 
     },

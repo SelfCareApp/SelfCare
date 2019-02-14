@@ -1,7 +1,7 @@
 import React from 'react';
 import {View,Text} from 'react-native';
 
-import {Card, CardSection,Input,Button} from '../components/common'
+import {Card, CardSection,Input,Button} from '../../components/common'
 
 const RegistrationForm =()=>{
     return(
@@ -41,4 +41,4 @@ const style ={
         
     }
 }
-export default RegistrationForm;
+export {RegistrationForm};
