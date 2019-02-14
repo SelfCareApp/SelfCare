@@ -17,7 +17,7 @@ class Screen2 extends Component{
     render(){
             return(<View style={{flex:1}}><Header headerText="Services"/>
         {users.map((user)=>{
-           return <ProfListItem key={} name={user.name} title={user.title}/>
+           return <ProfListItem name={user.name} title={user.title}/>
         })}
     </View>)
     }
