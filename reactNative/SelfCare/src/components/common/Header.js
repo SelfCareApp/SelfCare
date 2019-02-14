@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text ,View} from 'react-native';
+import theme from '../../utils/theme';
 
 const Header =(props) =>{
     //destructuring
@@ -14,14 +15,15 @@ const Header =(props) =>{
 
     const styles ={
         viewStyle:{
-            backgroundColor: '#4F84C4',
+            backgroundColor: theme.primaryColor.backgroundColor,
             justifyContent:'center',       //moves it along y-axis
             alignItems:'center',
             height:70,
-            paddingTop:25,  
+            paddingTop:25,
+            marginBottom:5, 
 
             ////////adding a shadow ////
-            shadowColor:'#00539C',
+            shadowColor:'#D1DFFA',
             shadowOffset:{width:0, height:5}, //dimensions of the shadow
             shadowOpacity:0.2,
             elevation:3,
@@ -31,8 +33,8 @@ const Header =(props) =>{
             marginTop:15,
             marginBottom:5,
             fontSize:20,
-            color:'#F0EDE5',
-            fontWeight:'bold'
+            color:theme.primaryColor.textColor,
+            fontWeight:'bold',
         }
     };
 

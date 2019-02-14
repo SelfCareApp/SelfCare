@@ -8,6 +8,7 @@ import {createBottomTabNavigator,createAppContainer} from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
 import {MainScreen,Screen2,Screen3,Screen4} from './src/screens';
+import theme from './src/utils/theme'
 
 const BottomNav =createBottomTabNavigator({
 
@@ -54,10 +55,10 @@ const BottomNav =createBottomTabNavigator({
     tabBarLabel: {
     },
     tabBarOptions: {
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'white',
+      activeTintColor: theme.primaryColor.selectedIcon,
+      inactiveTintColor: theme.primaryColor.iconColor,
       // showLabel: false,
-      style: { backgroundColor: '#4F84C4'},
+      style: { backgroundColor: theme.primaryColor.backgroundColor},
 
     },
   }
