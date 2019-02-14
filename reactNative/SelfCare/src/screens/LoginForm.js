@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
+import { SocialIcon, Icon } from 'react-native-elements'
 import axios from 'axios';
 
 import {Card, CardSection,Button, Input, Spinner } from '../components/common'
@@ -49,30 +50,34 @@ class LoginForm extends Component{
 
     render(){
         return(
-            <Card>
-                <View style={{"marginTop":100}}>
-                    <Text style={style.textStyle}>Self Care App</Text>
+        <View style={style.container}>
+            <Text style={style.textStyle}>Self Care App</Text>
+                <View style={{marginBottom:20}}>
+                  <SocialIcon type="facebook" button title="Sign In With Facebook"/>
+                  <SocialIcon type="google-plus-official" button title="Sign In With Google"/>
                 </View>
-                <CardSection>
-                    <Input label='Email'
-                        placeholder='selfcare@gmail.com'
-                        value={this.state.email}
-                        onChangeText={(email)=>{this.setState({email})}}
-                        />
-                </CardSection>
-                 <CardSection>
-                    <Input label='password'
-                      placeholder='password123'
-                      secureTextEntry= {true}
-                      />
-                 </CardSection>
-                <CardSection>
-                    {this.renderLoginButton()}
-                </CardSection>
-                <CardSection>
-                    <Button onPress={this.props.registrationHandle}>Dont have an account ?</Button>
-                </CardSection>
-            </Card>
+            <CardSection>
+                <Input
+                  label='Email'
+                  placeholder='selfcare@gmail.com'
+                  value={this.state.email}
+                  onChangeText={(email)=>{this.setState({email})}}
+                />
+            </CardSection>
+            <CardSection>
+                <Input 
+                  label='password'
+                  placeholder='password123'
+                  secureTextEntry= {true}
+                />
+            </CardSection>
+            <CardSection>
+                {this.renderLoginButton()}
+            </CardSection>
+             <CardSection>
+                <Button onPress={this.props.registrationHandle}>Dont have an account ?</Button>
+             </CardSection>
+        </View>
         )
     }
 }
@@ -86,6 +91,11 @@ const style ={
         paddingBottom:20,
         color:'#00539C'
         
+    },
+    container :{
+        alignContent:"center",
+        justifyContent:"center",
+        flex:1
     }
 }
 

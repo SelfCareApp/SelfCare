@@ -7,13 +7,13 @@ import {Card,CardSection} from './common';
 import {Text, Image, View} from 'react-native';
 import {Rating} from 'react-native-elements'
 
-const ProfList =()=>{
+const ProfListItem =(props)=>{
     return(    <Card>
         <CardSection>
             <Image style={styles.imgStyle} source={{uri:"http://www.mdc.edu/massagetherapy/img/massage.jpg"}}/>
             <View style={styles.viewStyle}>
-                <Text style={styles.textStyle}>John Doe</Text>
-                <Text style={styles.textStyle}>Barber</Text>
+                <Text style={styles.textStyle}>{props.name}</Text>
+                <Text style={styles.textStyle}>{props.title}</Text>
                 <Rating imageSize={30}/>
             </View>
         </CardSection>
@@ -21,7 +21,7 @@ const ProfList =()=>{
 
 }
 
-export default ProfList
+export default ProfListItem
 
 const styles ={
     textStyle :{
