@@ -3,8 +3,6 @@ import { Text ,View} from 'react-native';
 import theme from '../../utils/theme';
 
 const Header =(props) =>{
-    //destructuring
-
     const { textStyle, viewStyle } = styles;
     return (
             <View style={viewStyle}>
@@ -15,7 +13,7 @@ const Header =(props) =>{
 
     const styles ={
         viewStyle:{
-            backgroundColor: theme.primaryColor.backgroundColor,
+            backgroundColor: theme.primaryColor.textColor,
             justifyContent:'center',       //moves it along y-axis
             alignItems:'center',
             height:70,
@@ -33,7 +31,7 @@ const Header =(props) =>{
             marginTop:15,
             marginBottom:5,
             fontSize:20,
-            color:theme.primaryColor.textColor,
+            color:"#fafafa",
         }
     };
 

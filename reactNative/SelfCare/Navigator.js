@@ -7,33 +7,33 @@ import React,{Component} from 'react';
 import {createBottomTabNavigator,createAppContainer} from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
-import {MainScreen,Screen2,Screen3,Screen4} from './src/screens';
+import {MainScreen,ProfessionalList,Screen3,Screen4} from './src/screens';
 import theme from './src/utils/theme'
 
 const BottomNav =createBottomTabNavigator({
 
   Services:{
-    screen:Screen2,
+    screen:ProfessionalList,
     navigationOptions:{
       tabBarIcon:({focused,tintColor})=>{
-        return <Icon name="cut" size={24} color={tintColor}/>
+        return <Icon name="home" size={24} color={tintColor}/>
       }
         }
 
   },  
-  Main:{
+  Search:{
       screen:MainScreen,
       navigationOptions:{
         tabBarIcon:({focused,tintColor})=>{
-          return <Icon name="home" size={24} color={tintColor}/>
+          return <Icon name="search" size={24} color={tintColor}/>
         }
           }
     },
-    Temp:{
+    Account:{
       screen:Screen3,
       navigationOptions:{
         tabBarIcon:({focused,tintColor})=>{
-          return <Icon name="cut" size={24} color={tintColor}/>
+          return <Icon name="user" size={24} color={tintColor}/>
         }
           }
     },

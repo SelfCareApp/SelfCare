@@ -1,3 +1,6 @@
+/* 
+    form handles regular user login
+*/
 import React, {Component} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import { SocialIcon, Icon } from 'react-native-elements'
@@ -49,6 +52,7 @@ class LoginForm extends Component{
     }
 
     render(){
+        //console.log(this.props.navigation.handler)
         return(
         <View style={style.container}>
             <Text style={style.textStyle}>Self Care App</Text>

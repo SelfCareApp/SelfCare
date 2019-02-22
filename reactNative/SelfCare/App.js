@@ -10,7 +10,7 @@ class App extends Component{
      //this is how the login form mutates the state
      this.registrationHandle = this.updateState.bind(this);
      /*
-     handle below is used to change the status of state
+     handler below is used to change the status of state
      */
      this.loginHandle = this.loginStatusChange.bind(this)
   }
@@ -50,8 +50,8 @@ class App extends Component{
 
   render() {
     return (
-        this.authState()
-        
+         this.authState()
+        //<WelcomeNavigator handler="my handler"/>
     );
   }
 }
