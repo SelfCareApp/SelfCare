@@ -21,9 +21,9 @@ class ProfListItem extends Component{
                 <TouchableOpacity onPress={(user)=>{console.log(user)}}>
                     <CardSection>
                             <Image style={styles.imgStyle} source={{uri:"https://i.cbc.ca/1.4509398.1517262943!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/dwight.jpg"}}/>
-                            <View style={styles.viewStyle}>
+                        <View style={styles.viewStyle}>
                             <Text style={styles.username}>{this.props.name}</Text>
-                            <Text style={styles.textStyle}>{this.props.title}</Text>
+                             <Text style={styles.textStyle}>{this.props.title}</Text>
                             <Rating imageSize={24}/>
                         </View>
                     </CardSection>

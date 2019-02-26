@@ -6,7 +6,7 @@ import {Text, View, TouchableOpacity} from 'react-native';
 import { SocialIcon, Icon } from 'react-native-elements'
 import axios from 'axios';
 
-import {Card, CardSection,Button, Input, Spinner } from '../../components/common'
+import { CardSection,Button, Input, Spinner } from '../../components/common'
 
 class LoginForm extends Component{
     constructor(props){

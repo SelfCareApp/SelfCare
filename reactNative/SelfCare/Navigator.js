@@ -7,7 +7,7 @@ import React,{Component} from 'react';
 import {createBottomTabNavigator,createAppContainer} from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
-import {MainScreen,ProfessionalList,Screen3,Screen4} from './src/screens';
+import {MainScreen,ProfessionalList,Search,Screen4} from './src/screens';
 import theme from './src/utils/theme'
 
 const BottomNav =createBottomTabNavigator({
@@ -22,7 +22,7 @@ const BottomNav =createBottomTabNavigator({
 
   },  
   Search:{
-      screen:MainScreen,
+      screen:Search,
       navigationOptions:{
         tabBarIcon:({focused,tintColor})=>{
           return <Icon name="search" size={24} color={tintColor}/>
@@ -30,7 +30,7 @@ const BottomNav =createBottomTabNavigator({
           }
     },
     Account:{
-      screen:Screen3,
+      screen:MainScreen,
       navigationOptions:{
         tabBarIcon:({focused,tintColor})=>{
           return <Icon name="user" size={24} color={tintColor}/>
