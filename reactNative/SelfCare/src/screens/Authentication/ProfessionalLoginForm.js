@@ -31,7 +31,7 @@ class ProfessionalLoginForm extends React.Component{
 }
 const style ={
     constainerStyle:{
-        alignContent:"center",
+        alignItems:"center",
         justifyContent:"center",
         flex:1
     }

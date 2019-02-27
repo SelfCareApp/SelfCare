@@ -2,8 +2,8 @@
     form handles regular user login
 */
 import React, {Component} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
-import { SocialIcon, Icon } from 'react-native-elements'
+import {Text, View, TouchableOpacity, AsyncStorage} from 'react-native';
+import { SocialIcon } from 'react-native-elements'
 import axios from 'axios';
 
 import { CardSection,Button, Input, Spinner } from '../../components/common'
@@ -12,14 +12,14 @@ class LoginForm extends Component{
     constructor(props){
         super(props);
         this.loginHandle = this.loginClickEvent.bind(this)
-        
+        this.btnClick = this.btnClick.bind(this)
     }
 
     state ={
         password:'',
         email: '',
         error:'',
-        loading:false       //state will be false , true , null
+        loading:false      //state will be false , true , null
     };
 
     loginClickEvent(){
@@ -39,6 +39,15 @@ class LoginForm extends Component{
                         })
     }
 
+     btnClick(){
+        this.setState({loading:true});
+        const userToken =AsyncStorage.setItem('userToken','abc').then((token)=>{
+                 console.log(`token is ${token}`)
+                })
+        console.log(`token is still ${AsyncStorage.getItem('userToken')}`)
+        this.setState({loading:false})
+    }
+
     renderLoginButton(){
         //descr: decides on whether load login button or spinner
         //params:
@@ -47,7 +56,7 @@ class LoginForm extends Component{
             return (<Spinner size="large"></Spinner> ) 
         }else if(this.state.loading == false){
             // return (<Button onPress={this.loginHandle}>Login</Button>)
-            return (<Button onPress={this.props.loginHandle}>Login</Button>)
+            return (<Button onPress={this.btnClick}>Login</Button>)
         }
     }
 

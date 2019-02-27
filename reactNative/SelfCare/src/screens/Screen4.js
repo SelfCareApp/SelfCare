@@ -3,7 +3,7 @@ import React from 'react';
 import {Header} from '../components/common'
 
 const Screen4 = ()=>{
-    return(<View><Header headerText="Screen4"/></View>)
+    return(<View><Header headerText="Promotions"/></View>)
 }
 
 export {Screen4}

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import { Button,CardSection,Header} from  '../components/common';
 import {Card,Icon, ButtonGroup} from 'react-native-elements';
-import MapView from 'react-native-maps'
 
 class MainScreen extends Component{
     constructor(props){
