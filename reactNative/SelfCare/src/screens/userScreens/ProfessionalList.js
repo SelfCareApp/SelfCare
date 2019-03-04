@@ -1,7 +1,7 @@
 import {View, Text} from 'react-native';
 import React, {Component} from 'react';
-import {Header} from '../components/common';
-import ProfListItem from '../components/ProfListItem'
+import {Header} from '../../components/common';
+import ProfListItem from '../../components/ProfListItem'
 import axios from 'axios';
 
 

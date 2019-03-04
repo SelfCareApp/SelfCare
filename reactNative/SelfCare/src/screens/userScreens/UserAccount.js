@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {AsyncStorage,View} from 'react-native';
 
-import { Header ,Button, CardSection} from '../components/common';
+import { Header ,Button, CardSection} from '../../components/common';
 
 class UserAccount extends Component{
     constructor(props){

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
-import { Button,CardSection,Header} from  '../components/common';
+import { Button,CardSection,Header} from  '../../components/common';
 import {Card,Icon, ButtonGroup} from 'react-native-elements';
 
 class MainScreen extends Component{

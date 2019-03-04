@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator} from 'react-navigation';
 import {  ActivityIndicator,  AsyncStorage,StatusBar,StyleSheet, View,} from 'react-native';
 
-import {UserAccount, ProfessionalList,Screen4,Search} from './src/screens'
+import {UserAccount, ProfessionalList,Screen4,Search} from './src/screens/userScreens'
 import {LoginForm,ProfessionalLoginForm} from './src/screens/Authentication'
 import theme from './src/utils/theme'
 import Icon from 'react-native-vector-icons/FontAwesome5'
