@@ -18,7 +18,7 @@ const Header =(props) =>{
             alignItems:'center',
             height:70,
             paddingTop:25,
-            marginBottom:5, 
+            // marginBottom:5, 
 
             ////////adding a shadow ////
             shadowColor:'#D1DFFA',

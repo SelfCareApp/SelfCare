@@ -3,7 +3,7 @@ import React from 'react';
 import {Header, Button, CardSection} from '../../components/common'
 import {createStackNavigator, createAppContainer} from 'react-navigation'
 
-const Screen4 = ()=>{
+const PromotionsScreen = ()=>{
     return(<View><Header headerText="Promotions"/>
     <CardSection>
     </CardSection>
@@ -11,4 +11,4 @@ const Screen4 = ()=>{
     </View>)
 }
 
-export {Screen4}
+export {PromotionsScreen}

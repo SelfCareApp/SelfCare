@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator} from 'react-navigation';
 import {  ActivityIndicator,  AsyncStorage,StatusBar,StyleSheet, View,} from 'react-native';
 
-import {UserAccount, ProfessionalList,Screen4,Search} from './src/screens/userScreens'
+import {UserAccount, ProfessionalList,PromotionsScreen,Search, MainScreen} from './src/screens/userScreens'
 import {LoginForm,ProfessionalLoginForm} from './src/screens/Authentication'
 import theme from './src/utils/theme'
 import Icon from 'react-native-vector-icons/FontAwesome5'
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
   },
 });
 
+
 const AppStack = createBottomTabNavigator({
 
   Services:{
@@ -61,7 +62,7 @@ const AppStack = createBottomTabNavigator({
           }
     },
     Promotions:{
-      screen:Screen4,
+      screen:PromotionsScreen,
       navigationOptions:{
         tabBarIcon:({focused,tintColor})=>{
           return <Icon name="hand-holding-usd" size={24} color={tintColor}/>
@@ -95,12 +96,14 @@ const AppStack = createBottomTabNavigator({
     },
   }
 );
+
 const AuthStack = createBottomTabNavigator({RegularLogin:LoginForm, ProfessionalLogin:ProfessionalLoginForm})
 export default createAppContainer(createSwitchNavigator(
   {
     AuthLoadingScreen:AuthLoadingScreen,
     Auth:AuthStack,
-    App:AppStack
+    App:AppStack,
+    // InnerAppStack:InnerAppStack
   },{
     initialRouteName:'AuthLoadingScreen'
   })
