@@ -46,6 +46,7 @@ class LoginForm extends Component{
                 })
         console.log(`token is still ${AsyncStorage.getItem('userToken')}`)
         this.setState({loading:false})
+        return this.props.navigation.navigate('App')
     }
 
     renderLoginButton(){
@@ -64,7 +65,8 @@ class LoginForm extends Component{
         //console.log(this.props.navigation.handler)
         return(
         <View style={style.container}>
-            <Text style={style.textStyle}>Self Care App</Text>
+            <Text style={style.textStyle}>Abantu:</Text>
+            <Text style={style.smallerText}>The People</Text>
                 <View style={{marginBottom:20}}>
                 <TouchableOpacity>
                     <SocialIcon type="facebook" button title="Sign In With Facebook"/>
@@ -101,10 +103,18 @@ class LoginForm extends Component{
 
 const style ={
     textStyle :{
-        fontSize :20,
+        fontSize :25,
         textAlign:'center',
         fontWeight:'600',
         paddingTop: 10,
+        paddingBottom:10,
+        color:'#00539C'
+        
+    },
+    smallerText :{
+        fontSize :15,
+        textAlign:'center',
+        fontWeight:'500',
         paddingBottom:20,
         color:'#00539C'
         

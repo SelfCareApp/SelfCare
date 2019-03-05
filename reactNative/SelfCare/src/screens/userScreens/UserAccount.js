@@ -10,7 +10,7 @@ class UserAccount extends Component{
     }
 
     logoutHandle(){
-        AsyncStorage.removeItem('userToken')
+        AsyncStorage.removeItem('userToken').then(()=>this.props.navigation.navigate('Auth'))
     }
     render(){
         return (

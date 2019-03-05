@@ -48,9 +48,12 @@ class Search extends React.Component{
     }
 
     filterResults=(text)=>{
-      // this function handles the filter login
+      /* this function handles the search filter
+         function converts input and retrieved data to uppercase before search, thus making search
+         case insensitive
+      */
       const newData = this.arrayHolder.filter((item)=>{
-        return item.name.first.indexOf(text) > -1;
+        return (item.name.first).toUpperCase().indexOf(text.toUpperCase()) > -1 || (item.name.last).toUpperCase().indexOf(text.toUpperCase()) > -1;
       })
       console.log(`data => ${newData}`)
       this.setState({data:newData,
@@ -74,7 +77,7 @@ class Search extends React.Component{
             renderItem={({ item }) => ( 
               <ListItem                            
                 title={`${item.name.first} ${item.name.last}`}  
-                subtitle={item.profession}                           
+                subtitle={item.account.professionalType || "unknown"}                           
                 containerStyle={{ borderBottomWidth: 0 }} 
               />          
             )}          
