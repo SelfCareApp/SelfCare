@@ -1,57 +1,29 @@
+/* All app navigation will be held within the App.js file which 
+    has the createAppContainer() from react-navigation
+*/
+
+//native component imports
 import React, {Component} from 'react';
 import {createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator} from 'react-navigation';
-import {  ActivityIndicator,  AsyncStorage,StatusBar,StyleSheet, View,} from 'react-native';
-
-import {UserAccount, ProfessionalList,PromotionsScreen,Search, MainScreen} from './src/screens/userScreens'
-import {LoginForm,ProfessionalLoginForm} from './src/screens/Authentication'
-import theme from './src/utils/theme'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
-class AuthLoadingScreen extends Component {
-  constructor() {
-    super();
-    this._bootstrapAsync();
-    this.authenticatedStateChangeHandler = this.authenticatedStateChange.bind(this)
-  }
-  state ={
-    authenticated: null,
-  }
-  authenticatedStateChange(){
-    this.setState({authenticated:true})
-  }
-  // Fetch the token from storage then navigate to our appropriate place
-  _bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem('userToken');
-    userToken ? this.setState({authenticated:true}) : this.setState({authenticated:false});
-    // This will switch to the App screen or Auth screen and this loading
-    // screen will be unmounted and thrown away.
-    this.props.navigation.navigate(userToken ? 'App' : 'Auth',this.authenticatedStateChangeHandler);
-  };
+//component import
+import {UserAccount, ProfessionalsScreen,PromotionsScreen,Search, MainScreen} from './src/screens/userScreens'
+import {LoginForm,ProfessionalLoginForm, RegistrationForm} from './src/screens/Authentication'
+import AuthLoadingScreen from './AuthLoadingScreen'
 
-  // Render any loading content that you like here
-  render() {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator size='large' />
-        <StatusBar barStyle="default" />
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+//stylesheet import
+import theme from './src/utils/theme'
 
 
+
+//navigation for professionals list and Professional account
+const serviceStack = createSwitchNavigator({services:ProfessionalsScreen,main:MainScreen})
+
+// this is the bottom tab once inside the app
 const AppStack = createBottomTabNavigator({
-
   Services:{
-    screen:ProfessionalList,
+    screen:serviceStack,  //services stack in a stack navigator allowing for a switch in the pages between the professional list and mainscreen
     navigationOptions:{
       tabBarIcon:({focused,tintColor})=>{
         return <Icon name="home" size={24} color={tintColor}/>
@@ -103,13 +75,17 @@ const AppStack = createBottomTabNavigator({
   }
 );
 
-const AuthStack = createBottomTabNavigator({RegularLogin:LoginForm, ProfessionalLogin:ProfessionalLoginForm})
+//this handles the switch from login screen to registration
+const LogStack = createStackNavigator({Login:LoginForm, Register:RegistrationForm})
+//this is this handle the switch between authenticating as a regular user or professional
+const AuthStack = createBottomTabNavigator({RegularLogin:LogStack, ProfessionalLogin:ProfessionalLoginForm})
+
+//this is what houses the whole application flow
 export default createAppContainer(createSwitchNavigator(
   {
     AuthLoadingScreen:AuthLoadingScreen,
     Auth:AuthStack,
     App:AppStack,
-    // InnerAppStack:InnerAppStack
   },{
     initialRouteName:'AuthLoadingScreen'
   })

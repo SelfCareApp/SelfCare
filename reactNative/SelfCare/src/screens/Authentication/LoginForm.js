@@ -61,11 +61,15 @@ class LoginForm extends Component{
         }
     }
 
+    registerBtnClick(){
+        //handles the click event for register btn
+        return this.props.navigation.navigate('Register')
+    }
     render(){
         //console.log(this.props.navigation.handler)
         return(
         <View style={style.container}>
-            <Text style={style.textStyle}>Abantu:</Text>
+            <Text style={style.textStyle}>Abantu</Text>
             <Text style={style.smallerText}>The People</Text>
                 <View style={{marginBottom:20}}>
                 <TouchableOpacity>
@@ -94,7 +98,7 @@ class LoginForm extends Component{
                 {this.renderLoginButton()}
             </CardSection>
              <CardSection>
-                <Button onPress={this.props.registrationHandle}>Dont have an account ?</Button>
+                <Button onPress={()=>this.registerBtnClick() } >Dont have an account ?</Button>
              </CardSection>
         </View>
         )
@@ -103,7 +107,7 @@ class LoginForm extends Component{
 
 const style ={
     textStyle :{
-        fontSize :25,
+        fontSize :30,
         textAlign:'center',
         fontWeight:'600',
         paddingTop: 10,
@@ -114,8 +118,8 @@ const style ={
     smallerText :{
         fontSize :15,
         textAlign:'center',
-        fontWeight:'500',
-        paddingBottom:20,
+        fontWeight:'400',
+        paddingBottom:16,
         color:'#00539C'
         
     },

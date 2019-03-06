@@ -5,7 +5,7 @@ import ProfListItem from '../../components/ProfListItem'
 import axios from 'axios';
 
 
-class ProfessionalList extends Component{
+class ProfessionalsScreen extends Component{
     state={
         professionals:[]
     }
@@ -23,11 +23,13 @@ class ProfessionalList extends Component{
          <View style={{flex:1}}><Header headerText="Providers Near You"/>
             {this.state.professionals.map((prof)=>{
             return <ProfListItem key ={prof._id} 
-                name={prof.name.first} title="barber"/>
+                firstname={prof.name.first} 
+                lastname={prof.name.last}
+                title="barber"/>
          })}
          </View>)
     }
 
 }
 
-export {ProfessionalList}
+export {ProfessionalsScreen}

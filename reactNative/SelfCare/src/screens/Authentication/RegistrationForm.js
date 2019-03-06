@@ -5,9 +5,10 @@ import {Card, CardSection,Input,Button} from '../../components/common'
 
 const RegistrationForm =()=>{
     return(
-        <Card>
-            <View style={{"marginTop":100}}>
-                <Text style={style.textStyle}>Self-Care the app</Text>
+        <View style={{flex:1, justifyContent:'center'}}>
+            <View style={{marginBottom:10}}>
+            <Text style={style.textStyle}>Abantu</Text>
+            <Text style={style.smallerText}>The People</Text>
             </View>
             <CardSection>
                 <Input placeholder='John' label='First Name: '/>
@@ -27,16 +28,24 @@ const RegistrationForm =()=>{
             <CardSection>
                 <Button onPress={()=>alert('Creating Account')}>Register</Button>
             </CardSection>
-        </Card>
+        </View>
     )
 }
 const style ={
     textStyle :{
-        fontSize :20,
+        fontSize :30,
         textAlign:'center',
         fontWeight:'600',
         paddingTop: 10,
-        paddingBottom:20,
+        paddingBottom:10,
+        color:'#00539C'
+        
+    },
+    smallerText :{
+        fontSize :15,
+        textAlign:'center',
+        fontWeight:'400',
+        paddingBottom:16,
         color:'#00539C'
         
     }

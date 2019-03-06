@@ -1,10 +1,10 @@
 import {View ,FlatList} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5'
 import React from 'react';
 import {SearchBar , Indicator,ListItem,List} from 'react-native-elements'
 import axios from 'axios';
 
-import {Header, CardSection, Button, Input, Spinner} from '../../components/common'
+import {Header} from '../../components/common'
+import ProfListItem from '../../components/ProfListItem'
 
 class Search extends React.Component{
   constructor(props){
@@ -75,11 +75,10 @@ class Search extends React.Component{
           <FlatList          
             data={this.state.data}          
             renderItem={({ item }) => ( 
-              <ListItem                            
-                title={`${item.name.first} ${item.name.last}`}  
-                subtitle={item.account.professionalType || "unknown"}                           
-                containerStyle={{ borderBottomWidth: 0 }} 
-              />          
+              <ProfListItem firstname={item.name.first}
+                  lastname={item.name.last}
+                  title={item.account.professionalType}
+                  />       
             )}          
             keyExtractor={item => item._id} 
           />            
