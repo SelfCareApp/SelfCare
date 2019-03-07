@@ -11,18 +11,19 @@ import {CardSection} from './common';
 
 class ProfListItem extends Component{
 
-     listItemDetail(){
+    listItemDetail(){
         //function will display more details of the selected list item
         console.log();
     }
+
     render(){
         return(  
-                <TouchableOpacity onPress={()=>{alert(`${this.props.firstname}'s Account`)}}>
+                <TouchableOpacity onPress={this.props.navigator}>
                     <CardSection>
-                            <Image style={styles.imgStyle} source={{uri:"https://i.cbc.ca/1.4509398.1517262943!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/dwight.jpg"}}/>
+                      <Image style={styles.imgStyle} source={{uri:"https://i.cbc.ca/1.4509398.1517262943!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/dwight.jpg"}}/>
                         <View style={styles.viewStyle}>
                             <Text style={styles.username}>{this.props.firstname} {this.props.lastname}</Text>
-                             <Text style={styles.textStyle}>{this.props.title}  >2km away</Text>
+                             <Text style={styles.textStyle}>{this.props.title}   >2km away</Text>
                             <Rating imageSize={24}/>
                         </View>
                     </CardSection>

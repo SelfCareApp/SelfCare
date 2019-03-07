@@ -8,17 +8,15 @@ import {createStackNavigator, createAppContainer, createBottomTabNavigator, crea
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
 //component import
-import {UserAccount, ProfessionalsScreen,PromotionsScreen,Search, MainScreen} from './src/screens/userScreens'
+import {UserAccount, ProfessionalsScreen,PromotionsScreen,Search, HomeScreen} from './src/screens/userScreens'
 import {LoginForm,ProfessionalLoginForm, RegistrationForm} from './src/screens/Authentication'
 import AuthLoadingScreen from './AuthLoadingScreen'
 
 //stylesheet import
 import theme from './src/utils/theme'
 
-
-
 //navigation for professionals list and Professional account
-const serviceStack = createSwitchNavigator({services:ProfessionalsScreen,main:MainScreen})
+const serviceStack = createStackNavigator({HomeScreen:HomeScreen,ProfessionalAccount:ProfessionalsScreen})
 
 // this is the bottom tab once inside the app
 const AppStack = createBottomTabNavigator({
