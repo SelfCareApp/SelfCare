@@ -30,6 +30,7 @@ class HomeScreen extends Component{
     }
 
     viewAccount(){
+       //called whe the professional listview element is selected
         return this.props.navigation.navigate("ProfessionalAccount")
     }
 
