@@ -2,6 +2,7 @@ package com.selfcare;
 
 import com.facebook.react.ReactActivity;
 
+
 public class MainActivity extends ReactActivity {
 
     /**
