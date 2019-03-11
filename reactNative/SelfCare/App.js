@@ -3,87 +3,22 @@
 */
 
 //native component imports
-import React, {Component} from 'react';
 import {createStackNavigator, createAppContainer, createBottomTabNavigator, createSwitchNavigator} from 'react-navigation';
-import Icon from 'react-native-vector-icons/FontAwesome5'
 
 //component import
-import {UserAccount, ProfessionalsScreen,PromotionsScreen,Search, HomeScreen} from './src/screens/userScreens'
-import {LoginForm,ProfessionalLoginForm, RegistrationForm} from './src/screens/Authentication'
 import AuthLoadingScreen from './AuthLoadingScreen'
 
-//stylesheet import
-import theme from './src/utils/theme'
+//importing the reg user in app navigator
+import {RegUserAppStack, AuthStack,ProfessionalNavigator} from './src/navigation'
 
-//navigation for professionals list and Professional account
-const serviceStack = createStackNavigator({HomeScreen:HomeScreen,ProfessionalAccount:ProfessionalsScreen})
-
-// this is the bottom tab once inside the app
-const AppStack = createBottomTabNavigator({
-  Services:{
-    screen:serviceStack,  //services stack in a stack navigator allowing for a switch in the pages between the professional list and mainscreen
-    navigationOptions:{
-      tabBarIcon:({focused,tintColor})=>{
-        return <Icon name="home" size={24} color={tintColor}/>
-      }
-        }
-
-  },  
-  Search:{
-      screen:Search,
-      navigationOptions:{
-        tabBarIcon:({focused,tintColor})=>{
-          return <Icon name="search" size={24} color={tintColor}/>
-        }
-          }
-    },
-    Promotions:{
-      screen:PromotionsScreen,
-      navigationOptions:{
-        tabBarIcon:({focused,tintColor})=>{
-          return <Icon name="hand-holding-usd" size={24} color={tintColor}/>
-        }
-          }
-    },
-    Account:{
-      screen:UserAccount,
-      navigationOptions:{
-        tabBarIcon:({focused,tintColor})=>{
-          return <Icon name="user" size={24} color={tintColor}/>
-        }
-          }
-    }
-
-},
-{
-    navigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) => {
-        const { routeName } = navigation.state;
-      },
-    }),
-    tabBarLabel: {
-    },
-    tabBarOptions: {
-      activeTintColor: theme.primaryColor.selectedIcon,
-      inactiveTintColor: theme.primaryColor.iconColor,
-      // showLabel: false,
-      style: { backgroundColor: theme.primaryColor.backgroundColor},
-
-    },
-  }
-);
-
-//this handles the switch from login screen to registration
-const LogStack = createStackNavigator({Login:LoginForm, Register:RegistrationForm})
-//this is this handle the switch between authenticating as a regular user or professional
-const AuthStack = createBottomTabNavigator({RegularLogin:LogStack, ProfessionalLogin:ProfessionalLoginForm})
 
 //this is what houses the whole application flow
 export default createAppContainer(createSwitchNavigator(
   {
+    ProfessionalNav:ProfessionalNavigator,
     AuthLoadingScreen:AuthLoadingScreen,
     Auth:AuthStack,
-    App:AppStack,
+    App:RegUserAppStack,
   },{
     initialRouteName:'AuthLoadingScreen'
   })

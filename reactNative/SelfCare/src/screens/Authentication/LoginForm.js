@@ -125,8 +125,10 @@ const style ={
     },
     container :{
         alignContent:"center",
-        justifyContent:"center",
-        flex:1
+        // justifyContent:"center",
+        flex:1,
+        marginLeft:10,
+        marginRight:10
     }
 }
 
