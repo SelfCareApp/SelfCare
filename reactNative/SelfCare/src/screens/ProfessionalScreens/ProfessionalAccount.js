@@ -1,31 +1,30 @@
 import React,{Component} from 'react';
-import {View,Text, Image} from 'react-native';
+import {View,Text, Image, Platform} from 'react-native';
 import {Header,Button, CardSection} from './../../components/common';
 import ImagePicker from 'react-native-image-picker';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class ProfessionalAccount extends Component{
   state={
     avatarSource: null
   }
-options = {
-    title: 'Select Avatar',
-    customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
-    storageOptions: {
-      skipBackup: true,
-      path: 'images',
-    },
-  };
-    choosePic(){
-      const options = {
-        title: 'Select Avatar',
-        customButtons: [{ name: 'fb', title: 'Choose Photo from Instagram' }],
-        storageOptions: {
-          skipBackup: true,
-          path: 'images',
-        },
-      };
+  
+  options = {
+      title: 'Select Image',
+      customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+
+  choosePic =()=>
+   {
+         //function handles the click event for both android and ios click events.
+    //created based on react-native-image-picker documentation
+ 
       // ImagePicker has 3 methods launch camera , lauchLibraryPicker and showImagePicker is in the middle
-      ImagePicker.showImagePicker(options, (response) => {
+      ImagePicker.showImagePicker(this.options, (response) => {
         console.log('Response = ', response);
       
         if (response.didCancel) {
@@ -47,26 +46,80 @@ options = {
       });
     }
 
+    createFormData = (photo, body)=>{
+      const data = new FormData();
+
+      data.append("photo",{
+        name:photo.fileName,
+        type:photo.type,
+        //checking if running on IOS, if removing the "file://" before name
+        //Platform.OS is a react-native element
+        uri:
+          Platform.OS === "android" ? photo.uri : photo.uri.replace("file://","")
+      });
+
+      Object.keys(body).forEach(key=>{
+        data.append(key,body[key])
+      });
+      return data;
+    }
+
+    upholdHandle=()=>{
+      fetch("http://localhost:3000/api/imageupload",{
+        method:"post",
+        body:this.createFormData(this.state.avatarSource,{userId:123}),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'multipart/form-data',
+        },
+       }).then(response=>{
+            console.log(`*******\n${response.body}`)
+            return response.json()})
+         .then(response=>{
+            console.log("upload success", response)
+            alert("image uploaded");
+            this.setState({photo:null})
+           })
+           .catch(err=>{
+             console.log(err);
+             alert("Upload failed")
+           })
+    }
+
     render(){
       const photo = this.state.avatarSource
 
       return(
-          <View>
+          <View style={{flex:1}}>
             <Header headerText="My Account"/>
-            <View style={{width:'auto',alignSelf:"center"}}>
-              {photo && (
-                <Image source={{uri:photo.uri}}
-                  style={{width:200, height:200}}
+            <View style={{flex:1,justifyContent:'flex-end',height:200,alignContent:"center"}}>
+              {/* {photo && (
+                <View>
+                  <Image source={{uri:photo.uri}}
+                    style={{width:100, height:100,borderRadius:4}}
+                   />
+                  <Button onPress={this.upholdHandle}>Upload</Button>
+                </View>
+              )} */}
+              <TouchableOpacity style={style.imageContainer} onPress={this.choosePic}>
+                <Image source={this.state.avatarSource ? {uri:photo.uri} :require("./../../assets/placeholder.png")}
+                  style={{width:100, height:100,borderRadius:4}}
                   />
-              )}
+              </TouchableOpacity>
+              {photo && (<CardSection><Button onPress={this.upholdHandle}>Upload Image</Button></CardSection>)}
+              
             </View>
-            <CardSection>
-              <Button onPress={()=>this.choosePic()}>Choose Pic</Button>
-            </CardSection>
-
           </View>
       )
     }
+}
+
+const style ={
+  imageContainer :{
+    marginLeft:5,
+    marginBottom:5
+
+  }
 }
 
 export {ProfessionalAccount}
