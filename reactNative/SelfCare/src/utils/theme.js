@@ -14,6 +14,9 @@ const theme ={
     secondaryColor:{
         backgroundColor:"",
         textColor:""
+    },
+    theme2 :{
+        backgroundColor:"#304ffe"
     }
 }
 

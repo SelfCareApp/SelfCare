@@ -1,2 +1,4 @@
-export * from './ProfessionalHomeScreen';
-export * from './ProfessionalAccount'
+export * from './HomeScreen';
+export * from './Account';
+export * from './Messages';
+export * from './Portfolio';

@@ -4,7 +4,7 @@ import {Header,Button, CardSection} from './../../components/common';
 import ImagePicker from 'react-native-image-picker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-class ProfessionalAccount extends Component{
+class Account extends Component{
   state={
     avatarSource: null
   }
@@ -18,9 +18,9 @@ class ProfessionalAccount extends Component{
       },
     };
 
-  choosePic =()=>
+    choosePic =()=>
    {
-         //function handles the click event for both android and ios click events.
+    //function handles the click event for both android and ios click events.
     //created based on react-native-image-picker documentation
  
       // ImagePicker has 3 methods launch camera , lauchLibraryPicker and showImagePicker is in the middle
@@ -38,7 +38,6 @@ class ProfessionalAccount extends Component{
       
           // You can also display the image using data:
           // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-      
           this.setState({
             avatarSource: source,
           });
@@ -93,22 +92,20 @@ class ProfessionalAccount extends Component{
           <View style={{flex:1}}>
             <Header headerText="My Account"/>
             <View style={{flex:1,justifyContent:'flex-end',height:200,alignContent:"center"}}>
-              {/* {photo && (
-                <View>
-                  <Image source={{uri:photo.uri}}
-                    style={{width:100, height:100,borderRadius:4}}
-                   />
-                  <Button onPress={this.upholdHandle}>Upload</Button>
-                </View>
-              )} */}
               <TouchableOpacity style={style.imageContainer} onPress={this.choosePic}>
                 <Image source={this.state.avatarSource ? {uri:photo.uri} :require("./../../assets/placeholder.png")}
                   style={{width:100, height:100,borderRadius:4}}
                   />
               </TouchableOpacity>
+              <TouchableOpacity style={style.imageContainer} onPress={this.choosePic}>
+                <Image source={this.state.avatarSource ? {uri:photo.uri} :require("./../../assets/placeholder.png")}
+                  style={{width:100, height:100,borderRadius:4}}
+                  />
+              </TouchableOpacity>
+              {/* section only renders when photo val aint null */}
               {photo && (<CardSection><Button onPress={this.upholdHandle}>Upload Image</Button></CardSection>)}
-              
             </View>
+            
           </View>
       )
     }
@@ -122,4 +119,4 @@ const style ={
   }
 }
 
-export {ProfessionalAccount}
+export {Account}
