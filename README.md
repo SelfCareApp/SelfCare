@@ -22,8 +22,8 @@ Please be aware that it will initial load of the application will take time.
 
 ## Authors : in no particular order
 
-* [Fortune](https://github.com/creigPhiri) Creig Phiri
-* Ife Ajibola
+* [Fortune Creig Phiri](https://creigphiri.github.io)
+
 * Sherwayne Walrond
 
 expected project end date: 03/31/2019
