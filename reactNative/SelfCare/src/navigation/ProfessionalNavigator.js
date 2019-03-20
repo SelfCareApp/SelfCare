@@ -1,5 +1,5 @@
 import {createBottomTabNavigator} from 'react-navigation';
-import {Account,HomeScreen,Messages, Portfolio} from './../screens/ProfessionalScreens'
+import {Account,HomeScreen,Messages, Portfolio,Booking} from './../screens/ProfessionalScreens'
 
 import React from 'react';
 import {View, Text} from 'react-native'
@@ -10,10 +10,10 @@ import theme from './../utils/theme'
 //professional in app navigator
 const ProfessionalNavigator = createBottomTabNavigator({
     Home: {
-        screen:HomeScreen,
+        screen:Booking,
         navigationOptions:{
             tabBarIcon:({focused,tintColor})=>{
-              return (<View style={{flexDirection:'row'}}><Icon name="home" size={24}/><Badge value="5" status="success" containerStyle={{top:-10}}/></View>)
+              return (<View style={{flexDirection:'row'}}><Icon name="calendar" size={24}/><Badge value="5" status="success" containerStyle={{top:-10}}/></View>)
             }
               }
     },

@@ -19,7 +19,6 @@ const Header =(props) =>{
             height:70,
             paddingTop:25,
             // marginBottom:5, 
-
             ////////adding a shadow ////
             shadowColor:'#D1DFFA',
             shadowOffset:{width:0, height:5}, //dimensions of the shadow

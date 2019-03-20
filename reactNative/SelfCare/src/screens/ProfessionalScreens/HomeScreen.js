@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View,Text} from 'react-native'
 import {Header, Spinner} from '../../components/common'
-import {LoginManager, AccessToken, GraphRequest, GraphRequestManager} from 'react-native-fbsdk'
 
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { TouchableOpacity } from 'react-native-gesture-handler';

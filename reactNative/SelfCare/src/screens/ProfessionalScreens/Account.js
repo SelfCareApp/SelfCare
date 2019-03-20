@@ -103,7 +103,7 @@ class Account extends Component{
                   />
               </TouchableOpacity>
               {/* section only renders when photo val aint null */}
-              {photo && (<CardSection><Button onPress={this.upholdHandle}>Upload Image</Button></CardSection>)}
+              {photo  && (<CardSection><Button onPress={this.upholdHandle}>Upload Image</Button></CardSection>)}
             </View>
             
           </View>
