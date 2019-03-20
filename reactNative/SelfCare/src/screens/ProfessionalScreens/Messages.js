@@ -4,7 +4,7 @@ import SocketIOClient from 'socket.io-client';
 
 import theme from './../../utils/theme';
 import {Header} from './../../components/common';
-import SendMessageComponent from '../../components/sendMessage';
+import {SendMessageComponent,MessageBubble} from '../../components';
 
 class Messages extends Component {
   constructor(props){
@@ -34,15 +34,18 @@ class Messages extends Component {
             <Header headerText={"Messages"}/>
             <View style={{flex:1,backgroundColor:'#fafafa'}}>
               <View style={{flex:1}}>
-                 { messageData.length != 0 && ( 
-                    messageData.map((message,index)=>{
-                      return <View key={index} style={{margin:20,height:100, backgroundColor:'#cfd8dc', borderRadius:10}}>
-                        <Text>{message}</Text></View>
-                     })
-                 )}  
+                {/* message bubble */}
+                {messageData.length != 0 && (
+                  //first confirm that messageData has no messages
+                  //only shows the bubble when state changes
+                  messageData.map((message,index)=>{
+                   return <MessageBubble message={message} index={index}/>
+                  })
+                )}
+                
               </View>
               {/* send message area */}
-               <View style={{flex:1,justifyContent:'flex-end', margin:10,marginBottom:0}}>
+               <View style={style.sendMessageContainer}>
                  <SendMessageComponent messageUpdate={this.updateMessageDataHandler} socket={this.socket}/>
                </View>
             </View>
@@ -52,3 +55,13 @@ class Messages extends Component {
 }
 
 export {Messages}
+
+const style ={
+  sendMessageContainer:{
+    //style for the send message component's area
+    flex:1,
+    justifyContent:'flex-end',
+    margin:10,
+    marginBottom:0
+  }
+}

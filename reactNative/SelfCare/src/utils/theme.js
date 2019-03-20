@@ -8,7 +8,8 @@ const theme ={
         iconColor:"#00539C",
         textColor:"#00539C",
         selectedIcon: "#18233E",
-        headerColor:"#00539C"
+        headerColor:"#00539C",
+        messageBubble:'#cfd8dc'
 
     },
     secondaryColor:{

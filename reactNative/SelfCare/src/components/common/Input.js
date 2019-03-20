@@ -11,6 +11,7 @@ const Input =({label, placeholder, secureTextEntry, onChangeText, Icon}) =>{
                        autoCorrect = {false}
                        secureTextEntry ={secureTextEntry}   //this is to hide the enter data
                        onChangeText ={onChangeText}
+                       autoCapitalize={"none"}
             />
         </View>
     )

@@ -22,18 +22,28 @@ class LoginForm extends Component{
         loading:false      //state will be false , true , null
     };
 
-    loginClickEvent(){
+    loginClickEvent=()=>{
         //descr: function executed when login button clicked
         //params:
         //return:
         this.setState({loading:true});
-        axios.post('http://localhost:3000/api/user/login',{email:this.state.email})
-            .then((response)=>{
-                    console.log(JSON.stringify(response.data))
-                    console.log(response.status)
+        axios.post('http://localhost:3000/users/login',
+                {
+                  email:this.state.email,
+                  password:this.state.password
                 })
-                    .then(this.setState({loading:false}))
-                        .catch((err)=>{console.log(err);
+            .then((response)=>{
+                    console.log(JSON.stringify(response.data.token))
+                    console.log(response.status)
+                    const userToken =AsyncStorage.setItem('userToken',response.data.token).then((token)=>{
+                        console.log(`token is ${token}`)
+                       })
+                })
+                    .then(()=>{
+                        this.setState({loading:false})
+                        return this.props.navigation.navigate('App')
+                      })
+                    .catch((err)=>{console.log(err);
                         this.setState({loading:false})
                         alert(err)
                         })
@@ -57,7 +67,7 @@ class LoginForm extends Component{
             return (<Spinner size="large"></Spinner> ) 
         }else if(this.state.loading == false){
             // return (<Button onPress={this.loginHandle}>Login</Button>)
-            return (<Button onPress={this.btnClick}>Login</Button>)
+            return (<Button onPress={this.loginClickEvent}>Login</Button>)
         }
     }
 

@@ -34,4 +34,4 @@ class SendMessageComponent extends Component{
     }
 }
 
-export default SendMessageComponent
+export {SendMessageComponent}

@@ -34,7 +34,7 @@ class ProfListItem extends Component{
 
 }
 
-export default ProfListItem
+export {ProfListItem}
 
 const styles ={
     textStyle :{

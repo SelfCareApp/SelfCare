@@ -1,10 +1,10 @@
 import {View ,FlatList} from 'react-native';
 import React from 'react';
-import {SearchBar , Indicator,ListItem,List} from 'react-native-elements'
+import {SearchBar } from 'react-native-elements'
 import axios from 'axios';
 
 import {Header} from '../../components/common'
-import ProfListItem from '../../components/ProfListItem'
+import {ProfListItem} from '../../components'
 
 class Search extends React.Component{
   constructor(props){
@@ -53,7 +53,7 @@ class Search extends React.Component{
          case insensitive
       */
       const newData = this.arrayHolder.filter((item)=>{
-        return (item.name.first).toUpperCase().indexOf(text.toUpperCase()) > -1 || (item.name.last).toUpperCase().indexOf(text.toUpperCase()) > -1;
+        return (item.firstName).toUpperCase().indexOf(text.toUpperCase()) > -1 || (item.lastName).toUpperCase().indexOf(text.toUpperCase()) > -1;
       })
       console.log(`data => ${newData}`)
       this.setState({data:newData,
@@ -75,9 +75,9 @@ class Search extends React.Component{
           <FlatList          
             data={this.state.data}          
             renderItem={({ item }) => ( 
-              <ProfListItem firstname={item.name.first}
-                  lastname={item.name.last}
-                  title={item.account.professionalType}
+              <ProfListItem firstname={item.firstName}
+                  lastname={item.lastName}
+                  title={"Barber"}
                   />       
             )}          
             keyExtractor={item => item._id} 

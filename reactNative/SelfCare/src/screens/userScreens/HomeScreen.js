@@ -1,7 +1,6 @@
 import {View, Text} from 'react-native';
 import React, {Component} from 'react';
-import {Header} from '../../components/common';
-import ProfListItem from '../../components/ProfListItem'
+import {ProfListItem} from '../../components'
 import axios from 'axios';
 import theme from '../../utils/theme'
 
@@ -40,8 +39,8 @@ class HomeScreen extends Component{
             {this.state.professionals.map((prof)=>{
             return <ProfListItem key ={prof._id}
                 navigator ={this.navigationHandler}
-                firstname={prof.name.first} 
-                lastname={prof.name.last}
+                firstname={prof.firstName} 
+                lastname={prof.lastName}
                 title="barber"/>
          })}
          </View>)
