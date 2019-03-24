@@ -10,7 +10,9 @@ import {Rating} from 'react-native-elements'
 import {CardSection} from './common';
 
 class ProfListItem extends Component{
-
+    constructor(props){
+      super(props)
+    }
     listItemDetail(){
         //function will display more details of the selected list item
         console.log();
@@ -18,9 +20,11 @@ class ProfListItem extends Component{
 
     render(){
         return(  
-                <TouchableOpacity onPress={this.props.navigator}>
+                <TouchableOpacity onPress={this.props.navigator} key>
                     <CardSection>
-                      <Image style={styles.imgStyle} source={{uri:"https://i.cbc.ca/1.4509398.1517262943!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/dwight.jpg"}}/>
+                        <View style={styles.imgView}>
+                         <Image style={styles.imgStyle} source={{uri:"https://i.cbc.ca/1.4509398.1517262943!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/dwight.jpg"}}/>
+                        </View>
                         <View style={styles.viewStyle}>
                             <Text style={styles.username}>{this.props.firstname} {this.props.lastname}</Text>
                              <Text style={styles.textStyle}>{this.props.title}   >2km away</Text>
@@ -48,12 +52,21 @@ const styles ={
         textAlign:"center"
     },
     viewStyle :{
-        marginLeft:40,
+        marginLeft:20,
+        shadowColor:'#D1DFFA',
+        alignItems:'center'
     },
     imgStyle:{
         marginLeft:30,
         width:60,
         height:60,
-        marginTop:10
+        borderRadius:30,
+
+    },
+    imgView:{
+      shadowOffset:{width:0, height:5}, //dimensions of the shadow
+      shadowOpacity:0.7,
+      elevation:1,
+      justifyContent:'center'
     }
 }

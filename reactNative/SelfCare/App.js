@@ -11,9 +11,11 @@ import AuthLoadingScreen from './AuthLoadingScreen'
 //importing the reg user in app navigator
 import {RegUserAppStack, AuthStack,ProfessionalNavigator} from './src/navigation'
 
+import {Provider} from 'react-redux';
+import store from './src/store'
 
 //this is what houses the whole application flow
-export default createAppContainer(createSwitchNavigator(
+const RootStack = createAppContainer(createSwitchNavigator(
   {
     ProfessionalNav:ProfessionalNavigator,
     AuthLoadingScreen:AuthLoadingScreen,
@@ -23,3 +25,13 @@ export default createAppContainer(createSwitchNavigator(
     initialRouteName:'AuthLoadingScreen'
   })
 );
+
+import React,{Component} from 'react';
+
+export default class App extends Component{
+  render(){
+    return (<Provider store = {store}>
+              <RootStack />
+            </Provider>)
+  }
+}

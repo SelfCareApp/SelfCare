@@ -1,36 +1,98 @@
-import React from 'react';
-import {View,Text} from 'react-native';
+import React,{Component} from 'react';
+import {View,Text, AsyncStorage} from 'react-native';
+import axios from 'axios';
 
-import {Card, CardSection,Input,Button} from '../../components/common'
+import { CardSection,Input,Button} from '../../components/common'
 
-const RegistrationForm =()=>{
-    return(
-        <View style={{flex:1, justifyContent:'center'}}>
-            <View style={{marginBottom:10}}>
-            <Text style={style.textStyle}>Abantu</Text>
-            <Text style={style.smallerText}>The People</Text>
+class RegistrationForm extends Component{
+    constructor(props){
+        super(props)
+        this.changeTextHandler = this.changeText.bind(this)
+        this.regirstrationButtonClickedHandler = this.regirstrationButtonClicked.bind(this)
+    }
+
+    state ={
+      firstName:'',
+      password:'',
+      lastName:'',
+      confirmPassword:'',
+      email:''
+    }
+
+    changeText =(updateValue)=>{
+        //passes input to state
+        //type: refers to the name of input(state)
+        //input is the entered value
+        this.setState(updateValue)
+        
+    }
+
+    regirstrationButtonClicked =()=>{
+       axios.post('http://localhost:3000/users/signup',{
+           firstName:this.state.firstName,
+           lastName:this.state.lastName,
+           email:this.state.email,
+           password:this.state.password
+       }).then((result)=>{
+           if(result.status == 200){
+             //const userToken =AsyncStorage.setItem('userToken',response.data.token)
+             alert('Account created. lets get started')
+             this.props.navigation.navigate("App") 
+           }
+
+       }).catch((err)=>{
+           return alert(err)
+       })
+    }
+
+    render()
+        {return(
+            <View style={{flex:1, justifyContent:'center'}}>
+                <View style={{marginBottom:10}}>
+                <Text style={style.textStyle}>Abantu</Text>
+                <Text style={style.smallerText}>The People</Text>
+                </View>
+                <CardSection>
+                    <Input placeholder='John'
+                       label='First Name:'
+                        onChangeText={(input)=>this.changeTextHandler({firstName:input})}/>
+                </CardSection>
+                <CardSection>
+                    <Input 
+                    placeholder='Doe'
+                    label='Lastname : '
+                    onChangeText = {(input)=>this.changeTextHandler({lastName:input})}
+                    />
+                </CardSection>
+                <CardSection>
+                    <Input placeholder='the.selfcareapp@gmail.com'
+                     label='Email: '
+                     onChangeText={(input)=>this.changeTextHandler({email:input})}/>
+                </CardSection>
+                <CardSection>
+                    <Input placeholder='selfcare123'
+                       label='Password: '
+                       secureTextEntry= {true}
+                       onChangeText ={(input)=>this.changeTextHandler({password:input})}
+                       />
+                </CardSection>
+                <CardSection>
+                    <Input placeholder='selfcare123'
+                     label='Confirm Password: '
+                     secureTextEntry= {true}
+                     onChangeText={(input)=>this.changeTextHandler({confirmPassword:input})}
+                     />
+                </CardSection>          
+                <CardSection>
+                    <Button 
+                      onPress={this.regirstrationButtonClickedHandler}
+                    >
+                      Register</Button>
+                </CardSection>
             </View>
-            <CardSection>
-                <Input placeholder='John' label='First Name: '/>
-            </CardSection>
-            <CardSection>
-                <Input placeholder='Doe' label='Lastname : '/>
-            </CardSection>
-            <CardSection>
-                <Input placeholder='the.selfcareapp@gmail.com' label='Email: '/>
-            </CardSection>
-            <CardSection>
-                <Input placeholder='selfcare123' label='Password: ' secureTextEntry= {true}/>
-            </CardSection>
-            <CardSection>
-                 <Input placeholder='selfcare123' label='Confirm Password: ' secureTextEntry= {true}/>
-            </CardSection>          
-            <CardSection>
-                <Button onPress={()=>alert('Creating Account')}>Register</Button>
-            </CardSection>
-        </View>
-    )
+        )}
 }
+
 const style ={
     textStyle :{
         fontSize :30,

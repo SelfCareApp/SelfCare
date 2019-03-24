@@ -28,9 +28,9 @@ class HomeScreen extends Component{
                     }).catch((err)=>console.log(err));
     }
 
-    viewAccount(){
+    viewAccount(profObject){
        //called whe the professional listview element is selected
-        return this.props.navigation.navigate("ProfessionalAccount")
+        return this.props.navigation.navigate("ProfessionalAccount",profObject)
     }
 
     render(){
@@ -38,7 +38,7 @@ class HomeScreen extends Component{
          <View style={{flex:1}}>
             {this.state.professionals.map((prof)=>{
             return <ProfListItem key ={prof._id}
-                navigator ={this.navigationHandler}
+                navigator ={()=>this.navigationHandler(prof)}
                 firstname={prof.firstName} 
                 lastname={prof.lastName}
                 title="barber"/>
