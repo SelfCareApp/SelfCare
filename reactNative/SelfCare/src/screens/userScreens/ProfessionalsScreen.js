@@ -1,22 +1,27 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
-import {Card,Icon, ButtonGroup} from 'react-native-elements';
+import {Card,Icon} from 'react-native-elements';
 
-import { Button,CardSection,Header} from  '../../components/common';
+import { Button,CardSection} from  '../../components/common';
 import theme from './../../utils/theme'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class ProfessionalsScreen extends Component{
-    static navigationOptions ={
-        headerTitle:"Sam's Account", 
+   constructor(props){
+        super(props);
+        this.changeDisplayHandle = this.changeDisplayArea.bind(this)
+        this.contactProfessionalHandler = this.contactProfessional.bind(this)
+    }
+
+    static navigationOptions =({navigation})=>{
+       const { params= {}} = navigation.state
+        return ({headerTitle:`${params.professional.firstName}'s Account`, 
         headerStyle:{
             backgroundColor:theme.primaryColor.headerColor
         },
-        headerTintColor:"#fff"
-    }
-    constructor(props){
-        super(props);
-        this.changeDisplayHandle = this.changeDisplayArea.bind(this)
-    }
+        headerTintColor:"#fff"})
+    };
+ 
 
     component1 = () => <Icon type='MaterialIcons' name="person" />
     component2 = () => <Icon type="MaterialIcons" name="message" />
@@ -29,25 +34,28 @@ class ProfessionalsScreen extends Component{
     };
 
     renderArea(){
+
         //this handles the which section is active on screen
         //this component changes the active area state
-        switch (this.state.activeArea){
-            case "bio": return (
-                <View>
-                    <CardSection>
-                        <Text style={{marginLeft:20, fontSize:20}}>Profession:</Text>
-                        <Text style={{marginLeft:20, fontSize:20}}>Barber</Text>
-                    </CardSection>
-                </View>)
-                break;
-            case "portfolio": return (<CardSection><Text>This is the gallery area</Text></CardSection>);
-                break;
-            case "messages": return (<View><Text>This is the messages area</Text></View>);
-                break;
-            case "map": return (<CardSection>
-                                    <Text>Map area</Text>
-                                </CardSection>);
-        }
+        // switch (this.state.activeArea){
+        //     case "bio": return (
+        //         <View>
+        //             <CardSection>
+        //                 <Text style={{marginLeft:20, fontSize:20}}>Profession:</Text>
+        //                 <Text style={{marginLeft:20, fontSize:20}}></Text>
+        //             </CardSection>
+        //         </View>)
+        //         break;
+        //     case "portfolio": return (<CardSection><Text>This is the gallery area</Text></CardSection>);
+        //         break;
+        //     case "messages": return (<View><Text>This is the messages area</Text></View>);
+        //         break;
+        //     case "map": return (<CardSection>
+        //                             <Text>Map area</Text>
+        //                         </CardSection>);
+        // }
+
+
     }
 
     changeDisplayArea (btnId){
@@ -73,8 +81,15 @@ class ProfessionalsScreen extends Component{
         console.log("changed area to: "+ this.state.activeArea)
     }
 
+    contactProfessional=(professional)=>{
+        //message button used to switch to prof message screen
+        return this.props.navigation.navigate("MessageScreen",{professional:professional})
+    };
 
     render(){
+        //getting the professional Id from the previous page(HomeScreen)
+        const professional = this.props.navigation.getParam('professional');
+        console.log(`Professional => ${JSON.stringify(professional)}`)
         buttons =[{element:this.component1},{element:this.component2},{element:this.component3},{element:this.component4}]
         return (
             <View style={style.containerStyle}>
@@ -89,15 +104,17 @@ class ProfessionalsScreen extends Component{
                 <CardSection>
                     <Button >Book</Button>
                 </CardSection>
-                <ButtonGroup buttons={buttons}             
-                    onPress={this.changeDisplayHandle}
-                    containerStyle={{height:50}}
-                    selectedIndex={this.state.selectedIndex}
-                    selectedButtonStyle={{backgroundColor:"#F0EDE5"}}
-                />
-                <View >
-                 {this.renderArea()}
-                </View>
+                  <TouchableOpacity style={style.professionalActionView}>
+                    <Text style={style.professionalActionText}>View Bio</Text>
+                  </TouchableOpacity >
+                  <TouchableOpacity style={style.professionalActionView}
+                     onPress={()=>this.contactProfessionalHandler(professional)}
+                  >
+                    <Text style={style.professionalActionText}>Send Message</Text>
+                  </TouchableOpacity >
+                  <TouchableOpacity style={style.professionalActionView}>
+                    <Text style={style.professionalActionText}>View Portfolio</Text>
+                  </TouchableOpacity>
             </View>)
     }
 }
@@ -118,6 +135,17 @@ const style ={
         alignItems:'center',
         fontSize:18,
     },
+    professionalActionText:{
+      fontSize:16,
+      margin:5,
+      padding:5,
+      
+
+    },
+    professionalActionView:{
+      backgroundColor:'#fafafa',
+      marginLeft:10,
+    }
 
 };
 export {ProfessionalsScreen};

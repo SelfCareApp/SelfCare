@@ -38,28 +38,27 @@ class LoginForm extends Component{
                 })
             .then((response)=>{
                     console.log(JSON.stringify(response.data.token))
-                    console.log(response.status)
-                    const userToken =AsyncStorage.setItem('userToken',response.data.token).then((token)=>{
-                        console.log(`token is ${token}`)
-                       })
+                    // console.log(response.status)
+                    console.log(response.data.userId);
+                    const userId = AsyncStorage.setItem('userId',response.data.userEmail);  //store id
+                    const userToken =AsyncStorage.setItem('userToken',response.data.token); //store token
                 }).then(()=>{
-                        this.setState({loading:false})
+                        this.setState({loading:false});
                         return this.props.navigation.navigate('App')
                       })
                     .catch((err)=>{console.log(err);
-                        this.setState({loading:false})
+                        this.setState({loading:false});
                         alert(err.message)
                         })
-    }
+    };
 
     changeText =(updateValue)=>{
         //passes input to state
         //type: refers to the name of input(state)
         //input is the entered value
         this.setState(updateValue)
-        console.log(updateValue)
         
-    }
+    };
 
     renderLoginButton(){
         //descr: decides on whether load login button or spinner

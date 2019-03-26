@@ -6,10 +6,11 @@ class AuthLoadingScreen extends Component {
       super();
       this._bootstrapAsync();
       this.authenticatedStateChangeHandler = this.authenticatedStateChange.bind(this)
-    }
+    };
+
     state ={
       authenticated: null,
-    }
+    };
     authenticatedStateChange(){
       this.setState({authenticated:true})
     }

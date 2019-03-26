@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5'
 
 class SendMessageComponent extends Component{
     constructor(props){
-        super(props)
+        super(props);
         this.messageUpdate = this.props.messageUpdate;
         this.socket = this.props.socket;
     }
@@ -12,16 +12,16 @@ class SendMessageComponent extends Component{
     //this is the input box and the send button
     state ={
         messageText:""
-      }
+      };
     
       click=(messageText)=>{
           this.messageUpdate(messageText);
         //this.socket.emit("new_message",{message:messageText})
-      }
+      };
     
       onTextChange=(text)=>{
         this.setState({messageText:text})
-      }
+      };
     render(){
         return (
            <View style={{flexDirection:'row',padding:5 }}>

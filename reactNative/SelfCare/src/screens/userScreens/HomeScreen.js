@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import React, {Component} from 'react';
 import {ProfListItem} from '../../components'
 import axios from 'axios';
@@ -22,7 +22,7 @@ class HomeScreen extends Component{
     }
 
     componentWillMount(){ 
-        axios.get('https://frozen-hamlet-87170.herokuapp.com/professionals')
+        axios.get('https://frozen-hamlet-87170.herokuapp.com/users')
                     .then((result)=>{
                         this.setState({professionals:result.data});
                     }).catch((err)=>console.log(err));
@@ -30,7 +30,7 @@ class HomeScreen extends Component{
 
     viewAccount(profObject){
        //called whe the professional listview element is selected
-        return this.props.navigation.navigate("ProfessionalAccount",profObject)
+        return this.props.navigation.navigate("ProfessionalAccount",{professional:profObject})
     }
 
     render(){

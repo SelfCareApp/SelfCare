@@ -43,6 +43,8 @@ class ProfessionalLoginForm extends React.Component{
             .then((result)=>{
                 console.log(result)
                 if(result.status == 200){
+                    const profId = result.data.professionalId
+                    AsyncStorage.setItem("professionalId", profId)
                     return this.props.navigation.navigate("ProfessionalNav")
                 }
                 this.setState({loading:false})

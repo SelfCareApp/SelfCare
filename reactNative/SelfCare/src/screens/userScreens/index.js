@@ -7,3 +7,4 @@ export * from './HomeScreen';
 export * from './Search'
 export * from './PromotionsScreen'
 export * from './UserAccount'
+export * from './UserMessageScreen'
