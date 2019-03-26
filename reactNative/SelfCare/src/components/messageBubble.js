@@ -7,9 +7,9 @@ class MessageBubble extends Component{
         super(props)
     }
     render(){
-        const {message, index} =this.props
+        const {message} =this.props
          return ( 
-           <View key={index}>
+           <View key>
                <View style={style.containerStyle}>
                   <Text style={style.textStyle}>{message}</Text></View> 
            </View>)

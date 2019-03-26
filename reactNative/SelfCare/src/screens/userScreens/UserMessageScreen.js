@@ -75,7 +75,7 @@ class UserMessageScreen extends Component {
                   //first confirm that messageData has no messages
                   //only shows the bubble when state changes
                   messageData.map((message,index)=>{
-                   return <MessageBubble message={message} index={index}/>
+                   return <MessageBubble message={message} key={index}/>
                   })
                 )}
                 
