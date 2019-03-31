@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {AsyncStorage,View, TouchableOpacity,Text} from 'react-native';
 
-import { Header ,Button, CardSection} from '../../components/common';
+import { Header ,Button, CardSection, MenuButton} from '../../components/common';
 
 class UserAccount extends Component{
     constructor(props){
@@ -15,31 +15,15 @@ class UserAccount extends Component{
     render(){
         return (
         <View>
-          <Header headerText='Profile' />
-            <View>
-              <TouchableOpacity style={style.buttonStyle}>
-                <Text style={style.buttonText}>Edit account</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={style.buttonStyle}>
-                <Text style={style.buttonText}>View Services History</Text>
-              </TouchableOpacity>
-              <CardSection >
-                <Button onPress={ this.logoutHandle}>Logout</Button>
-              </CardSection>
+          <Header headerText='Profile'/>
+            <View style={{marginTop:30}}>
+              <MenuButton title="Upcoming Appointments"/>
+              <MenuButton title="Edit Account"/>
+              <MenuButton title="View Service History"/>
+              <MenuButton onPress={()=>this.logoutHandle} title="Signout of Account"/>
             </View>
         </View>)
     }
 }
 
 export {UserAccount}
-
-const style = {
-    buttonStyle:{
-        padding:10,
-        
-    },
-    buttonText:{
-        textSize:24,
-        marginLeft:10,
-    }
-}

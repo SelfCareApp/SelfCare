@@ -58,7 +58,7 @@ const RegUserAppStack = createBottomTabNavigator({
       tabBarOptions: {
         activeTintColor: theme.primaryColor.selectedIcon,
         inactiveTintColor: theme.primaryColor.iconColor,
-        // showLabel: false,
+        showLabel: false,
         style: { backgroundColor: theme.primaryColor.backgroundColor},
   
       },

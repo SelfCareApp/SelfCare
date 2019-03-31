@@ -47,6 +47,7 @@ const styles ={
         textAlign:"center"
     },
     username:{
+        padding:5,
         fontSize:20,
         fontWeight:"bold",
         textAlign:"center"

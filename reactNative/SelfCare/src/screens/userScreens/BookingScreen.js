@@ -48,6 +48,7 @@ class BookingScreen extends Component{
                 />
                 <Text style={style.textHeader}>Available times </Text>
                 <FlatList
+                  contentContainerStyle={style.flatList}
                   keyExtractor={this._keyExtractor}
                   data={times}
                   renderItem={this.renderItem}
@@ -95,6 +96,9 @@ const style ={
     textSyle:{
         fontSize:20,
         marginLeft:20
+    }, 
+    flatList:{
+      alignSelf:'center'
     }
 }
 

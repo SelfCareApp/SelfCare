@@ -22,7 +22,7 @@ class HomeScreen extends Component{
     }
 
     componentWillMount(){ 
-        axios.get('https://frozen-hamlet-87170.herokuapp.com/users')
+        axios.get('https://frozen-hamlet-87170.herokuapp.com/professionals')
                     .then((result)=>{
                         this.setState({professionals:result.data});
                     }).catch((err)=>console.log(err));
@@ -35,7 +35,7 @@ class HomeScreen extends Component{
 
     render(){
         return(
-         <View style={{flex:1}}>
+         <View style={{flex:1, marginTop:10}}>
             {this.state.professionals.map((prof)=>{
             return <ProfListItem key ={prof._id}
                 navigator ={()=>this.navigationHandler(prof)}

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import {Card,Icon} from 'react-native-elements';
 
-import { Button,CardSection} from  '../../components/common';
+import { Button,CardSection,MenuButton} from  '../../components/common';
 import theme from './../../utils/theme'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -41,57 +41,52 @@ class ProfessionalsScreen extends Component{
         return (
             <View style={style.containerStyle}>
                 {/* <Header headerText="Professionals" /> */}
-                 <Card title="@realSlim"
-                    style={style.cardStyle}
+                 <Card title={this.props.navigation.getParam("professional").firstName}
+                     
                      image={{uri:'https://i.cbc.ca/1.4948998.1545062510!/cpImage/httpImage/image.jpg_gen/derivatives/16x9_780/black-barber-blood-pressure.jpg'}} >
                       <Text style={{marginBottom: 20, textAlign:"center"}}>
                          Im like a Doctor, but for your hair.
                       </Text>
                  </Card>
-                <CardSection>
+                {/* <Card style={{height:40}}>
                     <Button onPress={()=>this.props.navigation.navigate("BookingScreen",{professional})}>Book</Button>
-                </CardSection>
-                  <TouchableOpacity style={style.professionalActionView}>
-                    <Text style={style.professionalActionText}>View Bio</Text>
-                  </TouchableOpacity >
-                  <TouchableOpacity style={style.professionalActionView}
-                     onPress={()=>this.contactProfessionalHandler(professional)}
-                  >
-                    <Text style={style.professionalActionText}>Send Message</Text>
-                  </TouchableOpacity >
-                  <TouchableOpacity style={style.professionalActionView}>
-                    <Text style={style.professionalActionText}>View Portfolio</Text>
-                  </TouchableOpacity>
+                </Card> */}
+                <View style={{marginTop:20}}>
+                  <MenuButton title="Schedule Appointment"
+                    onPress={()=>this.props.navigation.navigate("BookingScreen",{professional})}
+                  />
+                    <MenuButton
+                      title="View Account"
+                    />
+                    <MenuButton
+                      onPress={()=>this.contactProfessionalHandler(professional)}
+                      title="Send Message"
+                    />                    
+                    <MenuButton title="View Portfolio"/>
+                </View>
             </View>)
     }
 }
 
 const style ={
     containerStyle:{
-        // marginTop:15
-        
+      // backgroundColor:"#fffffa",
+      flex:1
     },
-    bottomButtons: {
-        alignItems:'center',
-        justifyContent: 'center',
-        flex:1
-    },
-    footerText: {
-        color:'white',
-        fontWeight:'bold',
-        alignItems:'center',
-        fontSize:18,
-    },
-    professionalActionText:{
-      fontSize:16,
-      margin:5,
-      padding:5,
-      
+    professionalButtons:{
+      margin:10,
+      marginTop:10,
+      paddingBottom:5,
+      borderBottomWidth:0.5,
+      borderColor :'#ddd',
+      backgroundColor :'#fff',
+
 
     },
-    professionalActionView:{
-      backgroundColor:'#fafafa',
-      marginLeft:10,
+    textStyle:{
+      fontSize:16,
+      marginLeft:20,
+      fontWeight:'400'
     }
 
 };
