@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
-import {Card,Icon} from 'react-native-elements';
+import {Card} from 'react-native-elements';
 
-import { Button,CardSection,MenuButton} from  '../../components/common';
+import {MenuButton} from  '../../components/common';
 import theme from './../../utils/theme'
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class ProfessionalsScreen extends Component{
    constructor(props){
         super(props);
-        this.contactProfessionalHandler = this.contactProfessional.bind(this)
+        this.navigationHandler = this.navigation.bind(this)
     }
 
     static navigationOptions =({navigation})=>{
@@ -20,17 +19,10 @@ class ProfessionalsScreen extends Component{
         },
         headerTintColor:"#fff"})
     };
- 
 
-    component1 = () => <Icon type='MaterialIcons' name="person" />
-    component2 = () => <Icon type="MaterialIcons" name="message" />
-    component3 = () => <Icon type="MaterialIcons" name="photo-library" />
-    component4 = () => <Icon type="MaterialIcons" name="map" />
-
-
-    contactProfessional=(professional)=>{
-        //message button used to switch to prof message screen
-        return this.props.navigation.navigate("MessageScreen",{professional:professional})
+    navigation=(screen,professional)=>{
+        //function that handles the navigation
+        return this.props.navigation.navigate(screen,{professional:professional})
     };
 
     render(){
@@ -53,16 +45,17 @@ class ProfessionalsScreen extends Component{
                 </Card> */}
                 <View style={{marginTop:20}}>
                   <MenuButton title="Schedule Appointment"
-                    onPress={()=>this.props.navigation.navigate("BookingScreen",{professional})}
+                    onPress={()=>this.navigationHandler("BookingScreen",{professional})}
                   />
                     <MenuButton
                       title="View Account"
                     />
                     <MenuButton
-                      onPress={()=>this.contactProfessionalHandler(professional)}
+                      onPress={()=>this.navigationHandler("MessageScreen",{professional})}
                       title="Send Message"
                     />                    
-                    <MenuButton title="View Portfolio"/>
+                    <MenuButton onPress={()=>this.navigationHandler("ProfessionalPortfolio",{professional})}
+                     title="View Portfolio"/>
                 </View>
             </View>)
     }
