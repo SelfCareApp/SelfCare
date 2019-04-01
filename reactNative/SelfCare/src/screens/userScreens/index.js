@@ -6,7 +6,7 @@ export * from './ProfessionalsScreen';
 export * from './HomeScreen';
 export * from './Search'
 export * from './PromotionsScreen'
-export * from './UserAccount'
+export * from './UserSettings'
 export * from './UserMessageScreen'
 export * from './BookingScreen'
 export * from './ProfessionalPortfolio'

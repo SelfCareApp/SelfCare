@@ -3,7 +3,7 @@ import {createStackNavigator, createAppContainer, createBottomTabNavigator, crea
 
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
-import {UserAccount, ProfessionalsScreen,PromotionsScreen,
+import {UserSettings, ProfessionalsScreen,PromotionsScreen,
         Search, HomeScreen, BookingScreen, UserMessageScreen,ProfessionalPortfolio
        } from './../screens/userScreens'
 
@@ -39,15 +39,15 @@ const RegUserAppStack = createBottomTabNavigator({
         screen:PromotionsScreen,
         navigationOptions:{
           tabBarIcon:({focused,tintColor})=>{
-            return <Icon name="hand-holding-usd" size={24} color={tintColor}/>
+            return <Icon name="dollar-sign" size={24} color={tintColor}/>
           }
             }
       },
       Account:{
-        screen:UserAccount,
+        screen:UserSettings,
         navigationOptions:{
           tabBarIcon:({focused,tintColor})=>{
-            return <Icon name="user" size={24} color={tintColor}/>
+            return <Icon name="user-cog" size={24} color={tintColor}/>
           }
             }
       }

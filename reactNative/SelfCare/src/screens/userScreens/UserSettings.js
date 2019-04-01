@@ -3,7 +3,7 @@ import {AsyncStorage,View, TouchableOpacity,Text} from 'react-native';
 
 import { Header ,Button, CardSection, MenuButton} from '../../components/common';
 
-class UserAccount extends Component{
+class UserSettings extends Component{
     constructor(props){
         super(props)
         this.logoutHandle = this.logoutHandle.bind(this)
@@ -26,4 +26,4 @@ class UserAccount extends Component{
     }
 }
 
-export {UserAccount}
+export {UserSettings}
