@@ -7,6 +7,7 @@ import {UserSettings, ProfessionalsScreen,PromotionsScreen,
         Search, HomeScreen, BookingScreen, UserMessageScreen,ProfessionalPortfolio
        } from './../screens/userScreens'
 
+       import {UserAppointments} from './../screens/userScreens/UserSettingsScreens'
 import theme from './../utils/theme'
 
 //navigation for professionals list and Professional account
@@ -14,7 +15,9 @@ const serviceStack = createStackNavigator({HomeScreen:HomeScreen,
                         ProfessionalAccount:ProfessionalsScreen,
                         MessageScreen:UserMessageScreen,
                         BookingScreen,
-                        ProfessionalPortfolio})
+                        ProfessionalPortfolio,
+                        UserAppointments  
+                      })
 
 //this is the bottom navigator once in the app
 const RegUserAppStack = createBottomTabNavigator({
