@@ -4,6 +4,7 @@ import {View, Text, ScrollView,FlatList, TouchableOpacity} from 'react-native';
 import {Calendar} from 'react-native-calendars'
 
 import theme from '../../utils/theme'
+import { Overlay } from 'react-native-elements';
 
 
 class BookingScreen extends Component{
@@ -15,14 +16,18 @@ class BookingScreen extends Component{
          },
          headerTintColor:"#fff"})
      };
-
+     constructor(props){
+       super(props)
+       this.renderItemHandler = this.renderItem.bind(this)
+     }
      state={
        seletedDay:'',
+       overlayVisible:false
      }
 
      renderItem({item}){
          return(
-           <TouchableOpacity onPress={()=>alert(item)}>
+           <TouchableOpacity onPress={()=>this.setState({overlayVisible:true})}>
              <View style={style.listContainer}>
                <Text style={style.textStyle}>{item}</Text>
              </View>
@@ -38,6 +43,16 @@ class BookingScreen extends Component{
      times = ['9-9:30am','9:30-10am','10-10:30am','10:30-11am','11-11:30am','11:30-12pm','12-12:30pm','12:30-1pm']
         return(
               <ScrollView style={{flex:1}}>
+                <Overlay isVisible={this.state.overlayVisible}
+                  onBackdropPress={()=>this.setState({overlayVisible:false})}
+                  windowBackgroundColor="rgba(00, 00, 99, .5)"
+                >
+                  <Text style={{fontSize:18, fontFamily:'arial',textAlign:'center'}}>Appointment Confirmation</Text>
+                  <View style={{flex:1,flexDirection:'row', alignItems:'flex-end'}}>
+                    <Text style={{ height:50,width:100, backgroundColor:'orange'}}>Cancel</Text>
+                    <Text style={{ height:50,width:100, backgroundColor:"green", marginLeft:20}}>Confirm Booking</Text>
+                  </View>
+                </Overlay>
                 <Calendar
                   onDayPress={(day)=>{
                       this.setState({seletedDay:day})}
@@ -51,11 +66,10 @@ class BookingScreen extends Component{
                   contentContainerStyle={style.flatList}
                   keyExtractor={this._keyExtractor}
                   data={times}
-                  renderItem={this.renderItem}
+                  renderItem={this.renderItemHandler}
                   numColumns={2}
                 />
-                </ScrollView>
-            
+                </ScrollView> 
         )
     }
 }
@@ -80,10 +94,6 @@ const style ={
         elevation: 1,
         borderRadius: 2,
         backgroundColor: "#cdcdcd",
-        // flex: 1,
-        // flexDirection: 'row',  // main axis
-        // justifyContent: 'flex-start', // main axis
-        // alignItems: 'center', // cross axis
         paddingTop: 12,
         paddingBottom: 10,
         paddingLeft: 18,
@@ -99,7 +109,15 @@ const style ={
     }, 
     flatList:{
       alignSelf:'center'
-    }
+    },
+    overlay: {
+      flex: 1,
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      opacity: 0.5,
+      backgroundColor: 'black',
+    } 
 }
 
 export {BookingScreen}
