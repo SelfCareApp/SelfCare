@@ -1,9 +1,10 @@
 import React,{Component} from 'react'
-import {  ActivityIndicator,  AsyncStorage,StatusBar,StyleSheet, View,} from 'react-native';
+import {  ActivityIndicator,  AsyncStorage,StatusBar,StyleSheet, View, PermissionsAndroid} from 'react-native';
 
 class AuthLoadingScreen extends Component {
     constructor() {
       super();
+      this.requestLocation(),
       this._bootstrapAsync();
       this.authenticatedStateChangeHandler = this.authenticatedStateChange.bind(this)
     };
@@ -15,6 +16,31 @@ class AuthLoadingScreen extends Component {
       this.setState({authenticated:true})
     }
     
+    async requestLocation(){
+      //requesting permisssions
+      try{
+         this.granted = await PermissionsAndroid.request(
+              PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,{
+                  title:'Abantu Location Request',
+                  message:'Abantu the app needs access to your location to show professional within your proximity',
+                  buttonNeutral:'Ask Me Later',
+                  buttonPositive:'Ok',
+                  buttonNegative:'Cancel'
+              }
+          )
+      }catch(err){
+          if(err){
+              console.log(err)
+          }
+      }finally{
+          if(this.granted === PermissionsAndroid.RESULTS.GRANTED){
+              console.log('You can now use the camera')
+          }else{
+              console.log('Location not granted')
+          }
+      }
+  }
+
     // Fetch the token from storage then navigate to our appropriate place
     _bootstrapAsync = async () => {
       const userToken = await AsyncStorage.getItem('userToken');
