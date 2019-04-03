@@ -29,7 +29,6 @@ class LoginForm extends Component{
         //also updates the state in the store
         //params:
         //return:
-        
         this.setState({loading:true});
         axios.post('http://localhost:3000/users/login',
                 {

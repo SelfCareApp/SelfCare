@@ -34,7 +34,7 @@ class AuthLoadingScreen extends Component {
           }
       }finally{
           if(this.granted === PermissionsAndroid.RESULTS.GRANTED){
-              console.log('You can now use the camera')
+              console.log('You can now use the location')
           }else{
               console.log('Location not granted')
           }
@@ -61,8 +61,6 @@ class AuthLoadingScreen extends Component {
     }
   }
 
-  export default AuthLoadingScreen;
-  
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -70,3 +68,5 @@ class AuthLoadingScreen extends Component {
       justifyContent: 'center',
     },
   });
+  export default AuthLoadingScreen;
+  
