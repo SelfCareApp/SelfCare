@@ -7,22 +7,28 @@ import {UserSettings, ProfessionalsScreen,PromotionsScreen,
         Search, HomeScreen, BookingScreen, UserMessageScreen,ProfessionalPortfolio
        } from './../screens/userScreens'
 
-       import {UserAppointments} from './../screens/userScreens/UserSettingsScreens'
+import {UserAppointments,UserHistory,EditProfile} from './../screens/userScreens/UserSettingsScreens'
 import theme from './../utils/theme'
 
 //navigation for professionals list and Professional account
-const serviceStack = createStackNavigator({HomeScreen:HomeScreen,
+const HomeStack = createStackNavigator({HomeScreen:HomeScreen,
                         ProfessionalAccount:ProfessionalsScreen,
                         MessageScreen:UserMessageScreen,
                         BookingScreen,
-                        ProfessionalPortfolio,
-                        UserAppointments  
+                        ProfessionalPortfolio, 
                       })
+
+const ServiceStack = createStackNavigator({
+  UserSettings,
+  UserAppointments,
+  UserHistory,
+  EditProfile
+})
 
 //this is the bottom navigator once in the app
 const RegUserAppStack = createBottomTabNavigator({
     Services:{
-      screen:serviceStack,  //services stack in a stack navigator allowing for a switch in the pages between the professional list and mainscreen
+      screen:HomeStack,  //services stack in a stack navigator allowing for a switch in the pages between the professional list and mainscreen
       navigationOptions:{
         tabBarIcon:({focused,tintColor})=>{
           return <Icon name="home" size={24} color={tintColor}/>
@@ -47,7 +53,7 @@ const RegUserAppStack = createBottomTabNavigator({
             }
       },
       Account:{
-        screen:UserSettings,
+        screen:ServiceStack,
         navigationOptions:{
           tabBarIcon:({focused,tintColor})=>{
             return <Icon name="user-cog" size={24} color={tintColor}/>

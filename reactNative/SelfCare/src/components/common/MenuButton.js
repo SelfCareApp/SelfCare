@@ -1,6 +1,8 @@
 import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
 
+import Icon from 'react-native-vector-icons/FontAwesome5'
+
 const MenuButton=(props)=>{
   let {buttonStyle, textStyle} = style
   
@@ -8,6 +10,7 @@ const MenuButton=(props)=>{
     <TouchableOpacity style={buttonStyle}
         onPress={props.onPress}
     >
+      <Icon name={props.iconName} size={24} style={style.iconStyle}/>
       <Text style={style.textStyle}>{props.title}</Text>
     </TouchableOpacity>)
 }
@@ -22,6 +25,8 @@ const style ={
         marginLeft:5,
         marginRight:5,
         height:50,
+        flexDirection:'row',
+        alignItems:'center'
         
     },
     textStyle :{
@@ -29,7 +34,10 @@ const style ={
         marginLeft:10,
         // color :'#00539C',
         fontWeight:'400',
-        paddingTop: 10,
-        paddingBottom:10
+     
+    },
+    iconStyle:{
+      marginLeft:10,
+      marginRight:20
     }
   }

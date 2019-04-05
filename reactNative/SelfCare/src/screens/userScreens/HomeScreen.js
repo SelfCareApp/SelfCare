@@ -35,16 +35,11 @@ class HomeScreen extends Component{
 
     }
 
-
-
-
     async getUserLocation (cb){
        await navigator.geolocation.getCurrentPosition(
           position =>{
               const location = JSON.stringify(position)
-            //   console.log(position.coords.latitude)
               this.setState({longitude:position.coords.longitude, latitude:position.coords.latitude})
-              console.log('component did mount==', this.state.latitude)
               cb()
           },
           (error)=>{
