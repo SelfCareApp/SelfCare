@@ -2,6 +2,8 @@
 import React,{Component} from 'react';
 import {View, Text, ScrollView,FlatList, TouchableOpacity, AsyncStorage} from 'react-native';
 import {Calendar} from 'react-native-calendars'
+import moment from 'moment';
+import axios from 'axios'
 
 import theme from '../../utils/theme'
 import { Overlay} from 'react-native-elements';
@@ -22,37 +24,57 @@ class BookingScreen extends Component{
        this.renderItemHandler = this.renderItem.bind(this)
        this.professional = this.props.navigation.getParam('professional');
        this.userId ='',
+       this.times = ['9-9:30am','9:30-10am','10-10:30am','10:30-11am','11-11:30am','11:30-12pm','12-12:30pm','12:30-1pm']
        this._bootstrapAsync()
      }
 
      componentWillMount=()=>{
+      let markedDates = this.state.markedDates
+      //
+      let date=moment().format("YYYY-MM-DD")
+      markedDates[date] = {marked:true,selected:true,selectedColor: '#5f9ea0' }
       this.setState({
         professionalId:this.professional._id,
-        userId:this.userId
+        markedDates:markedDates,
+        selectedDay:date
       })
      }
-
-     componentDidMount(){
-     }
+    
      state={
-       seletedDay: '',
-       selecetedTime:'',
+       markedDates:{},
+       selectedDay: '',
+       selectedTime:'',
        professionalId:'',
        userId:'',
        overlayVisible:false
      }
 
      _bootstrapAsync= async()=>{
+       //called by constructor to get the UserId that set by successful login
         this.userId = await AsyncStorage.getItem("userId")
-        this.setState({userId:this.userId})
      }
+
+     scheduleAppointment=()=>{
+      const {professionalId, selectedDay, selectedTime} = this.state
+      //handle for confirming appointment
+      axios.post('http://localhost:3000/appointments',{
+        professionalId:professionalId,
+        userId:this.userId,   //class variable
+        date:selectedDay,
+        time:selectedTime
+      }).then(result=>{
+        console.log(result)
+      }).catch(error=>{
+        console.log(error)
+      })
+    }
 
      renderItem=({item})=>{
          return(
            <TouchableOpacity onPress={()=>{
               this.setState({
                 overlayVisible:true,
-                selecetedTime:item
+                selectedTime:item
               })}
               }>
              <View style={style.listContainer}>
@@ -67,7 +89,6 @@ class BookingScreen extends Component{
      }
 
     render(){
-     times = ['9-9:30am','9:30-10am','10-10:30am','10:30-11am','11-11:30am','11:30-12pm','12-12:30pm','12:30-1pm']
         return(
               <ScrollView style={{flex:1}}>
                 <Overlay isVisible={this.state.overlayVisible}
@@ -78,8 +99,8 @@ class BookingScreen extends Component{
                  <View style={{flex:1,alignItems:'center'}}>
                   <Text style={{fontSize:24, fontFamily:'Times New Roman',textAlign:'center'}}>Appointment Confirmation</Text>
                     <View style={{marginTop:30,alignContent:'flex-start'}}>
-                      <Text style={{fontSize:20,fontFamily:'Times New Roman'}}>Date: {this.state.seletedDay}</Text> 
-                      <Text style={{fontSize:20,fontFamily:'Times New Roman'}}>Time: {this.state.selecetedTime}</Text>  
+                      <Text style={{fontSize:20,fontFamily:'Times New Roman'}}>Date: {this.state.selectedDay}</Text> 
+                      <Text style={{fontSize:20,fontFamily:'Times New Roman'}}>Time: {this.state.selectedTime}</Text>  
                       <Text style={{fontSize:20,fontFamily:'Times New Roman'}}>Barber: {this.professional.firstName}</Text>  
                     </View>
                     <View style={{flex:1,flexDirection:'row', alignItems:'flex-end', marginBottom:10}}>
@@ -88,25 +109,42 @@ class BookingScreen extends Component{
                     >
                       <Text style={style.buttonText}>Cancel</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={style.confirmButton}>
+                    <TouchableOpacity style={style.confirmButton}
+                      onPress={this.scheduleAppointment}
+                    >
                       <Text style={style.buttonText}>Confirm</Text>
                     </TouchableOpacity>
                     </View>
                   </View>
                 </Overlay>
                 <Calendar
+                 style={{
+                   borderWidth:0.4,
+                   margin:5,
+                   borderColor:'#b0bec5'
+                 }}
+                 theme={{
+                   calendarBackground: '#f5f5f5',
+                   todayTextColor: '#00adf5',
+                   dayTextColor: '#2d4150',
+                   textMonthFontFamily: 'Arial',
+                   textMonthFontWeight: 'bold',
+                   arrowColor:theme.primaryColor.headerColor  //matches the color of the header
+                 }}
+
                   onDayPress={(day)=>{
-                      this.setState({seletedDay:day.dateString})}
+                      this.setState({selectedDay:day.dateString,
+                      })}
                     }
-                  current={{selected: true, marked: true, selectedColor: 'blue'}}
                   markingType={'default'}
-                  markedDates={{"2019-03-14":{periods:[ {startingDay: false, endingDay: true, color: '#5f9ea0' }]}}}
+                  current={{selected: true, marked: true, selectedColor: 'blue'}}
+                  markedDates={this.state.markedDates}
                 />
                 <Text style={style.textHeader}>Available times </Text>
                 <FlatList
                   contentContainerStyle={style.flatList}
                   keyExtractor={this._keyExtractor}
-                  data={times}
+                  data={this.times}
                   renderItem={this.renderItemHandler}
                   numColumns={2}
                 />
@@ -130,12 +168,13 @@ const style ={
     }
     ,
     listContainer:{
+        alignItems:'center',
+        justifyContent:'center',
         marginLeft:10,
         width:150,
         height:70,
-        elevation: 1,
-        borderRadius: 2,
-        backgroundColor: "#cdcdcd",
+        borderRadius: 10,
+        backgroundColor: "#2A4B7C",
         paddingTop: 12,
         paddingBottom: 10,
         paddingLeft: 18,
@@ -143,27 +182,27 @@ const style ={
         marginLeft: 14,
         marginRight: 14,
         marginTop: 0,
-        marginBottom: 6
+        marginBottom: 10
     }, 
     textSyle:{
+        fontWeight:'400',
         fontSize:20,
-        marginLeft:20,
-        fontFamily:"Times New Roman"
+        fontFamily:"Arial"
     }, 
     flatList:{
       alignSelf:'center'
     },
     confirmButton:{
       backgroundColor:'#4caf50',
-      padding:15,
-      borderRadius:2,
+      padding:20,
+      borderRadius:5,
       alignItems:'center'
     },
     cancelButton:{
-      backgroundColor:'#f57c00',
-      padding:15,
+      backgroundColor:'#E08119',
+      padding:20,
       marginRight:20,
-      borderRadius:2,
+      borderRadius:5,
     },
     buttonText:{
       textAlign:'center',
@@ -179,7 +218,7 @@ const style ={
       top: 0,
       opacity: 0.5,
       backgroundColor: 'black',
-    } 
+    },
 }
 
 export {BookingScreen}

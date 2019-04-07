@@ -34,14 +34,15 @@ class EditProfile extends Component{
 
     fetchUserData=()=>{
         this.setState({loading:true})
-        console.log(this.state.email)
         //called before page loads to populate current form fields
-       axios.post("http:/localhost:3000/users/findByEmail",{
-            email:this.state.email
+       axios.post("http:/localhost:3000/users/findById",{
+            _id:this.state.userId
         }).then((result)=>{
             console.log(result)
             this.setState({
-              userData:result.data})
+              userData:result.data,
+              email:result.data.contact.email
+            })
         }).then((response)=>{
             this.setState({loading:false})
         })
@@ -54,7 +55,7 @@ class EditProfile extends Component{
 
     setUserId=(userId,fetchUserData)=>{
         //sets the logged in userinfo in state
-        this.setState({email:userId})
+        this.setState({userId:userId})
         fetchUserData()
 
     }
