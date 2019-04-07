@@ -28,7 +28,6 @@ class ProfessionalsScreen extends Component{
     render(){
         //getting the professional Id from the previous page(HomeScreen)
         const professional = this.props.navigation.getParam('professional');
-        console.log(`Professional => ${JSON.stringify(professional)}`)
         buttons =[{element:this.component1},{element:this.component2},{element:this.component3},{element:this.component4}]
         return (
             <View style={style.containerStyle}>
@@ -45,7 +44,7 @@ class ProfessionalsScreen extends Component{
                 </Card> */}
                 <View style={{marginTop:20}}>
                   <MenuButton title="Schedule Appointment"
-                    onPress={()=>this.navigationHandler("BookingScreen",{professional})}
+                    onPress={()=>this.navigationHandler("BookingScreen",professional)}
                   />
                     <MenuButton
                       title="View Account"

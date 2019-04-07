@@ -38,14 +38,13 @@ class LoginForm extends Component{
             .then((response)=>{
                     console.log(JSON.stringify(response.data.token))
                     // console.log(response.status)
-                    console.log(response.data.userId);
-                    const userId = AsyncStorage.setItem('userId',response.data.userEmail);  //store id
+                    console.log(response.data);
+                    const userId = AsyncStorage.setItem('userId',response.data.userId);  //store id
                     const userToken =AsyncStorage.setItem('userToken',response.data.token); //store token
-                }).then(()=>{
-                        this.setState({loading:false});
-                        return this.props.navigation.navigate('App')
-                      })
-                    .catch((err)=>{console.log(err);
+
+                    this.setState({loading:false});
+                    return this.props.navigation.navigate('App',{userId:response.data.userEmail})
+                }).catch((err)=>{console.log(err);
                         this.setState({loading:false});
                         alert(err.message)
                         })

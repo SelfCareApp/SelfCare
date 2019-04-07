@@ -1,4 +1,4 @@
-import {View, PermissionsAndroid} from 'react-native';
+import {View,AsyncStorage} from 'react-native';
 import React, {Component} from 'react';
 import {ProfListItem} from '../../components'
 import {Spinner} from '../../components/common'
@@ -17,6 +17,8 @@ class HomeScreen extends Component{
     constructor(props){
         super(props)
         this.navigationHandler = this.viewAccount.bind(this);
+        this.userId=''
+        this._bootstrapAsync()
     }
 
     state = {
@@ -34,6 +36,10 @@ class HomeScreen extends Component{
     this.getUserLocation(this.getNearByProfessionals)
 
     }
+
+    _bootstrapAsync = async () => {
+        this.userId = await AsyncStorage.getItem('userId');
+      };
 
     async getUserLocation (cb){
        await navigator.geolocation.getCurrentPosition(
@@ -54,8 +60,8 @@ class HomeScreen extends Component{
 
    getNearByProfessionals =()=>{
     axios.post('http://localhost:3000/professionals/findByLocation',{
-            longitude:this.state.longitude,
-            latitude:this.state.latitude
+            location:[this.state.longitude,
+            this.state.latitude]
         })
         .then((result)=>{
             this.setState({
@@ -83,9 +89,9 @@ class HomeScreen extends Component{
          }))
     }
 
-    viewAccount(profObject){
+    viewAccount=(profObject)=>{
        //called whe the professional listview element is selected
-        return this.props.navigation.navigate("ProfessionalAccount",{professional:profObject})
+        return this.props.navigation.navigate("ProfessionalAccount",{professional:profObject,userId:this.userId})
     }
 
     render(){

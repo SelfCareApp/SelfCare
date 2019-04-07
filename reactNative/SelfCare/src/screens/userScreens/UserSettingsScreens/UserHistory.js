@@ -4,9 +4,18 @@ import {View,Text} from 'react-native';
 class UserHistory extends Component{
     render(){
         return(<View>
-           <Text>User History</Text> 
+           <Text style={style.textStyle}>Past Transactions</Text> 
         </View>)
     }
 }
 
 export {UserHistory}
+
+const style ={
+    textStyle:{
+        textAlign:'center',
+        fontSize:24,
+        fontWeight:'400',
+        fontFamily:'Arial'
+    }
+}

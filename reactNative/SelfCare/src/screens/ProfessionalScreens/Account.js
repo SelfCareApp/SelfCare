@@ -91,7 +91,7 @@ class Account extends Component{
       return(
           <View style={{flex:1}}>
             <Header headerText="My Account"/>
-            <View style={{flex:1,justifyContent:'flex-end',height:200,alignContent:"center"}}>
+            <View style={style.viewStyle}>
               <TouchableOpacity style={style.imageContainer} onPress={this.choosePic}>
                 <Image source={this.state.avatarSource ? {uri:photo.uri} :require("./../../assets/placeholder.png")}
                   style={{width:100, height:100,borderRadius:4}}
@@ -116,6 +116,12 @@ const style ={
     marginLeft:5,
     marginBottom:5
 
+  },
+  viewStyle:{
+    justfyContent:'center',
+    height:200,
+    alignContent:"center",
+    flexDirection:"row"
   }
 }
 

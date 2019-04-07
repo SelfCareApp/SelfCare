@@ -2,7 +2,9 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import {Header} from '../../components/common'
 
-const PromotionsScreen = ()=>{
+const PromotionsScreen = (props)=>{
+    
+    console.log(props)
     return(
     <View style={{flex:1}}>
         <Header headerText="Promotions"/>

@@ -60,7 +60,8 @@ class ProfessionalLoginForm extends React.Component{
             <View style={style.containerStyle}>
               <Text style={style.textStyle}>Abantu</Text>
               <Text style={style.smallerText}>The People</Text>
-            <CardSection>
+           
+             <CardSection>
                 <Input label="Email"
                     placeholder="selface@gmail.com"
                     onChangeText={(email)=>this.setState({email})}
@@ -76,6 +77,7 @@ class ProfessionalLoginForm extends React.Component{
             <CardSection>
                 {this.renderLoginButton()}
             </CardSection>
+          
         </View>)
     }
 }

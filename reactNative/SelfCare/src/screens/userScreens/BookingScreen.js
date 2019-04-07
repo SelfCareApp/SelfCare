@@ -1,10 +1,10 @@
 //from this screen the user is able to make a booking
 import React,{Component} from 'react';
-import {View, Text, ScrollView,FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, ScrollView,FlatList, TouchableOpacity, AsyncStorage} from 'react-native';
 import {Calendar} from 'react-native-calendars'
 
 import theme from '../../utils/theme'
-import { Overlay } from 'react-native-elements';
+import { Overlay} from 'react-native-elements';
 
 
 class BookingScreen extends Component{
@@ -16,18 +16,45 @@ class BookingScreen extends Component{
          },
          headerTintColor:"#fff"})
      };
+
      constructor(props){
        super(props)
        this.renderItemHandler = this.renderItem.bind(this)
+       this.professional = this.props.navigation.getParam('professional');
+       this.userId ='',
+       this._bootstrapAsync()
+     }
+
+     componentWillMount=()=>{
+      this.setState({
+        professionalId:this.professional._id,
+        userId:this.userId
+      })
+     }
+
+     componentDidMount(){
      }
      state={
-       seletedDay:'',
+       seletedDay: '',
+       selecetedTime:'',
+       professionalId:'',
+       userId:'',
        overlayVisible:false
      }
 
-     renderItem({item}){
+     _bootstrapAsync= async()=>{
+        this.userId = await AsyncStorage.getItem("userId")
+        this.setState({userId:this.userId})
+     }
+
+     renderItem=({item})=>{
          return(
-           <TouchableOpacity onPress={()=>this.setState({overlayVisible:true})}>
+           <TouchableOpacity onPress={()=>{
+              this.setState({
+                overlayVisible:true,
+                selecetedTime:item
+              })}
+              }>
              <View style={style.listContainer}>
                <Text style={style.textStyle}>{item}</Text>
              </View>
@@ -45,17 +72,31 @@ class BookingScreen extends Component{
               <ScrollView style={{flex:1}}>
                 <Overlay isVisible={this.state.overlayVisible}
                   onBackdropPress={()=>this.setState({overlayVisible:false})}
-                  windowBackgroundColor="rgba(00, 00, 99, .5)"
+                  windowBackgroundColor="#e0e0e0"
+                  overlayBackgroundColor="#F0EDE5"
                 >
-                  <Text style={{fontSize:18, fontFamily:'arial',textAlign:'center'}}>Appointment Confirmation</Text>
-                  <View style={{flex:1,flexDirection:'row', alignItems:'flex-end'}}>
-                    <Text style={{ height:50,width:100, backgroundColor:'orange'}}>Cancel</Text>
-                    <Text style={{ height:50,width:100, backgroundColor:"green", marginLeft:20}}>Confirm Booking</Text>
+                 <View style={{flex:1,alignItems:'center'}}>
+                  <Text style={{fontSize:24, fontFamily:'Times New Roman',textAlign:'center'}}>Appointment Confirmation</Text>
+                    <View style={{marginTop:30,alignContent:'flex-start'}}>
+                      <Text style={{fontSize:20,fontFamily:'Times New Roman'}}>Date: {this.state.seletedDay}</Text> 
+                      <Text style={{fontSize:20,fontFamily:'Times New Roman'}}>Time: {this.state.selecetedTime}</Text>  
+                      <Text style={{fontSize:20,fontFamily:'Times New Roman'}}>Barber: {this.professional.firstName}</Text>  
+                    </View>
+                    <View style={{flex:1,flexDirection:'row', alignItems:'flex-end', marginBottom:10}}>
+                    <TouchableOpacity style={style.cancelButton}
+                      onPress={()=>this.setState({overlayVisible:false})}
+                    >
+                      <Text style={style.buttonText}>Cancel</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={style.confirmButton}>
+                      <Text style={style.buttonText}>Confirm</Text>
+                    </TouchableOpacity>
+                    </View>
                   </View>
                 </Overlay>
                 <Calendar
                   onDayPress={(day)=>{
-                      this.setState({seletedDay:day})}
+                      this.setState({seletedDay:day.dateString})}
                     }
                   current={{selected: true, marked: true, selectedColor: 'blue'}}
                   markingType={'default'}
@@ -80,6 +121,7 @@ const style ={
         alignSelf: "stretch",
     },
     textHeader:{
+        fontFamily:"Times New Roman",
         fontSize:20,
         marginBottom:15,
         marginTop:15,
@@ -101,15 +143,35 @@ const style ={
         marginLeft: 14,
         marginRight: 14,
         marginTop: 0,
-        marginBottom: 6,
+        marginBottom: 6
     }, 
     textSyle:{
         fontSize:20,
-        marginLeft:20
+        marginLeft:20,
+        fontFamily:"Times New Roman"
     }, 
     flatList:{
       alignSelf:'center'
     },
+    confirmButton:{
+      backgroundColor:'#4caf50',
+      padding:15,
+      borderRadius:2,
+      alignItems:'center'
+    },
+    cancelButton:{
+      backgroundColor:'#f57c00',
+      padding:15,
+      marginRight:20,
+      borderRadius:2,
+    },
+    buttonText:{
+      textAlign:'center',
+      fontFamily:'Times New Roman',
+      fontWeight:'400',
+      fontSize:16
+    }
+    ,
     overlay: {
       flex: 1,
       position: 'absolute',
