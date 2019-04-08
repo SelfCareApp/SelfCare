@@ -12,11 +12,20 @@ import { Overlay} from 'react-native-elements';
 class BookingScreen extends Component{
     static navigationOptions =({navigation})=>{
         const { params= {}} = navigation.state
-         return ({headerTitle:`Schedule Appointment with ${params.professional.firstName}`, 
-         headerStyle:{
-             backgroundColor:theme.primaryColor.headerColor
-         },
-         headerTintColor:"#fff"})
+         return ({
+        headerTitle:`Schedule Appointment with ${params.professional.firstName}`,
+        headerStyle:{
+          height:50,
+          backgroundColor:theme.primaryColor.headerColor,
+      },
+      headerTitleStyle:{
+        marginBottom:5,
+        fontFamily:'Arial',
+        fontSize:22,
+        color:"#fafafa",
+        fontWeight:'normal'
+      },
+         })
      };
 
      constructor(props){

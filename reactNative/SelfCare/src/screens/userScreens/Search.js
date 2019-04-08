@@ -1,14 +1,16 @@
-import {View ,FlatList} from 'react-native';
+import {View ,FlatList, SafeAreaView} from 'react-native';
 import React from 'react';
 import {SearchBar } from 'react-native-elements'
 import axios from 'axios';
 
 import {Header} from '../../components/common'
 import {ProfListItem} from '../../components'
+import theme from '../../utils/theme';
 
 class Search extends React.Component{
   constructor(props){
     super(props)
+    this.navigationHandler = this.viewAccount.bind(this)
     arrayHolder =[]
   }
   
@@ -60,10 +62,16 @@ class Search extends React.Component{
                      search:text })
     }
 
+    viewAccount=(profObject)=>{
+      //called whe the professional listview element is selected
+       return this.props.navigation.navigate("ProfessionalAccount",{professional:profObject,userId:this.userId})
+   }
+
 
     render(){
       return(
-        <View><Header headerText="Find Provider"/>
+        <SafeAreaView style={{backgroundColor: theme.primaryColor.headerColor}}>
+          <View><Header headerText="Find Provider"/>
           <SearchBar 
              containerStyle={{backgroundColor:'#3F69AA', borderRadius:2.5,marginTop:0}}
              inputContainerStyle={{backgroundColor:"#fff"}}
@@ -72,17 +80,21 @@ class Search extends React.Component{
              autoCorrect={false}
              placeholder="search by name"
           />
-          <FlatList          
+          <FlatList 
+            contentContainerStyle={{backgroundColor:'#fff'}}         
             data={this.state.data}          
             renderItem={({ item }) => ( 
               <ProfListItem firstname={item.firstName}
                   lastname={item.lastName}
+                  navigator ={()=>this.navigationHandler(item)}
                   title={"Barber"}
                   />       
             )}          
             keyExtractor={item => item._id} 
           />            
-        </View>)
+        </View>
+        </SafeAreaView>
+        )
     }
 }
 

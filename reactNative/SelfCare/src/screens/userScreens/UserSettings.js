@@ -1,15 +1,26 @@
 import React, {Component} from 'react';
-import {AsyncStorage,View} from 'react-native';
+import {AsyncStorage,View, SafeAreaView} from 'react-native';
 
-import {MenuButton} from '../../components/common';
+
+import {MenuButton,Header} from '../../components/common';
 import theme from './../../utils/theme'
+const headerTitleStyle = theme.headerTitleStyle
+
 class UserSettings extends Component{
+  
   static navigationOptions ={
-    headerTitle:"Account", 
+     headerTitle:"Account", 
     headerStyle:{
-        backgroundColor:theme.primaryColor.headerColor
+        height:50,
+        backgroundColor:theme.primaryColor.headerColor,
     },
-    headerTintColor:"#fff"
+    headerTitleStyle:{
+      marginBottom:5,
+      fontFamily:'Arial',
+      fontSize:22,
+      color:"#fafafa",
+      fontWeight:'normal'
+    },
 }
 
     constructor(props){
@@ -26,7 +37,7 @@ class UserSettings extends Component{
     }
     render(){
         return (
-        <View>
+        <SafeAreaView>
           {/* <Header headerText='Profile'/> */}
             <View style={{marginTop:30}}>
             <MenuButton onPress={()=>this.navigationHandler("EditProfile")}
@@ -42,7 +53,7 @@ class UserSettings extends Component{
                 iconName="sign-out-alt"
                 title="Signout of Account"/>
             </View>
-        </View>)
+        </SafeAreaView>)
     }
 }
 

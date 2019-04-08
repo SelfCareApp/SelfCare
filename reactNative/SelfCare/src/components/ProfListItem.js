@@ -5,9 +5,10 @@ this will show the averate rating for the professional
 import React,{Component} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {Text, Image, View} from 'react-native';
-import {Rating} from 'react-native-elements'
+import {Rating, Divider} from 'react-native-elements'
 
 import {CardSection} from './common';
+import theme from '../utils/theme';
 
 class ProfListItem extends Component{
     constructor(props){
@@ -21,7 +22,7 @@ class ProfListItem extends Component{
     render(){
         return(  
                 <TouchableOpacity onPress={this.props.navigator} key>
-                    <CardSection>
+                    <CardSection additionalStyle={styles.CardSectionStyle}>
                         <View style={styles.imgView}>
                          <Image style={styles.imgStyle} source={{uri:"https://i.cbc.ca/1.4509398.1517262943!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/dwight.jpg"}}/>
                         </View>
@@ -31,6 +32,7 @@ class ProfListItem extends Component{
                             <Rating imageSize={24}/>
                         </View>
                     </CardSection>
+                    <Divider style={styles.dividerStyle}/>
                 </TouchableOpacity>
             )
     }
@@ -69,5 +71,21 @@ const styles ={
       shadowOpacity:0.7,
       elevation:1,
       justifyContent:'center'
+    },
+    CardSectionStyle:{
+        marginBottom:20,
+        borderBottomWidth: 0,
+        // backgroundColor:"#F0EDE5",
+        marginBottom:10,
+        paddingLeft:10
+    },
+    dividerStyle:{
+        marginTop:5,
+        height:3,
+       backgroundColor:theme.primaryColor.headerColor,
+       width:150,
+       alignSelf:'center',
+
+       
     }
 }

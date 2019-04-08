@@ -2,11 +2,12 @@ import {createStackNavigator, createAppContainer, createBottomTabNavigator, crea
 
 //importing relevant screens
 import {LoginForm,ProfessionalLoginForm, RegistrationForm} from './../screens/Authentication'
+import EntryScreen from './../screens/entryScreen';
 
 //switch navigator to allow for navigation between the reg user login screen and registration
 const LogStack = createStackNavigator({Login:LoginForm, Register:RegistrationForm})
 
 //this is this handle the switch between authenticating as a regular user or professional
-const AuthStack = createBottomTabNavigator({"Client Login" :LogStack, "Login as Professional":ProfessionalLoginForm})
+const AuthStack = createStackNavigator({EntryScreen,LogStack,ProfessionalLoginForm})
 
 export {AuthStack}

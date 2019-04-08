@@ -12,6 +12,12 @@ const theme ={
         messageBubble:'#cfd8dc'
 
     },
+    headerTitleStyle:{
+        fontSize:'22',
+        fontFamily:'Arial',
+        color:"#fafafa",
+        marginBottom:5,
+      },
     secondaryColor:{
         backgroundColor:"",
         textColor:""

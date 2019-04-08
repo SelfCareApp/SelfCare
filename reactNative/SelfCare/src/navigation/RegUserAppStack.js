@@ -20,7 +20,6 @@ const HomeStack = createStackNavigator({HomeScreen:HomeScreen,
 
 const ServiceStack = createStackNavigator({
   UserSettings,
-  UserAppointments,
   UserHistory,
   EditProfile
 })
@@ -44,11 +43,11 @@ const RegUserAppStack = createBottomTabNavigator({
           }
             }
       },
-      Promotions:{
-        screen:PromotionsScreen,
+      Appointments:{
+        screen:UserAppointments,
         navigationOptions:{
           tabBarIcon:({focused,tintColor})=>{
-            return <Icon name="dollar-sign" size={24} color={tintColor}/>
+            return <Icon name="calendar-alt" size={24} color={tintColor}/>
           }
             }
       },
@@ -71,8 +70,8 @@ const RegUserAppStack = createBottomTabNavigator({
       tabBarLabel: {
       },
       tabBarOptions: {
-        activeTintColor: theme.primaryColor.selectedIcon,
-        inactiveTintColor: theme.primaryColor.iconColor,
+        activeTintColor: theme.primaryColor.iconColor,
+        inactiveTintColor: theme.primaryColor.selectedIcon,
         showLabel: false,
         style: { backgroundColor: theme.primaryColor.backgroundColor},
   

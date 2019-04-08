@@ -1,4 +1,4 @@
-import {View,AsyncStorage} from 'react-native';
+import {View,AsyncStorage, SafeAreaView} from 'react-native';
 import React, {Component} from 'react';
 import {ProfListItem} from '../../components'
 import {Spinner} from '../../components/common'
@@ -9,9 +9,16 @@ class HomeScreen extends Component{
     static navigationOptions ={
         headerTitle:"Providers Near You", 
         headerStyle:{
-            backgroundColor:theme.primaryColor.headerColor
+            height:50,
+            backgroundColor:theme.primaryColor.headerColor,
         },
-        headerTintColor:"#fff"
+        headerTitleStyle:{
+          marginBottom:5,
+          fontFamily:'Arial',
+          fontSize:22,
+          color:"#fafafa",
+          fontWeight:'normal'
+        },
     }
 
     constructor(props){
@@ -96,9 +103,12 @@ class HomeScreen extends Component{
 
     render(){
         return(
-         <View style={{flex:1, marginTop:10}}>
+         <SafeAreaView>
+           <View style={{marginTop:10}}>
             {this.renderProfessionalList()}
-         </View>)
+           </View>  
+         </SafeAreaView>
+)
     }
 
 }

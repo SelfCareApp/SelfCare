@@ -2,3 +2,4 @@
 export * from './sendMessage';
 export * from './ProfListItem';
 export * from './messageBubble';
+export * from './Appointment'
