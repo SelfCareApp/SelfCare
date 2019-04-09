@@ -1,98 +1,91 @@
 import React, {Component} from 'react';
-import {View,Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {Calendar, Agenda} from 'react-native-calendars';
+import {View,Text,TouchableOpacity,FlatList, AsyncStorage, SafeAreaView,Modal} from 'react-native';
+import {Calendar} from 'react-native-calendars';
 
 import moment from 'moment';
+import axios from 'axios'
 
-import {Header} from './../../components/common';
+import {Header,Button, CardSection} from './../../components/common';
+import {Appointment} from '../../components';
+import theme from '../../utils/theme';
 
 class Booking extends Component {
-    constructor(props) {
+
+  constructor(props) {
       super(props);
-      this.state = {
-        items: {}
-      };
+      this.state = {items: {} };
+      this._bootstrapAsync(this.fetchAppointments)
+      this.professionalId =""
     }
-  
-    render() {
-      return (
-        <Agenda
-          items={this.state.items}
-          loadItemsForMonth={this.loadItems.bind(this)}
-          selected={moment().format("YYYY-MM-DD")}
-          renderItem={this.renderItem.bind(this)}
-          renderEmptyDate={this.renderEmptyDate.bind(this)}
-          rowHasChanged={this.rowHasChanged.bind(this)}
+    
+    state ={
+      modalVisible:false,
+      appointments:{} //holds the fetched appointment data
+    }
+
+    _bootstrapAsync= async(fetchData)=>{
+      //fetch logged in user
+      this.professionalId = await AsyncStorage.getItem("professionalId")
+      fetchData()
+    }
+
+    fetchAppointments=()=>{
+      //fetches the appointment for professional and sets the state
+      axios.post("https://frozen-hamlet-87170.herokuapp.com/appointments/findByProfessional",{
+        professionalId:this.professionalId
+      }).then(result=>{
+           appointments= []
+          result.data.map((appointment)=>{
+            //pulling out time, date, firstName , lastName, appointmentId
+            let temp ={}
+            let date = appointment.date
+            temp = { 
+                                    firstName: appointment.userId.firstName,
+                                    lastName:appointment.userId.lastName,
+                                    time:appointment.time,
+                                    date:appointment.date,
+                                    bookingCode: appointment._id
+                                     }
+           appointments.push(temp)
+          })
+          this.setState({appointments:appointments})
+      }).catch(error=>{
+        console.log(error)
+      })
+    }
+
+    viewCalendar=(visible)=>{
+      this.setState({ modalVisible: visible})
+    }
+
+    _keyExtract=(item,index)=>{
+      return item.bookingCode
+    }
+
+    renderItem=({item})=>{
+      return(
+        <Appointment date={item.date}
+          professionalName={item.firstName}  
+          time={item.time}
         />
-      );
-    }
-  
-    loadItems(day) {
-      setTimeout(() => {
-        for (let i = -15; i < 85; i++) {
-          const time = day.timestamp + i * 24 * 60 * 60 * 1000;
-          const strTime = this.timeToString(time);
-          if (!this.state.items[strTime]) {
-            this.state.items[strTime] = [];
-            const numItems = Math.floor(Math.random() * 5);
-            for (let j = 0; j < numItems; j++) {
-              this.state.items[strTime].push({
-                name: 'Hair cut ' + strTime,
-                height: Math.max(50, Math.floor(Math.random() * 150))
-              });
-            }
-          }
-        }
-        //console.log(this.state.items);
-        const newItems = {};
-        Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
-        this.setState({
-          items: newItems
-        });
-      }, 1000);
-      // console.log(`Load Items for ${day.year}-${day.month}`);
-    }
-  
-    renderItem(item) {
-      return (
-        <TouchableOpacity style={[styles.item, {height: item.height}]}><Text>{item.name}</Text></TouchableOpacity>
-      );
-    }
-  
-    renderEmptyDate() {
-      return (
-        <View style={styles.emptyDate}><Text>This is empty date!</Text></View>
-      );
-    }
-  
-    rowHasChanged(r1, r2) {
-      return r1.name !== r2.name;
-    }
-  
-    timeToString(time) {
-      const date = new Date(time);
-      return date.toISOString().split('T')[0];
-    }
+       )
   }
-  
-const styles = StyleSheet.create({
-    item: {
-      backgroundColor: 'white',
-      flex: 1,
-      borderRadius: 5,
-      padding: 10,
-      marginRight: 10,
-      marginTop: 17
-    },
-    emptyDate: {
-      height: 15,
-      flex:1,
-      paddingTop: 30
-    },
-    containerSyle:{
-        marginTop:10
-    }
-  });
+
+    render() {
+      return (<View>
+        <SafeAreaView style={{backgroundColor:theme.primaryTheme.colors.princessBlue}}>
+          <Header headerText="Upcoming appointments"/>
+        </SafeAreaView>
+          <FlatList
+               keyExtractor={this._keyExtract}
+               renderItem={this.renderItem}
+               data={this.state.appointments}
+            />
+
+        </View>
+
+      )}
+  }
   
 
 export {Booking}

@@ -66,7 +66,7 @@ class BookingScreen extends Component{
      scheduleAppointment=()=>{
       const {professionalId, selectedDay, selectedTime} = this.state
       //handle for confirming appointment
-      axios.post('http://localhost:3000/appointments',{
+      axios.post('https://frozen-hamlet-87170.herokuapp.com/appointments',{
         professionalId:professionalId,
         userId:this.userId,   //class variable
         date:selectedDay,

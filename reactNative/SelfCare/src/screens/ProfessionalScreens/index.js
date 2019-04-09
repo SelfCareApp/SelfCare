@@ -1,5 +1,5 @@
 export * from './HomeScreen';
-export * from './Account';
+export * from './Settings';
 export * from '../userScreens/UserMessageScreen';
 export * from './Portfolio';
 export * from './Booking'

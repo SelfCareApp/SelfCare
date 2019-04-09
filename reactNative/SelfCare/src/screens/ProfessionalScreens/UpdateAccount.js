@@ -1,9 +1,11 @@
 import React,{Component} from 'react';
-import {View,Text, AsyncStorage} from 'react-native';
+import {View,Text, AsyncStorage,SafeAreaView} from 'react-native';
 import axios from 'axios'
 
-import {Input, CardSection, Button,Spinner} from './../../../components/common'
-class EditProfile extends Component{
+import {Input, CardSection, Button,Spinner,Header} from '../../components/common'
+import theme from '../../utils/theme';
+
+class UpdateAccount extends Component{
     constructor(props){
         super(props)
         //constructor gets the userEmail from AsyncStorage
@@ -35,7 +37,7 @@ class EditProfile extends Component{
     fetchUserData=()=>{
         this.setState({loading:true})
         //called before page loads to populate current form fields
-       axios.post("http:/localhost:3000/users/findById",{
+       axios.post("http:/localhost:3000/professional/findById",{
             _id:this.state.userId
         }).then((result)=>{
             console.log(result)
@@ -63,7 +65,7 @@ class EditProfile extends Component{
     _bootstrapAsync = async (getAuthenticatedUser, fetchUserData) => {
         //gets the userId (email) from the Async storage
         //accepts to parameters, both callbacks
-          const userId = await AsyncStorage.getItem('userId');
+          const userId = await AsyncStorage.getItem('professionalId');
           getAuthenticatedUser(userId,fetchUserData)
           return userId;
       };
@@ -82,7 +84,7 @@ class EditProfile extends Component{
            email: this.state.email,
            password:this.state.password
         }
-      axios.post("https://frozen-hamlet-87170.herokuapp.com/users/updateUser",{
+      axios.post("https://frozen-hamlet-87170.herokuapp.com/professional/updateUser",{
         data
       })
     }
@@ -93,6 +95,9 @@ class EditProfile extends Component{
         }
         return(
             <View>
+             <SafeAreaView style={{backgroundColor:theme.primaryTheme.colors.princessBlue}}>
+               <Header headerText="Update Account"/>
+             </SafeAreaView>
             <CardSection>
                 <Input label="First Name"
                     value={this.state.userData.firstName}
@@ -121,11 +126,11 @@ class EditProfile extends Component{
                     />
             </CardSection>
             <CardSection>
-                <Button onPress={this.updateAccountHandle}>Submit</Button>
+                <Button onPress={this.updateAccountHandle}>Update Account</Button>
             </CardSection>
             </View>
                 )
     }
 }
 
-export {EditProfile}
+export {UpdateAccount}

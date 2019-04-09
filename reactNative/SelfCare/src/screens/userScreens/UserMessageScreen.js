@@ -22,7 +22,7 @@ class UserMessageScreen extends Component {
             this.setState({userId:result})
 
           });
-        this.socket = SocketIOClient('http://localhost:3000');
+        this.socket = SocketIOClient('https://frozen-hamlet-87170.herokuapp.com');
         this.socket.emit('newUser',{userId:this.state.userId})
         console.log("constructor",this.state.userId);
         this.socket.on("incomingMessage",(data)=>{

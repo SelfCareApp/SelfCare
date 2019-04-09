@@ -30,7 +30,7 @@ class UserAppointments extends React.Component{
     getUserAppointments=()=>{
       console.clear()
       console.log(this.userId)
-      axios.post("http://localhost:3000/appointments/findByUser",{
+      axios.post("https://frozen-hamlet-87170.herokuapp.com/appointments/findByUser",{
         userId:this.userId
       }).then(result=>{
           this.setState({UserAppointments:result.data})

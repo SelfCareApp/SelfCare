@@ -1,9 +1,27 @@
 import React from 'react';
-import {View,Text} from 'react-native';
+import {View,Text, SafeAreaView, TouchableOpacity,AsyncStorage} from 'react-native';
 
 class Messages extends React.Component{
+    constructor(props){
+        super(props)
+    }
+
+    logout=()=>{
+        AsyncStorage.multiRemove(["professionalId","userToken"])
+            .then(()=>this.props.navigation.navigate("Auth"))
+    }
     render(){
-        return(<View><Text>Messages</Text></View>)
+        return(
+            <SafeAreaView>
+              <View>
+                <Text>Messages</Text>
+                <TouchableOpacity onPress={this.logout} 
+                  style={{padding:20, backgroundColor:"blue"}}>
+                  <Text>Logout</Text>
+                </TouchableOpacity>
+              </View>
+            </SafeAreaView>
+          )
     }
 }
 

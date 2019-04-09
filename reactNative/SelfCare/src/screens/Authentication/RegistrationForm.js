@@ -3,8 +3,13 @@ import {View,Text, AsyncStorage} from 'react-native';
 import axios from 'axios';
 
 import { CardSection,Input,Button} from '../../components/common'
+import theme from '../../utils/theme';
 
 class RegistrationForm extends Component{
+    static navigationOptions = {
+        header: null
+    }
+
     constructor(props){
         super(props)
         this.changeTextHandler = this.changeText.bind(this)
@@ -28,7 +33,7 @@ class RegistrationForm extends Component{
     }
 
     regirstrationButtonClicked =()=>{
-       axios.post('http://localhost:3000/users/signup',{
+       axios.post('https://frozen-hamlet-87170.herokuapp.com/users/signup',{
            firstName:this.state.firstName,
            lastName:this.state.lastName,
            email:this.state.email,
@@ -49,8 +54,8 @@ class RegistrationForm extends Component{
         {return(
             <View style={{flex:1, justifyContent:'center'}}>
                 <View style={{marginBottom:10}}>
-                <Text style={style.textStyle}>Abantu</Text>
-                <Text style={style.smallerText}>The People</Text>
+                <Text style={[theme.primaryTheme.headerText,{color:theme.primaryTheme.colors.princessBlue}]}>Self Care</Text>
+                <Text style={[theme.primaryTheme.secondaryHeader,{color:theme.primaryTheme.colors.princessBlue}]}>~The App~</Text>
                 </View>
                 <CardSection>
                     <Input placeholder='John'

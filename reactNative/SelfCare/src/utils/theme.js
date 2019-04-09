@@ -3,6 +3,32 @@ this file holds the colors and themes that shall be used through out the app
 */
 
 const theme ={
+    primaryTheme:{
+      headerText:{
+        fontFamily:'Anton',
+        fontSize:52,
+        textAlign:'center',
+        color:"#000"
+        },
+       secondaryHeader:{
+         fontFamily:'Great Vibes',
+         fontSize:28,
+         textAlign:'center',
+         color:"#000"
+      },
+      paragraph:{
+        //used for paragraph text
+            color:"#000",
+            fontSize:18,
+            textAlign:'center',
+            fontFamily:'Rubik'
+      },
+      colors:{
+          princessBlue:"#00539C",
+          coconutMilk:"#F0EDE5"
+      }
+    },
+
     primaryColor :{
         backgroundColor:"#fafafa",
         iconColor:"#00539C",

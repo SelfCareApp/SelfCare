@@ -44,15 +44,18 @@ class AuthLoadingScreen extends Component {
     // Fetch the token from storage then navigate to our appropriate place
     _bootstrapAsync = async () => {
       const userToken = await AsyncStorage.getItem('userToken');
+      const professionalId = await AsyncStorage.getItem('professionalId');
       const userId = await AsyncStorage.getItem('userId');
       userToken ? this.setState({authenticated:true}) : this.setState({authenticated:false});
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
-      if(userToken){
-        console.log(`Auth loading ${userId}`)
-        console.log("Auth Loading Screen")
+      if(userId){
         this.props.navigation.navigate('App');
-      }else{
+      }else if(professionalId){
+        //if logged in as professional immediately gets in to professional screen
+        this.props.navigation.navigate('ProfessionalNav')
+      }
+      else{
         this.props.navigation.navigate('Auth');
       }
     };

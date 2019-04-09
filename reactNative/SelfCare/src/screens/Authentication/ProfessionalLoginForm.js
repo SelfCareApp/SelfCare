@@ -8,10 +8,15 @@ import React from 'react';
 import {View, Text,AsyncStorage} from 'react-native';
 import {Button, CardSection, Input,Spinner} from '../../components/common'
 import axios from 'axios';
+import theme from './../../utils/theme';
 
 class ProfessionalLoginForm extends React.Component{
     constructor(props){
         super(props)
+    }
+
+    static navigationOptions={
+      header:null
     }
 
     state={
@@ -22,6 +27,9 @@ class ProfessionalLoginForm extends React.Component{
         disableButton:false
     }
 
+    registerBtnClick=()=>{
+        this.props.navigation.navigate("ProfessionalRegistration")
+    }
     renderLoginButton()
       //this renders the login button or the spinner 
      {
@@ -35,7 +43,7 @@ class ProfessionalLoginForm extends React.Component{
 
       login=()=>{
           this.setState({loading:true})
-         axios.post('http://localhost:3000/professionals/login',
+         axios.post('https://frozen-hamlet-87170.herokuapp.com/professionals/login',
                 {
                   email:this.state.email,
                   password:this.state.password
@@ -44,22 +52,25 @@ class ProfessionalLoginForm extends React.Component{
                 console.log(result)
                 if(result.status == 200){
                     const profId = result.data.professionalId
-                    AsyncStorage.setItem("professionalId", profId)
+                    this.setState({loading:false})
+                    AsyncStorage.setItem('professionalId',result.data.professionalId)
+                    // AsyncStorage.setItem("userToken",result.data.token)
                     return this.props.navigation.navigate("ProfessionalNav")
                 }
+                alert("Incorrect credentials")
                 this.setState({loading:false})
                 return
             })
             .catch((error)=>{
                 this.setState({loading:false})
-                console.log('error occured')})    //need feedback
+                alert("Error occurred. Confirm you have a valid internet connection ")})    //need feedback
      }
 
     render(){
         return(
             <View style={style.containerStyle}>
-              <Text style={style.textStyle}>Abantu</Text>
-              <Text style={style.smallerText}>The People</Text>
+              <Text style={[theme.primaryTheme.headerText,{color:theme.primaryTheme.colors.princessBlue}]}>Self Care</Text>
+              <Text style={[theme.primaryTheme.secondaryHeader,{color:theme.primaryTheme.colors.princessBlue}]}>~The App~</Text>
            
              <CardSection>
                 <Input label="Email"
@@ -77,6 +88,9 @@ class ProfessionalLoginForm extends React.Component{
             <CardSection>
                 {this.renderLoginButton()}
             </CardSection>
+            <CardSection>
+                <Button onPress={()=>this.registerBtnClick() } >Create Professional Account</Button>
+             </CardSection>
           
         </View>)
     }
@@ -84,29 +98,12 @@ class ProfessionalLoginForm extends React.Component{
 const style ={
     containerStyle:{
         alignItems:'center',
-        // justifyContent:'center',
+        justifyContent:'center',
         flex:1,
         marginTop:15,
         marginLeft:10,
         marginRight:10
 
-    },
-    textStyle :{
-        fontSize :35,
-        textAlign:'center',
-        fontWeight:'bold',
-        paddingTop: 10,
-        paddingBottom:10,
-        color:'#00539C'
-        
-    },
-    smallerText :{
-        fontSize :12,
-        textAlign:'center',
-        fontWeight:'400',
-        paddingBottom:16,
-        color:'#00539C'
-        
     }
 }
 export {ProfessionalLoginForm};

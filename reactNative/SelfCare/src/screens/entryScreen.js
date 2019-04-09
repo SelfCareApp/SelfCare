@@ -22,19 +22,21 @@ class EntryScreen extends Component{
     render(){
        return(
        <View style={style.containerStyle}>
-         <Text style={style.headerText}>Abantu-the people</Text>
-         <Text style={style.secondaryText}>Connecting you and the services {`\n`} around you</Text>
+         <Text style={[theme.primaryTheme.headerText,style.textColor]}>Self Care</Text>
+         <Text style={[theme.primaryTheme.secondaryHeader,style.textColor]}>~Connecting you and the services {`\n`} around you~</Text>             
          <View style={style.section}>
-            <Text style={[style.secondaryText,{color:'blue',fontSize:22}]}> Get Started!</Text>
+         </View>
+         <View style={style.section}>
+            <Text style={[theme.primaryTheme.secondaryHeader,style.textColor,{fontFamily:'Anton'}]}> Get Started!</Text>
          </View>
          <View style={{marginLeft:20,marginTop:20}}>
              <TouchableOpacity onPress={()=>this.props.navigation.navigate("LogStack")}>
-               <Text style={style.sectionText}>Here as a Customer</Text>
+               <Text style={[theme.primaryTheme.paragraph,style.linkColor,{textDecorationLine:'underline',}]}>Here as a Customer</Text>
              </TouchableOpacity>
          </View>
          <View style={{marginLeft:20,marginTop:20}}>
-            <TouchableOpacity onPress={()=>this.props.navigation.navigate("ProfessionalLoginForm")}>
-              <Text style={style.sectionText}>Here as a Professional</Text>
+            <TouchableOpacity onPress={()=>this.props.navigation.navigate("ProfessionalAuthStack")}>
+              <Text style={[theme.primaryTheme.paragraph,style.linkColor,{textDecorationLine:'underline',}]}>Here as a Professional</Text>
             </TouchableOpacity>
          </View>
        </View>)
@@ -44,34 +46,20 @@ class EntryScreen extends Component{
 export default EntryScreen
 
 const style={
+    //rest of style utils/theme
     containerStyle:{
         flex:1,
         alignItems:'center',
         justifyContent:'center',
         backgroundColor:theme.primaryColor.textColor
     },
-    headerText:{
-        marginTop:50,
-        fontSize:30,
-        textAlign:'center',
-        color:"#fff"
-    },
-    secondaryText:{
-        color:"#fff",
-        fontSize:18,
-        marginLeft:10,
-        width:width - 20,
-        marginTop:20,
-        textAlign:'center'
-    },
     section:{
-        marginTop:40,
-        alignItems:'center'
+        marginTop:30,
     },
-    sectionText:{
-        color:"#fff",
-        fontSize:20,
-        textAlign:'center'
-        
+    textColor:{
+        color:'#F0EDE5'
+    },
+    linkColor:{
+        color:"#E08119"
     }
 }

@@ -2,3 +2,4 @@
 export * from './LoginForm'
 export * from './ProfessionalLoginForm'
 export * from './RegistrationForm'
+export * from './ProfessionalRegistration'

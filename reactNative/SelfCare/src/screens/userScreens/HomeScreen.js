@@ -66,7 +66,7 @@ class HomeScreen extends Component{
     }
 
    getNearByProfessionals =()=>{
-    axios.post('http://localhost:3000/professionals/findByLocation',{
+    axios.post('https://frozen-hamlet-87170.herokuapp.com/professionals/findByLocation',{
             location:[this.state.longitude,
             this.state.latitude]
         })

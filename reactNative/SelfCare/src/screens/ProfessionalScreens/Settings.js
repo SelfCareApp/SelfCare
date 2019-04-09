@@ -6,7 +6,7 @@ import {MenuButton,Header} from '../../components/common';
 import theme from './../../utils/theme'
 const headerTitleStyle = theme.headerTitleStyle
 
-class UserSettings extends Component{
+class Settings extends Component{
   
   static navigationOptions ={
      headerTitle:"Account", 
@@ -33,7 +33,7 @@ class UserSettings extends Component{
         return this.props.navigation.navigate(screen)
     }
     logout(){
-        AsyncStorage.removeItem('userId')
+        AsyncStorage.removeItem('professionalId')
         // AsyncStorage.removeItem('userToken').then(()=>this.props.navigation.navigate('Auth'))
     }
     render(){
@@ -41,15 +41,15 @@ class UserSettings extends Component{
         <SafeAreaView>
           {/* <Header headerText='Profile'/> */}
             <View style={{marginTop:30}}>
-            <MenuButton onPress={()=>this.navigationHandler("EditProfile")}
+            <MenuButton onPress={()=>alert("implement")}
                 iconName="user-circle"
                 title="Edit Account"/>
-              <MenuButton onPress={()=>this.navigationHandler("UserAppointments")}
-                iconName="calendar-check"
-                title="Upcoming Appointments"/>
-              <MenuButton onPress={()=>this.navigationHandler("UserHistory")}
+              <MenuButton onPress={()=>alert("implement")}
                 iconName="history"
                 title="View Service History"/>
+              <MenuButton onPress={()=>this.navigationHandler("UserAppointments")}
+                iconName="phone"
+                title="Contact Us"/>
               <MenuButton onPress={this.logoutHandle}
                 iconName="sign-out-alt"
                 title="Signout of Account"/>
@@ -58,4 +58,4 @@ class UserSettings extends Component{
     }
 }
 
-export {UserSettings}
+export {Settings}

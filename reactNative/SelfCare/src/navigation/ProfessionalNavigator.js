@@ -1,5 +1,5 @@
 import {createBottomTabNavigator} from 'react-navigation';
-import {Account,HomeScreen,Messages, Portfolio,Booking} from './../screens/ProfessionalScreens'
+import {Account,HomeScreen,Messages,Settings, Portfolio,Booking} from './../screens/ProfessionalScreens'
 
 import React from 'react';
 import {View, Text} from 'react-native'
@@ -13,18 +13,18 @@ const ProfessionalNavigator = createBottomTabNavigator({
         screen:Booking,
         navigationOptions:{
             tabBarIcon:({focused,tintColor})=>{
-              return (<View style={{flexDirection:'row'}}><Icon name="calendar" size={24}/><Badge value="5" status="success" containerStyle={{top:-10}}/></View>)
+              return (<View style={{flexDirection:'row'}}><Icon name="calendar-alt" size={24}/><Badge value="5" status="success" containerStyle={{top:-10}}/></View>)
             }
               }
     },
-    Messages:{
-        screen:Messages,
-        navigationOptions:{
-            tabBarIcon:({focused,tintColor})=>{
-                return (<View style={{flexDirection:'row'}}><Icon name="envelope" size={24} /><Badge value="2" status="success" containerStyle={{top:-10}}/></View>)
-            }
-        }
-    }, 
+    // Messages:{
+    //     screen:Messages,
+    //     navigationOptions:{
+    //         tabBarIcon:({focused,tintColor})=>{
+    //             return (<View style={{flexDirection:'row'}}><Icon name="envelope" size={24} /><Badge value="2" status="success" containerStyle={{top:-10}}/></View>)
+    //         }
+    //     }
+    // }, 
     Portfolio: {
       screen:Portfolio,
       navigationOptions:{
@@ -33,8 +33,8 @@ const ProfessionalNavigator = createBottomTabNavigator({
           }
             }
   },
-    Account:{
-      screen:Account,
+    Settings:{
+      screen:Settings,
       navigationOptions:{
           tabBarIcon:()=>{
              return <Icon name="user" size={24}/>
