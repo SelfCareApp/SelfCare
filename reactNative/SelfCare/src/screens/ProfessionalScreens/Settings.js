@@ -33,7 +33,7 @@ class Settings extends Component{
         return this.props.navigation.navigate(screen)
     }
     logout(){
-        AsyncStorage.removeItem('professionalId')
+        AsyncStorage.removeItem('professionalId').then(()=>this.props.navigation.navigate('Auth'))
         // AsyncStorage.removeItem('userToken').then(()=>this.props.navigation.navigate('Auth'))
     }
     render(){

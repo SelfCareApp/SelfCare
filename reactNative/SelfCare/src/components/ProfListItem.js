@@ -75,7 +75,6 @@ const styles ={
     CardSectionStyle:{
         marginBottom:20,
         borderBottomWidth: 0,
-        // backgroundColor:"#F0EDE5",
         marginBottom:10,
         paddingLeft:10
     },

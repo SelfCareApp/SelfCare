@@ -36,11 +36,12 @@ public class MainApplication extends Application implements ReactApplication {
             new VectorIconsPackage(),
             new MapsPackage(),
             new ImagePickerPackage(),
-            new RNGestureHandlerPackage(),
-            new ImagePickerPackage(),
-            new MapsPackage(),
-            new RNGestureHandlerPackage(),
-            new VectorIconsPackage()
+              new RNGestureHandlerPackage()
+//            new RNGestureHandlerPackage(),
+//            new ImagePickerPackage(),
+//            new MapsPackage(),
+
+//            new VectorIconsPackage()
       );
     }
 

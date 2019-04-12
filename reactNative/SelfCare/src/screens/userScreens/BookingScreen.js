@@ -99,7 +99,7 @@ class BookingScreen extends Component{
 
     render(){
         return(
-              <ScrollView style={{flex:1}}>
+              <ScrollView style={{flex:1, backgroundColor:theme.primaryTheme.container.backgroundColor}}>
                 <Overlay isVisible={this.state.overlayVisible}
                   onBackdropPress={()=>this.setState({overlayVisible:false})}
                   windowBackgroundColor="#e0e0e0"

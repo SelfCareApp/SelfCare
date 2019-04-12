@@ -53,7 +53,7 @@ class UserAppointments extends React.Component{
   }
     render(){
         return (
-        <View>
+        <View style={{backgroundColor:theme.primaryTheme.container.backgroundColor, flex:1}}>
          <SafeAreaView style={style.SafeAreaView}>
             <Header headerText="Upcoming Appointments"/>
          </SafeAreaView>

@@ -4,6 +4,7 @@ import SocketIOClient from 'socket.io-client';
 
 
 import {SendMessageComponent,MessageBubble} from '../../components/index';
+import theme from '../../utils/theme';
 
 class UserMessageScreen extends Component {
     componentWillMount(){
@@ -66,7 +67,7 @@ class UserMessageScreen extends Component {
     const messageData = this.state.messageData;
     console.log(messageData)
         return(
-          <View style={{flex:1}}>
+          <View style={{flex:1,backgroundColor: theme.primaryTheme.container.backgroundColor}}>
             {/* <Header headerText={"Messages"}/> */}
             <View style={{flex:1,backgroundColor:'#fafafa'}}>
               <View style={{flex:1}}>

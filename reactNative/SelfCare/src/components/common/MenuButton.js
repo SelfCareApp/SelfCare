@@ -7,7 +7,7 @@ const MenuButton=(props)=>{
   let {buttonStyle, textStyle} = style
   
   return(         
-    <TouchableOpacity style={buttonStyle}
+    <TouchableOpacity style={[buttonStyle,props.extraStyle]}
         onPress={props.onPress}
     >
       <Icon name={props.iconName} size={24} style={style.iconStyle}/>
@@ -19,19 +19,21 @@ export {MenuButton}
 
 const style ={
     buttonStyle :{
-        backgroundColor: '#fff',
-        borderBottomWidth :0.3,
+        backgroundColor: '#F0EDE5',
+        borderBottomWidth :1,
         borderColor:'#dcdcdc',
         marginLeft:5,
         marginRight:5,
         height:50,
         flexDirection:'row',
-        alignItems:'center'
+        alignItems:'center',
+        padding:10
         
     },
     textStyle :{
-        fontSize :18,
+        fontSize :17,
         marginLeft:10,
+        fontFamily:'Rubik',
         // color :'#00539C',
         fontWeight:'400',
      

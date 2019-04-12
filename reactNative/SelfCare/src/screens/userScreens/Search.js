@@ -70,8 +70,10 @@ class Search extends React.Component{
 
     render(){
       return(
-        <SafeAreaView style={{backgroundColor: theme.primaryColor.headerColor}}>
-          <View><Header headerText="Find Provider"/>
+        <View style={{backgroundColor:theme.primaryTheme.container.backgroundColor, flex:1}}>
+        <SafeAreaView style={{backgroundColor: theme.primaryColor.headerColor}}>  
+            <Header headerText="Find Provider"/>
+        </SafeAreaView>
           <SearchBar 
              containerStyle={{backgroundColor:'#3F69AA', borderRadius:2.5,marginTop:0}}
              inputContainerStyle={{backgroundColor:"#fff"}}
@@ -81,7 +83,7 @@ class Search extends React.Component{
              placeholder="search by name"
           />
           <FlatList 
-            contentContainerStyle={{backgroundColor:'#fff'}}         
+            contentContainerStyle={[{backgroundColor:theme.primaryTheme.container.backgroundColor}]}         
             data={this.state.data}          
             renderItem={({ item }) => ( 
               <ProfListItem firstname={item.firstName}
@@ -93,7 +95,7 @@ class Search extends React.Component{
             keyExtractor={item => item._id} 
           />            
         </View>
-        </SafeAreaView>
+
         )
     }
 }

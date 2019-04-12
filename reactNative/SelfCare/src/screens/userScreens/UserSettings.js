@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {AsyncStorage,View, SafeAreaView} from 'react-native';
+import {AsyncStorage,View, SafeAreaView,Text} from 'react-native';
 
 
 import {MenuButton,Header} from '../../components/common';
 import theme from './../../utils/theme'
-const headerTitleStyle = theme.headerTitleStyle
 
 class UserSettings extends Component{
   
@@ -34,28 +33,58 @@ class UserSettings extends Component{
     }
     logout(){
         AsyncStorage.removeItem('userId')
+        .then(()=>this.props.navigation.navigate("Auth"))
         // AsyncStorage.removeItem('userToken').then(()=>this.props.navigation.navigate('Auth'))
     }
     render(){
         return (
-        <SafeAreaView>
-          {/* <Header headerText='Profile'/> */}
-            <View style={{marginTop:30}}>
-            <MenuButton onPress={()=>this.navigationHandler("EditProfile")}
-                iconName="user-circle"
-                title="Edit Account"/>
+        <SafeAreaView style={{flex:1}}>
+          <View style={[style.constainerStyle,{backgroundColor:theme.primaryTheme.container.backgroundColor}]}>
+             <View style={style.headerContainer}>
+                <Text style={style.headerStyle}>ACCOUNT</Text>
+             </View>
+             <MenuButton onPress={()=>this.navigationHandler("EditProfile")}
+                extraStyle={{backgroundColor:"#F0EDE5"}}
+                iconName="user-cog"
+                title="Edit Account"/>        
               <MenuButton onPress={()=>this.navigationHandler("UserAppointments")}
+                extraStyle={{backgroundColor:"#F0EDE5"}}
                 iconName="calendar-check"
-                title="Upcoming Appointments"/>
-              <MenuButton onPress={()=>this.navigationHandler("UserHistory")}
-                iconName="history"
-                title="View Service History"/>
+                title="Past Transactions"/>
               <MenuButton onPress={this.logoutHandle}
+                extraStyle={{backgroundColor:"#F0EDE5"}}
                 iconName="sign-out-alt"
                 title="Signout of Account"/>
+              <View style={style.headerContainer}>
+                <Text style={style.headerStyle}>CONTACT US</Text>
+              </View>
+              <MenuButton onPress={()=>this.navigationHandler("UserHistory")}
+                iconName="envelope"
+                title="Email Us"/>
+
             </View>
         </SafeAreaView>)
     }
 }
 
 export {UserSettings}
+
+const style ={
+  headerStyle:{
+    fontFamily:'Rubik',
+    fontSize:17,
+    fontWeight:'500',
+    marginBottom:10,
+   
+  },
+  constainerStyle:{
+    // paddingTop:10,
+    paddingLeft:30,
+    paddingRight:30,
+    flex:1
+  },
+  headerContainer:{
+    paddingTop:20,
+    paddingLeft:5,
+  }
+}

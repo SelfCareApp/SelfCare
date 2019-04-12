@@ -15,9 +15,17 @@ class ProfessionalsScreen extends Component{
        const { params= {}} = navigation.state
         return ({headerTitle:`${params.professional.firstName}'s Account`, 
         headerStyle:{
-            backgroundColor:theme.primaryColor.headerColor
-        },
-        headerTintColor:"#fff"})
+          height:50,
+          backgroundColor:theme.primaryColor.headerColor,
+      },
+      headerTitleStyle:{
+        marginBottom:5,
+        fontFamily:'Arial',
+        fontSize:22,
+        color:"#fafafa",
+        fontWeight:'normal'
+      }
+    })
     };
 
     navigation=(screen,professional)=>{
@@ -62,7 +70,7 @@ class ProfessionalsScreen extends Component{
 
 const style ={
     containerStyle:{
-      // backgroundColor:"#fffffa",
+      backgroundColor: theme.primaryTheme.container.backgroundColor,
       flex:1
     },
     professionalButtons:{

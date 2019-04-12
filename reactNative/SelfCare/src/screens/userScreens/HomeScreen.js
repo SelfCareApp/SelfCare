@@ -103,7 +103,7 @@ class HomeScreen extends Component{
 
     render(){
         return(
-         <SafeAreaView>
+         <SafeAreaView style={{flex:1, backgroundColor: theme.primaryTheme.container.backgroundColor}}>
            <View style={{marginTop:10}}>
             {this.renderProfessionalList()}
            </View>  
