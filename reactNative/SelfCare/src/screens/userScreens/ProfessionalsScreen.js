@@ -20,10 +20,10 @@ class ProfessionalsScreen extends Component{
       },
       headerTitleStyle:{
         marginBottom:5,
-        fontFamily:'Arial',
+        fontFamily:'Rubik',
+        fontWeight:'600',
         fontSize:22,
         color:"#fafafa",
-        fontWeight:'normal'
       }
     })
     };

@@ -56,13 +56,15 @@ const RegUserAppStack = createBottomTabNavigator({
         navigationOptions:{
           tabBarIcon:({focused,tintColor})=>{
             return <Icon name="user-cog" size={24} color={tintColor}/>
-          }
+          },
             }
       }
   
   },
   {
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: ({ navigation }) => (
+        {
+          
         tabBarIcon: ({ focused, tintColor }) => {
           const { routeName } = navigation.state;
         },

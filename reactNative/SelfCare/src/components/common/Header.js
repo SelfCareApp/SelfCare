@@ -25,7 +25,8 @@ const Header =(props) =>{
         },
         textStyle:{
             marginBottom:5,
-            fontFamily:'Arial',
+            fontFamily:'Rubik',
+            fontWeight:'600',
             fontSize:22,
             color:"#fafafa",
         }

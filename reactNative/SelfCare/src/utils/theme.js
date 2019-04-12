@@ -29,7 +29,8 @@ const theme ={
       },
       colors:{
           princessBlue:"#00539C",
-          coconutMilk:"#F0EDE5"
+          coconutMilk:"#F0EDE5",
+          eclipseBlue:'#343148'
       }
     },
 
@@ -38,7 +39,7 @@ const theme ={
         iconColor:"#00539C",
         textColor:"#00539C",
         selectedIcon: "#18233E",
-        headerColor:"#00539C",
+        headerColor:"#3F69AA",
         messageBubble:'#cfd8dc'
 
     },

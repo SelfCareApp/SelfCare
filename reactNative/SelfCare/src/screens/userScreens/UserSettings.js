@@ -15,10 +15,10 @@ class UserSettings extends Component{
     },
     headerTitleStyle:{
       marginBottom:5,
-      fontFamily:'Arial',
-      fontSize:22,
-      color:"#fafafa",
-      fontWeight:'normal'
+            fontFamily:'Rubik',
+            fontWeight:'600',
+            fontSize:22,
+            color:"#fafafa",
     },
 }
 
@@ -55,13 +55,18 @@ class UserSettings extends Component{
                 extraStyle={{backgroundColor:"#F0EDE5"}}
                 iconName="sign-out-alt"
                 title="Signout of Account"/>
+                 <View style={style.headerContainer}>
+                <Text style={style.headerStyle}>More</Text>
+              </View>
+              <MenuButton 
+                iconName="dollar-sign"
+                title="Promotions and discounts"/>
               <View style={style.headerContainer}>
                 <Text style={style.headerStyle}>CONTACT US</Text>
               </View>
               <MenuButton onPress={()=>this.navigationHandler("UserHistory")}
                 iconName="envelope"
                 title="Email Us"/>
-
             </View>
         </SafeAreaView>)
     }
