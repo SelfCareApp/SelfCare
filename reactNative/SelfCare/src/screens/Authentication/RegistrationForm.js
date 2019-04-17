@@ -41,8 +41,9 @@ class RegistrationForm extends Component{
        }).then((result)=>{
            if(result.status == 200){
              //const userToken =AsyncStorage.setItem('userToken',response.data.token)
-             alert('Account created. lets get started')
              this.props.navigation.navigate("App") 
+           }else if(status == 500){
+               alert("Possible Duplicate email")
            }
 
        }).catch((err)=>{

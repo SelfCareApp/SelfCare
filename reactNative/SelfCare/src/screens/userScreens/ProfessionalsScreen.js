@@ -57,10 +57,10 @@ class ProfessionalsScreen extends Component{
                     <MenuButton
                       title="View Account"
                     />
-                    <MenuButton
+                    {/* <MenuButton
                       onPress={()=>this.navigationHandler("MessageScreen",{professional})}
                       title="Send Message"
-                    />                    
+                    />                     */}
                     <MenuButton onPress={()=>this.navigationHandler("ProfessionalPortfolio",{professional})}
                      title="View Portfolio"/>
                 </View>

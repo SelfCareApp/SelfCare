@@ -58,6 +58,7 @@ class UserAppointments extends React.Component{
             <Header headerText="Upcoming Appointments"/>
          </SafeAreaView>
             <FlatList
+               contentContainerStyle={{paddingLeft:10,paddingRight:10}}
                keyExtractor={this._keyExtract}
                renderItem={this.renderItem}
                data={this.state.UserAppointments}

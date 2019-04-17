@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
-import {View, Text,SafeAreaView} from 'react-native';
+import {View, Text,SafeAreaView, AsyncStorage, Alert} from 'react-native';
 import theme from '../../utils/theme';
+import axios from 'axios';
 
 import {CardSection, Input,Button} from './../../components/common';
 
@@ -8,6 +9,48 @@ class ProfessionalRegistration extends Component{
     static navigationOptions = {
         header: null
     }
+
+    constructor(props){
+        super(props)
+        this.changeTextHandler = this.changeText.bind(this)
+        this.regirstrationHandler = this.regirstration.bind(this)
+    }
+
+    state={
+        firstName:"",
+        lastName:"",
+        email:"",
+        password:"",
+        confirmPassword:""
+    }
+
+    regirstration=()=>{
+        axios.post('http://localhost:3000/professionals/signup',{
+            firstName:this.state.firstName,
+            lastName:this.state.lastName,
+            email:this.state.email,
+            password:this.state.password,
+            latitude:43.653908,
+            longitude:-79.384293 
+        }).then((response)=>{
+            if(response.status == 200){
+                const userId = AsyncStorage.setItem('professionalId',response.data.professionalId);  //store id
+              this.props.navigation.navigate("ProfessionalNav") 
+            }
+ 
+        }).catch((err)=>{
+            return alert(err)
+        })
+     }  
+
+     changeText =(updateValue)=>{
+        //passes input to state
+        //type: refers to the name of input(state)
+        //input is the entered value
+        this.setState(updateValue)
+        
+    }
+ 
     render(){
        return(
        <SafeAreaView>
@@ -48,10 +91,8 @@ class ProfessionalRegistration extends Component{
                      />
                 </CardSection>          
                 <CardSection>
-                    <Button 
-                      onPress={()=>alert("to be implemented")}
-                    >
-                      Start Making Money</Button>
+                    <Button onPress={this.regirstrationHandler}>
+                     Start Making Money</Button>
                 </CardSection>
             </View>
        </SafeAreaView>)

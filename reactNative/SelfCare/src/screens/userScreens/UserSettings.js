@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import {AsyncStorage,View, SafeAreaView,Text} from 'react-native';
+import {AsyncStorage,View, SafeAreaView,Text, 
+        TextInput,TouchableOpacity,Linking, Modal} from 'react-native';
 
-
-import {MenuButton,Header} from '../../components/common';
+import {MenuButton,Input, CardSection} from '../../components/common';
 import theme from './../../utils/theme'
 
 class UserSettings extends Component{
   
   static navigationOptions ={
      headerTitle:"Account", 
-    headerStyle:{
+     headerStyle:{
         height:50,
         backgroundColor:theme.primaryColor.headerColor,
     },
@@ -26,6 +26,10 @@ class UserSettings extends Component{
         super(props)
         this.navigationHandler = this.navigation.bind(this)
         this.logoutHandle = this.logout.bind(this)
+    }
+
+    state={
+       isVisible:false,   //modal visibility
     }
 
     navigation(screen){
@@ -64,10 +68,54 @@ class UserSettings extends Component{
               <View style={style.headerContainer}>
                 <Text style={style.headerStyle}>CONTACT US</Text>
               </View>
-              <MenuButton onPress={()=>this.navigationHandler("UserHistory")}
+              <MenuButton onPress={()=>this.setState({isVisible:true})}
                 iconName="envelope"
                 title="Email Us"/>
             </View>
+            <Modal visible={this.state.isVisible}>
+              <SafeAreaView style={style.modalContainer}>
+               <View style={style.modalHeader}>
+                 <View style={style.modalButton}>
+                  <TouchableOpacity onPress={()=>this.setState({isVisible:false})}>
+                    <Text style={style.buttonText}>Cancel</Text>
+                  </TouchableOpacity>
+                 </View>
+                 <View style={{flex:2}}>
+                    <Text style={style.headerStyle}>Contact Us</Text>
+                 </View>
+                 <View style={style.modalButton}>
+                    <TouchableOpacity>
+                     <Text style={style.buttonText}>Send</Text>
+                    </TouchableOpacity>
+                 </View>
+                </View>
+              </SafeAreaView>
+              <View>
+                <CardSection>
+                  <Input label="To :"
+                      value="the.selfcareapp@gmail.com"
+                   />
+                </CardSection>
+                <CardSection>
+                  <Input label="CC :"
+                     placeholder="self@gmail.com"
+                   />
+                </CardSection>
+                <CardSection>
+                  <Input label="From :"
+                     placeholder="Fortune@gmail.com"
+                   />
+                </CardSection>
+                <CardSection>
+                  <Input label="Subject"
+                     
+                  />
+                </CardSection>
+                <CardSection>
+                  <TextInput style={{height:200,justifyContent:'flex-start'}}/>
+                </CardSection>
+              </View>
+            </Modal>
         </SafeAreaView>)
     }
 }
@@ -91,5 +139,26 @@ const style ={
   headerContainer:{
     paddingTop:20,
     paddingLeft:5,
+  },
+  modalContainer:{
+    backgroundColor: "#fafafa"
+  },
+  modalHeader:{
+    // flex:4,
+    flexDirection:'row',
+    margin:10,
+    paddingLeft:10,
+    height:30,
+    backgroundColor:"#fafafa"
+  },
+  modalButton:{
+    flex:1,
+    width:50
+  },
+  buttonText:{
+    fontFamily:'rubik',
+    fontSize:17,
+    fontWeight:'300'
   }
+
 }
