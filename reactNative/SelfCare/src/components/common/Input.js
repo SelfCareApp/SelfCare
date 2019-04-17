@@ -2,17 +2,21 @@ import React from 'react';
 import {TextInput, View , Text} from 'react-native';
 
 
-const Input =({label, placeholder, secureTextEntry, onChangeText, Icon, value, numberOfLines,inputStyle}) =>{
+const Input =({label, placeholder, secureTextEntry, onChangeText, 
+    editable, value, numberOfLines, multiline}) =>{
     return (
         <View style={style.containerStyle}>
             <Text style={style.labelStyle}>{label}</Text>
             <TextInput placeholder={placeholder}
-                       style={style.inputStyle}
+                       style={[style.inputStyle]}
                        autoCorrect = {false}
                        secureTextEntry ={secureTextEntry}   //this is to hide the enter data
                        onChangeText ={onChangeText}
                        autoCapitalize={"none"}
                        value={value}
+                       numberOfLines={numberOfLines}
+                       multiline={multiline}
+                       editable={editable}
             />
         </View>
     )

@@ -4,7 +4,6 @@ import {Header,Button, CardSection} from '../../components/common';
 import ImagePicker from 'react-native-image-picker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import theme from '../../utils/theme';
-import { ProfListItem } from '../../components';
 
 class Portfolio extends Component{
   state={
@@ -91,8 +90,8 @@ class Portfolio extends Component{
       const photo = this.state.avatarSource
 
       return(
-            <View style={{flex:1}}>
-            <SafeAreaView style={{backgroundColor:theme.primaryTheme.colors.princessBlue}}>
+            <View style={{flex:1,backgroundColor: theme.primaryColor.backgroundColor}}>
+            <SafeAreaView style={{backgroundColor:theme.primaryColor.headerColor}}>
             <Header headerText="Portfolio"/>
             </SafeAreaView>
             <View style={{alignSelf:'center',justifyContent:'center',width:80,height:80,borderRadius:40, backgroundColor:'black', marginTop:20, marginBottom:20}}>

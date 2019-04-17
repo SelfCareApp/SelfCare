@@ -1,22 +1,21 @@
 import React,{Component} from 'react';
 import {View,Text} from 'react-native';
 import theme from '../utils/theme';
-import { CardSection } from './common';
 import moment from 'moment'
 
 const Appointment =(props)=>{
     return(
-      <CardSection>
-        <View style={style.imageStyle}>
-        <Text style={style.imageText}>{(moment(props.date,"YYY/MM/DD").format("DD")).toUpperCase()}</Text>
-          <Text style={style.imageText}>{(moment(props.date,"YYY/MM/DD").format("MMMM")).toUpperCase()}</Text>
+      <View style={{flex:1,paddingTop:10, flexDirection:"row"}}>
+        <View style={style.dateContainer}>
+        <Text style={style.dateText}>{(moment(props.date,"YYY/MM/DD").format("DD")).toUpperCase()}</Text>
+          <Text style={style.dateText}>{(moment(props.date,"YYY/MM/DD").format("MMMM")).toUpperCase()}</Text>
         </View>
         <View style={style.viewContainer}>
           {/* <Text style={style.textHeader}>Date : {props.date}</Text> */}
           <Text style={style.textHeader}>Time : {props.time}</Text>
-          <Text style={style.textHeader}>Professional: {props.professionalName}</Text>
+          <Text style={style.textHeader}>With: {props.professionalName}</Text>
         </View>
-      </CardSection>
+      </View>
 )
 }
 
@@ -27,22 +26,25 @@ const style ={
       fontSize:20,
       fontFamily:'Rubik',
       marginLeft:20,
-      textAlign:'right'
+      textAlign:'center'
 
     },
     viewContainer:{
       marginTop:15,
-      padding:10, 
-      flex:4
+      // padding:10, 
+      flex:3,
+      alignSelf:'center',
+      justifyContent:'center'
       
     },
-    imageStyle:{
-      marginLeft:10,
+    dateContainer:{
+      paddingLeft:20,
       flex:1,
+      alignSelf:'center',
+      justifyContent:'center',
       flexDirection:'column'
     },
-    imageText:{
-      alignSelf:'center',
+    dateText:{
       textAlign:'center',
       fontSize:20,
       fontWeight:'400',

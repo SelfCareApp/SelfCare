@@ -35,7 +35,7 @@ class EditProfile extends Component{
     fetchUserData=()=>{
         this.setState({loading:true})
         //called before page loads to populate current form fields
-       axios.post("http:/localhost:3000/users/findById",{
+       axios.post("https://frozen-hamlet-87170.herokuapp.com/users/findById",{
             _id:this.state.userId
         }).then((result)=>{
             console.log(result)

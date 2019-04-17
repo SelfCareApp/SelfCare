@@ -1,5 +1,5 @@
 import {createBottomTabNavigator} from 'react-navigation';
-import {Account,HomeScreen,Messages,Settings, Portfolio,Booking} from './../screens/ProfessionalScreens'
+import {Settings, Portfolio,Booking} from './../screens/ProfessionalScreens'
 
 import React from 'react';
 import {View, Text} from 'react-native'
@@ -17,14 +17,6 @@ const ProfessionalNavigator = createBottomTabNavigator({
             }
               }
     },
-    // Messages:{
-    //     screen:Messages,
-    //     navigationOptions:{
-    //         tabBarIcon:({focused,tintColor})=>{
-    //             return (<View style={{flexDirection:'row'}}><Icon name="envelope" size={24} /><Badge value="2" status="success" containerStyle={{top:-10}}/></View>)
-    //         }
-    //     }
-    // }, 
     Portfolio: {
       screen:Portfolio,
       navigationOptions:{
@@ -37,7 +29,7 @@ const ProfessionalNavigator = createBottomTabNavigator({
       screen:Settings,
       navigationOptions:{
           tabBarIcon:()=>{
-             return <Icon name="user" size={24}/>
+             return <Icon name="cog" size={24}/>
           }
       }
   }

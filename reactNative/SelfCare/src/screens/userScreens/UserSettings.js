@@ -4,6 +4,7 @@ import {AsyncStorage,View, SafeAreaView,Text,
 
 import {MenuButton,Input, CardSection} from '../../components/common';
 import theme from './../../utils/theme'
+import { ContactUsForm } from '../../components/modals/ContactUsForm';
 
 class UserSettings extends Component{
   
@@ -26,6 +27,9 @@ class UserSettings extends Component{
         super(props)
         this.navigationHandler = this.navigation.bind(this)
         this.logoutHandle = this.logout.bind(this)
+
+        //handler for closing email modal
+        this.closeContactModal = this.hideModal.bind(this)
     }
 
     state={
@@ -35,6 +39,11 @@ class UserSettings extends Component{
     navigation(screen){
         return this.props.navigation.navigate(screen)
     }
+
+    hideModal(){
+      this.setState({isVisible:false})
+    }
+    
     logout(){
         AsyncStorage.removeItem('userId')
         .then(()=>this.props.navigation.navigate("Auth"))
@@ -73,48 +82,7 @@ class UserSettings extends Component{
                 title="Email Us"/>
             </View>
             <Modal visible={this.state.isVisible}>
-              <SafeAreaView style={style.modalContainer}>
-               <View style={style.modalHeader}>
-                 <View style={style.modalButton}>
-                  <TouchableOpacity onPress={()=>this.setState({isVisible:false})}>
-                    <Text style={style.buttonText}>Cancel</Text>
-                  </TouchableOpacity>
-                 </View>
-                 <View style={{flex:2}}>
-                    <Text style={style.headerStyle}>Contact Us</Text>
-                 </View>
-                 <View style={style.modalButton}>
-                    <TouchableOpacity>
-                     <Text style={style.buttonText}>Send</Text>
-                    </TouchableOpacity>
-                 </View>
-                </View>
-              </SafeAreaView>
-              <View>
-                <CardSection>
-                  <Input label="To :"
-                      value="the.selfcareapp@gmail.com"
-                   />
-                </CardSection>
-                <CardSection>
-                  <Input label="CC :"
-                     placeholder="self@gmail.com"
-                   />
-                </CardSection>
-                <CardSection>
-                  <Input label="From :"
-                     placeholder="Fortune@gmail.com"
-                   />
-                </CardSection>
-                <CardSection>
-                  <Input label="Subject"
-                     
-                  />
-                </CardSection>
-                <CardSection>
-                  <TextInput style={{height:200,justifyContent:'flex-start'}}/>
-                </CardSection>
-              </View>
+              <ContactUsForm hide={this.closeContactModal}/>
             </Modal>
         </SafeAreaView>)
     }

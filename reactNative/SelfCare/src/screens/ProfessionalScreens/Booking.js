@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {View,Text,TouchableOpacity,FlatList, AsyncStorage, SafeAreaView,Modal} from 'react-native';
+import {View,ScrollView,FlatList, AsyncStorage, SafeAreaView,Modal} from 'react-native';
 import {Calendar} from 'react-native-calendars';
 
 import moment from 'moment';
 import axios from 'axios'
 
-import {Header,Button, CardSection} from './../../components/common';
+import {Header} from './../../components/common';
 import {Appointment} from '../../components';
 import theme from '../../utils/theme';
 
@@ -72,15 +72,21 @@ class Booking extends Component {
   }
 
     render() {
-      return (<View>
-        <SafeAreaView style={{backgroundColor:theme.primaryTheme.colors.princessBlue}}>
+      return (<View style={{flex:1,backgroundColor: theme.primaryColor.backgroundColor}}>
+        <SafeAreaView style={{backgroundColor:theme.primaryColor.headerColor}}>
           <Header headerText="Upcoming appointments"/>
         </SafeAreaView>
+        <ScrollView>
+        <Calendar />
+        <View style={{paddingTop:10}}>
           <FlatList
-               keyExtractor={this._keyExtract}
-               renderItem={this.renderItem}
-               data={this.state.appointments}
-            />
+                keyExtractor={this._keyExtract}
+                renderItem={this.renderItem}
+                data={this.state.appointments}
+              />
+        </View>
+        </ScrollView>
+  
 
         </View>
 
